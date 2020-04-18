@@ -22,6 +22,8 @@ Some of the features are:
 Clone this repostitory onto your system.
 Compile using Visual Studio 2017++
 
+Note: Clone with submodules using "git clone --recurse-submodules https://github.com/101010b/AudioProcessor2.git"
+
 ## Dependencies
 The Tool depends on some other systems which are included either as submodules or need NuGet to install them.
 * NAudio - See https://github.com/naudio/NAudio for more details
