@@ -1,0 +1,618 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DFDAF692-C537-4D01-B420-01EA04407D23}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AudioProcessor</RootNamespace>
+    <AssemblyName>AudioProcessor</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <ItemGroup>
+    <Reference Include="NAudio, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\NAudio.1.10.0\lib\net35\NAudio.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutWin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutWin.Designer.cs">
+      <DependentUpon>AboutWin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AFilterIIR.cs" />
+    <Compile Include="APSelection.cs" />
+    <Compile Include="AsyncSinkSource\AsyncNetListener.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AsyncSinkSource\ByteFIFO.cs" />
+    <Compile Include="AsyncSinkSource\MIDI_In.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AudioUtils.cs" />
+    <Compile Include="BiQuad.cs" />
+    <Compile Include="BiQuadC.cs" />
+    <Compile Include="ColorTable.cs" />
+    <Compile Include="Complex.cs" />
+    <Compile Include="DynamicDelay.cs" />
+    <Compile Include="MathUtils.cs" />
+    <Compile Include="Matrix2x2.cs" />
+    <Compile Include="Processing\Chromagram.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Processing\Echo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RealtimeSinkSource\WASAPISink.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RealtimeSinkSource\WASAPISource.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RTElements\FlexibleInputWin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RTElements\FlexibleInputWin.Designer.cs">
+      <DependentUpon>FlexibleInputWin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RTElements\RTChoice.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RTElements\RTdial.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Processing\BooleanOP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Processing\BooleanIndicator.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Processing\Constant.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DataBuffer.cs" />
+    <Compile Include="DrawColor.cs" />
+    <Compile Include="FFTProcessor.cs" />
+    <Compile Include="FIFO.cs" />
+    <Compile Include="GridCalculator.cs" />
+    <Compile Include="RTElements\NumericInputWin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RTElements\NumericInputWin.Designer.cs">
+      <DependentUpon>NumericInputWin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Plot.cs" />
+    <Compile Include="PlotTrace.cs" />
+    <Compile Include="Processing\Adder.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AudioProcessorWin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AudioProcessorWin.Designer.cs">
+      <DependentUpon>AudioProcessorWin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsUtil.cs" />
+    <Compile Include="LogWin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogWin.Designer.cs">
+      <DependentUpon>LogWin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProcessingNet.cs" />
+    <Compile Include="Processing\Agc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Processing\Averager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Processing\FFTFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Processing\FFTPicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Processing\IIRAFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Processing\IIRFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Processing\FixedGain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Processing\Compare.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Processing\Mixer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Processing\Mult.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Processing\Mux.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Processing\Nop.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Processing\PLL.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Processing\Sub.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Processing\Switch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Processing\Unary.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Processing\VCF.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Processing\VectorDetector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Processing\VMux.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RealtimeSinkSource\GenericNAudioSinkSource.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RMSdetector.cs" />
+    <Compile Include="RTElements\RTSequencerField.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RTElements\RTShape.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RTElements\SelectorInputWin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RTElements\SelectorInputWin.Designer.cs">
+      <DependentUpon>SelectorInputWin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RealtimeSinkSource\ASIODeviceSource.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Averager.cs" />
+    <Compile Include="RTElements\RTbutton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RTElements\RTControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RTElements\RTFlexInput.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RTElements\RTForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RTElements\RTIO.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RTElements\RTLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RTElements\RTLED.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RTElements\RTLevel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RTElements\RTSelector.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RTObjectReference.cs" />
+    <Compile Include="SinkSource\FGenerator.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SinkSource\LinePlotter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SinkSource\LinePlotterScreen.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SinkSource\LinePlotterScreen.Designer.cs">
+      <DependentUpon>LinePlotterScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SinkSource\LinePlotterWin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SinkSource\LinePlotterWin.Designer.cs">
+      <DependentUpon>LinePlotterWin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SinkSource\OsciFIFO.cs" />
+    <Compile Include="SinkSource\Oscilloscope.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SinkSource\OscilloscopeScreen.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SinkSource\OscilloscopeScreen.Designer.cs">
+      <DependentUpon>OscilloscopeScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SinkSource\OscilloscopeWin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SinkSource\OscilloscopeWin.Designer.cs">
+      <DependentUpon>OscilloscopeWin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SinkSource\RMSVal.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SinkSource\Sequencer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SinkSource\ShapeGen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SinkSource\SpectrumAnalyzer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SinkSource\SpectrumAnalyzerScreen.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SinkSource\SpectrumAnalyzerScreen.Designer.cs">
+      <DependentUpon>SpectrumAnalyzerScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SinkSource\SpectrumAnalyzerWin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SinkSource\SpectrumAnalyzerWin.Designer.cs">
+      <DependentUpon>SpectrumAnalyzerWin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SinkSource\Sweep.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SinkSource\VNA.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SinkSource\VNAScreen.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SinkSource\VNAScreen.Designer.cs">
+      <DependentUpon>VNAScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SinkSource\VNAWin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SinkSource\VNAWin.Designer.cs">
+      <DependentUpon>VNAWin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RealtimeSinkSource\WASAPILoopSource.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SinkSource\WaterfallSpectrum.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SinkSource\WaterfallSpectrumScreen.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SinkSource\WaterfallSpectrumScreen.Designer.cs">
+      <DependentUpon>WaterfallSpectrumScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SinkSource\WaterfallSpectrumWin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SinkSource\WaterfallSpectrumWin.Designer.cs">
+      <DependentUpon>WaterfallSpectrumWin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SinkSource\WavFileReader.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SinkSource\WavFileWriter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SinkSource\WhiteNoise.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SystemPanel.cs" />
+    <Compile Include="SystemPanel.Designer.cs">
+      <DependentUpon>SystemPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vector.cs" />
+    <Compile Include="VectorBox.cs" />
+    <Compile Include="VectorLine.cs" />
+    <Compile Include="VectorPath.cs" />
+    <Compile Include="VectorRect.cs" />
+    <Compile Include="RealtimeSinkSource\WindowsDeviceSink.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RealtimeSinkSource\WindowsDeviceSource.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="XMLDataFile.cs" />
+    <EmbeddedResource Include="AboutWin.resx">
+      <DependentUpon>AboutWin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AsyncSinkSource\AsyncNetListener.resx">
+      <DependentUpon>AsyncNetListener.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AsyncSinkSource\MIDI_In.resx">
+      <DependentUpon>MIDI_In.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AudioProcessorWin.resx">
+      <DependentUpon>AudioProcessorWin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogWin.resx">
+      <DependentUpon>LogWin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Processing\chromagram.resx">
+      <DependentUpon>Chromagram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Processing\Echo.resx">
+      <DependentUpon>Echo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealtimeSinkSource\WASAPISink.resx">
+      <DependentUpon>WASAPISink.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealtimeSinkSource\WASAPISource.resx">
+      <DependentUpon>WASAPISource.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RTElements\NumericInputWin.resx">
+      <DependentUpon>NumericInputWin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Processing\Adder.resx">
+      <DependentUpon>Adder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Processing\Agc.resx">
+      <DependentUpon>Agc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Processing\Averager.resx">
+      <DependentUpon>Averager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Processing\BooleanIndicator.resx">
+      <DependentUpon>BooleanIndicator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Processing\BooleanOP.resx">
+      <DependentUpon>BooleanOP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Processing\Compare.resx">
+      <DependentUpon>Compare.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Processing\Constant.resx">
+      <DependentUpon>Constant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Processing\FFTFilter.resx">
+      <DependentUpon>FFTFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Processing\FFTPicker.resx">
+      <DependentUpon>FFTPicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Processing\FixedGain.resx">
+      <DependentUpon>FixedGain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Processing\IIRAFilter.resx">
+      <DependentUpon>IIRAFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Processing\IIRFilter.resx">
+      <DependentUpon>IIRFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Processing\Mixer.resx">
+      <DependentUpon>Mixer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Processing\Mult.resx">
+      <DependentUpon>Mult.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Processing\Mux.resx">
+      <DependentUpon>Mux.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Processing\Nop.resx">
+      <DependentUpon>Nop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Processing\PLL.resx">
+      <DependentUpon>PLL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Processing\Sub.resx">
+      <DependentUpon>Sub.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Processing\Switch.resx">
+      <DependentUpon>Switch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Processing\Unary.resx">
+      <DependentUpon>Unary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Processing\VCF.resx">
+      <DependentUpon>VCF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Processing\VectorDetector.resx">
+      <DependentUpon>VectorDetector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Processing\VMux.resx">
+      <DependentUpon>VMux.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="RTElements\SelectorInputWin.resx">
+      <DependentUpon>SelectorInputWin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealtimeSinkSource\ASIODeviceSource.resx">
+      <DependentUpon>ASIODeviceSource.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealtimeSinkSource\WASAPILoopSource.resx">
+      <DependentUpon>WASAPILoopSource.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealtimeSinkSource\WindowsDeviceSink.resx">
+      <DependentUpon>WindowsDeviceSink.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealtimeSinkSource\WindowsDeviceSource.resx">
+      <DependentUpon>WindowsDeviceSource.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RTElements\FlexibleInputWin.resx">
+      <DependentUpon>FlexibleInputWin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SinkSource\FGenerator.resx">
+      <DependentUpon>FGenerator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SinkSource\LinePlotter.resx">
+      <DependentUpon>LinePlotter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SinkSource\LinePlotterWin.resx">
+      <DependentUpon>LinePlotterWin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SinkSource\Oscilloscope.resx">
+      <DependentUpon>Oscilloscope.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SinkSource\OscilloscopeWin.resx">
+      <DependentUpon>OscilloscopeWin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SinkSource\RMSVal.resx">
+      <DependentUpon>RMSVal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SinkSource\Sequencer.resx">
+      <DependentUpon>Sequencer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SinkSource\ShapeGen.resx">
+      <DependentUpon>ShapeGen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SinkSource\SpectrumAnalyzer.resx">
+      <DependentUpon>SpectrumAnalyzer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SinkSource\SpectrumAnalyzerWin.resx">
+      <DependentUpon>SpectrumAnalyzerWin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SinkSource\Sweep.resx">
+      <DependentUpon>Sweep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SinkSource\VNA.resx">
+      <DependentUpon>VNA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SinkSource\VNAWin.resx">
+      <DependentUpon>VNAWin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SinkSource\WaterfallSpectrum.resx">
+      <DependentUpon>WaterfallSpectrum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SinkSource\WaterfallSpectrumWin.resx">
+      <DependentUpon>WaterfallSpectrumWin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SinkSource\WavFileReader.resx">
+      <DependentUpon>WavFileReader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SinkSource\WavFileWriter.resx">
+      <DependentUpon>WavFileWriter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SinkSource\WhiteNoise.resx">
+      <DependentUpon>WhiteNoise.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icons\arithmetic.png" />
+    <Content Include="icons\control.png" />
+    <Content Include="icons\delete.png" />
+    <Content Include="icons\F-generator.png" />
+    <Content Include="icon.ico" />
+    <Content Include="icon.png" />
+    <Content Include="icons\filter.png" />
+    <Content Include="icons\input.png" />
+    <Content Include="icons\output.png" />
+    <Content Include="icons\tools.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="externals\FFTWSharp\FFTWSharp\FFTWSharp.csproj">
+      <Project>{bea875b8-e28a-49c5-8e7e-6512da65f7e1}</Project>
+      <Name>FFTWSharp</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
