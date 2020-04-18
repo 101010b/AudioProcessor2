@@ -18,6 +18,8 @@ Some of the features are:
 * Special elements to add some synthesizer features
 * With sound devices that can record at samplerates up to 192 kHz it can also be used to downconvert ultrasonic signals to the hearable range
 
+![screenshot](https://github.com/101010b/AudioProcessor2/raw/master/screenshots/demo.png "Screenshot")
+
 ## Installation
 Clone this repostitory onto your system.
 Compile using Visual Studio 2017++
