@@ -62,6 +62,8 @@ namespace AudioProcessor.SinkSource
             this.io1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.io1.contactBackColor = System.Drawing.Color.Black;
             this.io1.contactColor = System.Drawing.Color.DimGray;
+            this.io1.contactHighlightColor = System.Drawing.Color.Red;
+            this.io1.highlighted = false;
             this.io1.Location = new System.Drawing.Point(454, 39);
             this.io1.Name = "io1";
             this.io1.orientation = AudioProcessor.RTIO.RTOrientation.East;
@@ -79,6 +81,8 @@ namespace AudioProcessor.SinkSource
             this.io2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.io2.contactBackColor = System.Drawing.Color.Black;
             this.io2.contactColor = System.Drawing.Color.DimGray;
+            this.io2.contactHighlightColor = System.Drawing.Color.Red;
+            this.io2.highlighted = false;
             this.io2.Location = new System.Drawing.Point(454, 65);
             this.io2.Name = "io2";
             this.io2.orientation = AudioProcessor.RTIO.RTOrientation.East;
@@ -96,6 +100,8 @@ namespace AudioProcessor.SinkSource
             this.io3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.io3.contactBackColor = System.Drawing.Color.Black;
             this.io3.contactColor = System.Drawing.Color.DimGray;
+            this.io3.contactHighlightColor = System.Drawing.Color.Red;
+            this.io3.highlighted = false;
             this.io3.Location = new System.Drawing.Point(454, 91);
             this.io3.Name = "io3";
             this.io3.orientation = AudioProcessor.RTIO.RTOrientation.East;
@@ -113,6 +119,8 @@ namespace AudioProcessor.SinkSource
             this.io4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.io4.contactBackColor = System.Drawing.Color.Black;
             this.io4.contactColor = System.Drawing.Color.DimGray;
+            this.io4.contactHighlightColor = System.Drawing.Color.Red;
+            this.io4.highlighted = false;
             this.io4.Location = new System.Drawing.Point(454, 117);
             this.io4.Name = "io4";
             this.io4.orientation = AudioProcessor.RTIO.RTOrientation.East;
@@ -129,6 +137,8 @@ namespace AudioProcessor.SinkSource
             // 
             this.ioGate.contactBackColor = System.Drawing.Color.Black;
             this.ioGate.contactColor = System.Drawing.Color.DimGray;
+            this.ioGate.contactHighlightColor = System.Drawing.Color.Red;
+            this.ioGate.highlighted = false;
             this.ioGate.Location = new System.Drawing.Point(0, 39);
             this.ioGate.Name = "ioGate";
             this.ioGate.orientation = AudioProcessor.RTIO.RTOrientation.West;
@@ -197,7 +207,7 @@ namespace AudioProcessor.SinkSource
             this.dlAmp.dialDiameter = 50D;
             this.dlAmp.dialMarkColor = System.Drawing.Color.Red;
             this.dlAmp.format = "F0";
-            this.dlAmp.Location = new System.Drawing.Point(289, 24);
+            this.dlAmp.Location = new System.Drawing.Point(289, 31);
             this.dlAmp.logScale = false;
             this.dlAmp.maxVal = 100D;
             this.dlAmp.minVal = -100D;
@@ -206,7 +216,7 @@ namespace AudioProcessor.SinkSource
             this.dlAmp.showScale = true;
             this.dlAmp.showTitle = true;
             this.dlAmp.showValue = true;
-            this.dlAmp.Size = new System.Drawing.Size(80, 100);
+            this.dlAmp.Size = new System.Drawing.Size(80, 80);
             this.dlAmp.TabIndex = 9;
             this.dlAmp.Text = "rtDial2";
             this.dlAmp.title = "Amplitude";
@@ -223,7 +233,7 @@ namespace AudioProcessor.SinkSource
             this.dlSpeed.dialDiameter = 50D;
             this.dlSpeed.dialMarkColor = System.Drawing.Color.Red;
             this.dlSpeed.format = "F1";
-            this.dlSpeed.Location = new System.Drawing.Point(375, 22);
+            this.dlSpeed.Location = new System.Drawing.Point(375, 31);
             this.dlSpeed.logScale = false;
             this.dlSpeed.maxVal = 1000D;
             this.dlSpeed.minVal = -1000D;
@@ -232,7 +242,7 @@ namespace AudioProcessor.SinkSource
             this.dlSpeed.showScale = true;
             this.dlSpeed.showTitle = true;
             this.dlSpeed.showValue = true;
-            this.dlSpeed.Size = new System.Drawing.Size(80, 100);
+            this.dlSpeed.Size = new System.Drawing.Size(80, 80);
             this.dlSpeed.TabIndex = 10;
             this.dlSpeed.Text = "rtDial2";
             this.dlSpeed.title = "Speed";
@@ -247,6 +257,8 @@ namespace AudioProcessor.SinkSource
             // 
             this.ioSpeed.contactBackColor = System.Drawing.Color.Black;
             this.ioSpeed.contactColor = System.Drawing.Color.DimGray;
+            this.ioSpeed.contactHighlightColor = System.Drawing.Color.Red;
+            this.ioSpeed.highlighted = false;
             this.ioSpeed.Location = new System.Drawing.Point(0, 65);
             this.ioSpeed.Name = "ioSpeed";
             this.ioSpeed.orientation = AudioProcessor.RTIO.RTOrientation.West;
@@ -287,6 +299,8 @@ namespace AudioProcessor.SinkSource
             this.io8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.io8.contactBackColor = System.Drawing.Color.Black;
             this.io8.contactColor = System.Drawing.Color.DimGray;
+            this.io8.contactHighlightColor = System.Drawing.Color.Red;
+            this.io8.highlighted = false;
             this.io8.Location = new System.Drawing.Point(454, 221);
             this.io8.Name = "io8";
             this.io8.orientation = AudioProcessor.RTIO.RTOrientation.East;
@@ -304,6 +318,8 @@ namespace AudioProcessor.SinkSource
             this.io7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.io7.contactBackColor = System.Drawing.Color.Black;
             this.io7.contactColor = System.Drawing.Color.DimGray;
+            this.io7.contactHighlightColor = System.Drawing.Color.Red;
+            this.io7.highlighted = false;
             this.io7.Location = new System.Drawing.Point(454, 195);
             this.io7.Name = "io7";
             this.io7.orientation = AudioProcessor.RTIO.RTOrientation.East;
@@ -321,6 +337,8 @@ namespace AudioProcessor.SinkSource
             this.io6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.io6.contactBackColor = System.Drawing.Color.Black;
             this.io6.contactColor = System.Drawing.Color.DimGray;
+            this.io6.contactHighlightColor = System.Drawing.Color.Red;
+            this.io6.highlighted = false;
             this.io6.Location = new System.Drawing.Point(454, 169);
             this.io6.Name = "io6";
             this.io6.orientation = AudioProcessor.RTIO.RTOrientation.East;
@@ -338,6 +356,8 @@ namespace AudioProcessor.SinkSource
             this.io5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.io5.contactBackColor = System.Drawing.Color.Black;
             this.io5.contactColor = System.Drawing.Color.DimGray;
+            this.io5.contactHighlightColor = System.Drawing.Color.Red;
+            this.io5.highlighted = false;
             this.io5.Location = new System.Drawing.Point(454, 143);
             this.io5.Name = "io5";
             this.io5.orientation = AudioProcessor.RTIO.RTOrientation.East;

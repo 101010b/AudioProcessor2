@@ -135,5 +135,17 @@ namespace AudioProcessor
             }
         }
 
+        public ProcessingNet getNet(int i)
+        {
+            if ((i < 0) || (nets == null) || (i >= nets.Count)) return null;
+            return nets[i];
+        }
+
+        public RTForm getElement(int i)
+        {
+            if ((i < 0) || (forms == null) || (i >= forms.Count)) return null;
+            return forms[i];
+        }
+
     }
 }

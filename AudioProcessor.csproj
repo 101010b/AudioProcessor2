@@ -226,6 +226,9 @@
     <Compile Include="RTElements\RTShape.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="RTElements\RTWaterfall.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="RTElements\SelectorInputWin.cs">
       <SubType>Form</SubType>
     </Compile>

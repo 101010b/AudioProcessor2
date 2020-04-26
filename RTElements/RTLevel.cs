@@ -32,9 +32,10 @@ namespace AudioProcessor
         }
 
         private Color _titleColor;
+        private Brush titleBrush;
         public Color titleColor
         {
-            set { _titleColor = value; redraw(); }
+            set { _titleColor = value; titleBrush = new SolidBrush(_titleColor); redraw(); }
             get { return _titleColor; }
         }
 
@@ -67,9 +68,10 @@ namespace AudioProcessor
         }
 
         private Color _valueColor;
+        private Brush valueBrush;
         public Color valueColor
         {
-            set { _valueColor = value; redraw(); }
+            set { _valueColor = value; valueBrush = new SolidBrush(_valueColor); redraw(); }
             get { return _valueColor; }
         }
 
@@ -123,21 +125,24 @@ namespace AudioProcessor
         }
 
         private Color _frameColor;
+        private Pen framePen;
         public Color frameColor
         {
-            set { _frameColor = value; redraw(); }
+            set { _frameColor = value; framePen = new Pen(_frameColor); redraw(); }
             get { return _frameColor; }
         }
         private Color _fillColor;
+        private Brush fillBrush;
         public Color fillColor
         {
-            set { _fillColor = value; redraw(); }
+            set { _fillColor = value; fillBrush = new SolidBrush(_fillColor); redraw(); }
             get { return _fillColor; }
         }
         private Color _pointColor;
+        private Pen pointPen;
         public Color pointColor
         {
-            set { _pointColor = value; redraw(); }
+            set { _pointColor = value; pointPen = new Pen(_pointColor); redraw(); }
             get { return _pointColor; }
         }
 
@@ -162,11 +167,13 @@ namespace AudioProcessor
             _title = "level";
             _titlePos = GraphicsUtil.TextAlignment.left;
             _titleColor = Color.DimGray;
+            titleBrush = new SolidBrush(_titleColor);
             _titleFont = new Font(FontFamily.GenericSansSerif, 8);
             _displaySize = new Size(50, 10);
             _valuePos = GraphicsUtil.TextAlignment.below;
             _valueFont = new Font(FontFamily.GenericSansSerif, 8);
             _valueColor = Color.DimGray;
+            valueBrush = new SolidBrush(_valueColor);
             _format = "F2";
             _unit = "";
             _value = 0;
@@ -174,8 +181,11 @@ namespace AudioProcessor
             _max = 1;
             _openAngle = 150;
             _frameColor = Color.DimGray;
+            framePen = new Pen(_frameColor);
             _fillColor = Color.LimeGreen;
+            fillBrush = new SolidBrush(_fillColor);
             _pointColor = Color.Red;
+            pointPen = new Pen(_pointColor);
             _levelType = RTLevelType.LinearH;
             _logScale = false;
             gridCalculator = new GridCalculator(_min, _max, _logScale, 2 * Vector.V(displaySize).Len);
@@ -222,10 +232,6 @@ namespace AudioProcessor
 
         void drawTo(Graphics g)
         {
-            // Background
-            // Brush brushBackground = new SolidBrush(BackColor);
-            // g.FillRectangle(brushBackground, this.ClientRectangle);
-
             Vector center = Vector.Zero;
             Vector dim = Vector.Zero;
             GraphicsUtil.TextPosition titlePosition = null;
@@ -233,21 +239,12 @@ namespace AudioProcessor
 
             getLevelCoords(ref center, ref titlePosition, ref valuePosition, ref dim);
             if (titlePosition != null)
-            {
-                Brush titleBrush = new SolidBrush(_titleColor);
                 titlePosition.drawText(g, _titleFont, titleBrush, _title);
-            }
             if (valuePosition != null)
             {
                 string vs = getValueString();
-                Brush valueBrush = new SolidBrush(_valueColor);
                 valuePosition.drawText(g, _valueFont, valueBrush, vs);
             }
-
-            //Rectangle ctr = VectorRect.FromCenterSize(center, dim).rectangle;
-            //Pen framePen = new Pen(Color.DimGray);
-            //g.DrawRectangle(framePen, ctr);
-            //return;
 
             double v = 0;
             try {
@@ -260,10 +257,6 @@ namespace AudioProcessor
                 v = 0;
             }
 
-            Pen framePen = new Pen(_frameColor);
-            Brush fillBrush = new SolidBrush(_fillColor);
-            Pen linePen = new Pen(_pointColor);
-
             switch (_levelType)
             {
                 case RTLevelType.LinearH:
@@ -273,10 +266,9 @@ namespace AudioProcessor
                     GraphicsUtil.drawVBar(g, center, dim, v, framePen, fillBrush);
                     break;
                 case RTLevelType.Rotary:
-                    GraphicsUtil.drawRotor(g, _openAngle, center, dim, v, gridCalculator, framePen, linePen);
+                    GraphicsUtil.drawRotor(g, _openAngle, center, dim, v, gridCalculator, framePen, pointPen);
                     break;
             }
-            needsRedraw = false;
 
         }
 

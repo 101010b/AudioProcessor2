@@ -36,7 +36,9 @@ namespace AudioProcessor.Processing
             this.ioI1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ioI1.contactBackColor = System.Drawing.Color.Black;
             this.ioI1.contactColor = System.Drawing.Color.DimGray;
-            this.ioI1.Location = new System.Drawing.Point(40, 128);
+            this.ioI1.contactHighlightColor = System.Drawing.Color.Red;
+            this.ioI1.highlighted = false;
+            this.ioI1.Location = new System.Drawing.Point(40, 112);
             this.ioI1.Name = "ioI1";
             this.ioI1.orientation = AudioProcessor.RTIO.RTOrientation.South;
             this.ioI1.showTitle = false;
@@ -53,6 +55,8 @@ namespace AudioProcessor.Processing
             this.ioO.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ioO.contactBackColor = System.Drawing.Color.Black;
             this.ioO.contactColor = System.Drawing.Color.DimGray;
+            this.ioO.contactHighlightColor = System.Drawing.Color.Red;
+            this.ioO.highlighted = false;
             this.ioO.Location = new System.Drawing.Point(699, 59);
             this.ioO.Name = "ioO";
             this.ioO.orientation = AudioProcessor.RTIO.RTOrientation.East;
@@ -71,7 +75,7 @@ namespace AudioProcessor.Processing
             this.dl1.dialDiameter = 50D;
             this.dl1.dialMarkColor = System.Drawing.Color.Red;
             this.dl1.format = "F2";
-            this.dl1.Location = new System.Drawing.Point(10, 23);
+            this.dl1.Location = new System.Drawing.Point(10, 20);
             this.dl1.logScale = false;
             this.dl1.maxVal = 20D;
             this.dl1.minVal = -100D;
@@ -80,7 +84,7 @@ namespace AudioProcessor.Processing
             this.dl1.showScale = true;
             this.dl1.showTitle = false;
             this.dl1.showValue = true;
-            this.dl1.Size = new System.Drawing.Size(80, 100);
+            this.dl1.Size = new System.Drawing.Size(80, 80);
             this.dl1.TabIndex = 2;
             this.dl1.Text = "rtDial1";
             this.dl1.title = "Dial";
@@ -97,7 +101,7 @@ namespace AudioProcessor.Processing
             this.dl2.dialDiameter = 50D;
             this.dl2.dialMarkColor = System.Drawing.Color.Red;
             this.dl2.format = "F2";
-            this.dl2.Location = new System.Drawing.Point(96, 23);
+            this.dl2.Location = new System.Drawing.Point(96, 20);
             this.dl2.logScale = false;
             this.dl2.maxVal = 20D;
             this.dl2.minVal = -100D;
@@ -106,7 +110,7 @@ namespace AudioProcessor.Processing
             this.dl2.showScale = true;
             this.dl2.showTitle = false;
             this.dl2.showValue = true;
-            this.dl2.Size = new System.Drawing.Size(80, 100);
+            this.dl2.Size = new System.Drawing.Size(80, 80);
             this.dl2.TabIndex = 18;
             this.dl2.Text = "rtDial2";
             this.dl2.title = "Dial";
@@ -122,7 +126,9 @@ namespace AudioProcessor.Processing
             this.ioI2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ioI2.contactBackColor = System.Drawing.Color.Black;
             this.ioI2.contactColor = System.Drawing.Color.DimGray;
-            this.ioI2.Location = new System.Drawing.Point(126, 128);
+            this.ioI2.contactHighlightColor = System.Drawing.Color.Red;
+            this.ioI2.highlighted = false;
+            this.ioI2.Location = new System.Drawing.Point(126, 112);
             this.ioI2.Name = "ioI2";
             this.ioI2.orientation = AudioProcessor.RTIO.RTOrientation.South;
             this.ioI2.showTitle = false;
@@ -140,7 +146,7 @@ namespace AudioProcessor.Processing
             this.dl3.dialDiameter = 50D;
             this.dl3.dialMarkColor = System.Drawing.Color.Red;
             this.dl3.format = "F2";
-            this.dl3.Location = new System.Drawing.Point(182, 23);
+            this.dl3.Location = new System.Drawing.Point(182, 20);
             this.dl3.logScale = false;
             this.dl3.maxVal = 20D;
             this.dl3.minVal = -100D;
@@ -149,7 +155,7 @@ namespace AudioProcessor.Processing
             this.dl3.showScale = true;
             this.dl3.showTitle = false;
             this.dl3.showValue = true;
-            this.dl3.Size = new System.Drawing.Size(80, 100);
+            this.dl3.Size = new System.Drawing.Size(80, 80);
             this.dl3.TabIndex = 21;
             this.dl3.Text = "rtDial3";
             this.dl3.title = "Dial";
@@ -165,7 +171,9 @@ namespace AudioProcessor.Processing
             this.ioI3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ioI3.contactBackColor = System.Drawing.Color.Black;
             this.ioI3.contactColor = System.Drawing.Color.DimGray;
-            this.ioI3.Location = new System.Drawing.Point(212, 128);
+            this.ioI3.contactHighlightColor = System.Drawing.Color.Red;
+            this.ioI3.highlighted = false;
+            this.ioI3.Location = new System.Drawing.Point(212, 112);
             this.ioI3.Name = "ioI3";
             this.ioI3.orientation = AudioProcessor.RTIO.RTOrientation.South;
             this.ioI3.showTitle = false;
@@ -183,7 +191,7 @@ namespace AudioProcessor.Processing
             this.dl4.dialDiameter = 50D;
             this.dl4.dialMarkColor = System.Drawing.Color.Red;
             this.dl4.format = "F2";
-            this.dl4.Location = new System.Drawing.Point(268, 23);
+            this.dl4.Location = new System.Drawing.Point(268, 20);
             this.dl4.logScale = false;
             this.dl4.maxVal = 20D;
             this.dl4.minVal = -100D;
@@ -192,7 +200,7 @@ namespace AudioProcessor.Processing
             this.dl4.showScale = true;
             this.dl4.showTitle = false;
             this.dl4.showValue = true;
-            this.dl4.Size = new System.Drawing.Size(80, 100);
+            this.dl4.Size = new System.Drawing.Size(80, 80);
             this.dl4.TabIndex = 24;
             this.dl4.Text = "rtDial4";
             this.dl4.title = "Dial";
@@ -208,7 +216,9 @@ namespace AudioProcessor.Processing
             this.ioI4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ioI4.contactBackColor = System.Drawing.Color.Black;
             this.ioI4.contactColor = System.Drawing.Color.DimGray;
-            this.ioI4.Location = new System.Drawing.Point(298, 128);
+            this.ioI4.contactHighlightColor = System.Drawing.Color.Red;
+            this.ioI4.highlighted = false;
+            this.ioI4.Location = new System.Drawing.Point(298, 112);
             this.ioI4.Name = "ioI4";
             this.ioI4.orientation = AudioProcessor.RTIO.RTOrientation.South;
             this.ioI4.showTitle = false;
@@ -226,7 +236,7 @@ namespace AudioProcessor.Processing
             this.dl5.dialDiameter = 50D;
             this.dl5.dialMarkColor = System.Drawing.Color.Red;
             this.dl5.format = "F2";
-            this.dl5.Location = new System.Drawing.Point(354, 23);
+            this.dl5.Location = new System.Drawing.Point(354, 20);
             this.dl5.logScale = false;
             this.dl5.maxVal = 20D;
             this.dl5.minVal = -100D;
@@ -235,7 +245,7 @@ namespace AudioProcessor.Processing
             this.dl5.showScale = true;
             this.dl5.showTitle = false;
             this.dl5.showValue = true;
-            this.dl5.Size = new System.Drawing.Size(80, 100);
+            this.dl5.Size = new System.Drawing.Size(80, 80);
             this.dl5.TabIndex = 27;
             this.dl5.Text = "rtDial5";
             this.dl5.title = "Dial";
@@ -251,7 +261,9 @@ namespace AudioProcessor.Processing
             this.ioI5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ioI5.contactBackColor = System.Drawing.Color.Black;
             this.ioI5.contactColor = System.Drawing.Color.DimGray;
-            this.ioI5.Location = new System.Drawing.Point(384, 128);
+            this.ioI5.contactHighlightColor = System.Drawing.Color.Red;
+            this.ioI5.highlighted = false;
+            this.ioI5.Location = new System.Drawing.Point(384, 112);
             this.ioI5.Name = "ioI5";
             this.ioI5.orientation = AudioProcessor.RTIO.RTOrientation.South;
             this.ioI5.showTitle = false;
@@ -269,7 +281,7 @@ namespace AudioProcessor.Processing
             this.dl6.dialDiameter = 50D;
             this.dl6.dialMarkColor = System.Drawing.Color.Red;
             this.dl6.format = "F2";
-            this.dl6.Location = new System.Drawing.Point(440, 23);
+            this.dl6.Location = new System.Drawing.Point(440, 20);
             this.dl6.logScale = false;
             this.dl6.maxVal = 20D;
             this.dl6.minVal = -100D;
@@ -278,7 +290,7 @@ namespace AudioProcessor.Processing
             this.dl6.showScale = true;
             this.dl6.showTitle = false;
             this.dl6.showValue = true;
-            this.dl6.Size = new System.Drawing.Size(80, 100);
+            this.dl6.Size = new System.Drawing.Size(80, 80);
             this.dl6.TabIndex = 30;
             this.dl6.Text = "rtDial6";
             this.dl6.title = "Dial";
@@ -294,7 +306,9 @@ namespace AudioProcessor.Processing
             this.ioI6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ioI6.contactBackColor = System.Drawing.Color.Black;
             this.ioI6.contactColor = System.Drawing.Color.DimGray;
-            this.ioI6.Location = new System.Drawing.Point(470, 128);
+            this.ioI6.contactHighlightColor = System.Drawing.Color.Red;
+            this.ioI6.highlighted = false;
+            this.ioI6.Location = new System.Drawing.Point(470, 112);
             this.ioI6.Name = "ioI6";
             this.ioI6.orientation = AudioProcessor.RTIO.RTOrientation.South;
             this.ioI6.showTitle = false;
@@ -312,7 +326,7 @@ namespace AudioProcessor.Processing
             this.dl7.dialDiameter = 50D;
             this.dl7.dialMarkColor = System.Drawing.Color.Red;
             this.dl7.format = "F2";
-            this.dl7.Location = new System.Drawing.Point(526, 23);
+            this.dl7.Location = new System.Drawing.Point(526, 20);
             this.dl7.logScale = false;
             this.dl7.maxVal = 20D;
             this.dl7.minVal = -100D;
@@ -321,7 +335,7 @@ namespace AudioProcessor.Processing
             this.dl7.showScale = true;
             this.dl7.showTitle = false;
             this.dl7.showValue = true;
-            this.dl7.Size = new System.Drawing.Size(80, 100);
+            this.dl7.Size = new System.Drawing.Size(80, 80);
             this.dl7.TabIndex = 33;
             this.dl7.Text = "rtDial7";
             this.dl7.title = "Dial";
@@ -337,7 +351,9 @@ namespace AudioProcessor.Processing
             this.ioI7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ioI7.contactBackColor = System.Drawing.Color.Black;
             this.ioI7.contactColor = System.Drawing.Color.DimGray;
-            this.ioI7.Location = new System.Drawing.Point(556, 128);
+            this.ioI7.contactHighlightColor = System.Drawing.Color.Red;
+            this.ioI7.highlighted = false;
+            this.ioI7.Location = new System.Drawing.Point(556, 112);
             this.ioI7.Name = "ioI7";
             this.ioI7.orientation = AudioProcessor.RTIO.RTOrientation.South;
             this.ioI7.showTitle = false;
@@ -355,7 +371,7 @@ namespace AudioProcessor.Processing
             this.dl8.dialDiameter = 50D;
             this.dl8.dialMarkColor = System.Drawing.Color.Red;
             this.dl8.format = "F2";
-            this.dl8.Location = new System.Drawing.Point(612, 23);
+            this.dl8.Location = new System.Drawing.Point(612, 20);
             this.dl8.logScale = false;
             this.dl8.maxVal = 20D;
             this.dl8.minVal = -100D;
@@ -364,7 +380,7 @@ namespace AudioProcessor.Processing
             this.dl8.showScale = true;
             this.dl8.showTitle = false;
             this.dl8.showValue = true;
-            this.dl8.Size = new System.Drawing.Size(80, 100);
+            this.dl8.Size = new System.Drawing.Size(80, 80);
             this.dl8.TabIndex = 36;
             this.dl8.Text = "rtDial8";
             this.dl8.title = "Dial";
@@ -380,7 +396,9 @@ namespace AudioProcessor.Processing
             this.ioI8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ioI8.contactBackColor = System.Drawing.Color.Black;
             this.ioI8.contactColor = System.Drawing.Color.DimGray;
-            this.ioI8.Location = new System.Drawing.Point(642, 128);
+            this.ioI8.contactHighlightColor = System.Drawing.Color.Red;
+            this.ioI8.highlighted = false;
+            this.ioI8.Location = new System.Drawing.Point(642, 112);
             this.ioI8.Name = "ioI8";
             this.ioI8.orientation = AudioProcessor.RTIO.RTOrientation.South;
             this.ioI8.showTitle = false;
@@ -413,7 +431,8 @@ namespace AudioProcessor.Processing
             this.Controls.Add(this.ioO);
             this.Controls.Add(this.ioI1);
             this.Name = "Mixer";
-            this.Size = new System.Drawing.Size(720, 149);
+            this.shrinkTitle = "Mixer";
+            this.Size = new System.Drawing.Size(720, 133);
             this.title = "Mixer";
             this.ResumeLayout(false);
 

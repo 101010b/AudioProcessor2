@@ -229,7 +229,7 @@ namespace AudioProcessor
                 GraphicsUtil.drawText(g, center, _textFont, scale, _offText, 0, 2, 0, 0, Vector.V(1, 0), textBrush);
             }
 
-            needsRedraw = false;
+            // needsRedraw = false;
         }
 
         protected override void OnPaint(PaintEventArgs pe)

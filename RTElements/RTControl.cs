@@ -13,7 +13,7 @@ namespace AudioProcessor
         protected Vector orgPos;
         protected Vector orgDim;
         protected double scale;
-        public bool needsRedraw;
+        // public bool needsRedraw;
 
         private bool intentionallyHidden=false;
         public new void Hide()
@@ -44,7 +44,7 @@ namespace AudioProcessor
             orgPos = Vector.V(0, 0);
             orgDim = Vector.V(width, height);
             scale = 1;
-            needsRedraw = false;
+            // needsRedraw = false;
         }
 
         public RTControl():this(null,"",0,0,100,100)
@@ -105,9 +105,10 @@ namespace AudioProcessor
 
         public void redraw()
         {
-            if ((Parent != null) && (Parent is SystemPanel))
+            if ((Parent != null) && (Parent.Parent != null) && (Parent.Parent is SystemPanel))
             {
-                needsRedraw = true;
+                ((SystemPanel)Parent.Parent).scheduleRedraw(this);
+                // needsRedraw = true;
             } else
             {
                 Invalidate();

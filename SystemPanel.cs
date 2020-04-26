@@ -12,16 +12,16 @@ using System.IO;
 using System.Reflection;
 using System.Security;
 using System.Runtime.InteropServices;
+using System.Collections.Concurrent;
 
 namespace AudioProcessor
 {
-
     public class Win32
     {
         [DllImport("user32")]
         public static extern int LockWindowUpdate(System.IntPtr hwnd);
     }
-    
+ 
     public partial class SystemPanel : Control
     {
 
@@ -65,12 +65,15 @@ namespace AudioProcessor
 
         private APSelection selection = new APSelection();
 
+        private int netCounter;
+
         // AudioProcessor.SinkSource.Sequencer test;
 
         enum DragMode
         {
             None,
             MouseDown,
+            MouseDownRight,
             SelectWin
         };
         DragMode dragMode;
@@ -95,6 +98,29 @@ namespace AudioProcessor
             get { return _colorSelect; }
         }
 
+        private Font _netNameFont;
+        public Font netNameFont
+        {
+            set { _netNameFont = value; Invalidate(); }
+            get { return _netNameFont; }
+        }
+
+        private Color _netNameColor;
+        public Brush netNameBrush;
+        public Color netNameColor
+        {
+            set { _netNameColor = value; netNameBrush = new SolidBrush(_netNameColor); Invalidate(); }
+            get { return _netNameColor; }
+        }
+
+        // Thread Safe List of Controls waiting for a redraw
+        private ConcurrentBag<RTControl> redrawControls;
+        public void scheduleRedraw(RTControl r)
+        {
+            if (!redrawControls.Contains(r))
+                redrawControls.Add(r);
+        }
+
         public SystemPanel()
         {
             //elements = new List<ProcessingElement>();
@@ -114,6 +140,10 @@ namespace AudioProcessor
             penGrid0 = new Pen(_colorGrid, 3);
             penSelect = new Pen(Color.RoyalBlue);
             brushBackground = new SolidBrush(BackColor);
+            _netNameFont = new Font(FontFamily.GenericSansSerif, 8);
+            _netNameColor = Color.DimGray;
+            netNameBrush = new SolidBrush(_netNameColor);
+
             dragMode = DragMode.None;
 
             DoubleBuffered = true;
@@ -134,6 +164,7 @@ namespace AudioProcessor
             logWin = null;
             logTextDelegate = new logTextDelegateCall(logText);
             showLogWinDelegate = new showLogWinDelegateCall(showLogWin);
+            redrawControls = new ConcurrentBag<RTControl>();
 
             // Process Interaction with Working Thread
             stopWorkThread = false;
@@ -150,6 +181,8 @@ namespace AudioProcessor
             drawingTimer.Interval = 100; // ms
             drawingTimer.Tick += drawingTimer_Tick;
             drawingTimer.Enabled = true;
+
+            netCounter = 0;
 
         }
 
@@ -239,6 +272,7 @@ namespace AudioProcessor
                 nets[0].Disconnect();
                 nets.RemoveAt(0);
             }
+            netCounter = 0;
             while (elements.Count > 0)
             {
                 elements[0].Disconnect();
@@ -300,6 +334,12 @@ namespace AudioProcessor
         private void drawingTimer_Tick(object sender, EventArgs e)
         {
             if (suspendWork) return;
+            while (!suspendWork && !redrawControls.IsEmpty)
+            {
+                RTControl rt;
+                if (redrawControls.TryTake(out rt))
+                    rt.Invalidate();
+            }
         }
 
         public void logText(string text)
@@ -603,7 +643,7 @@ namespace AudioProcessor
         {
             base.OnMouseDown(e);
             
-            if (e.Button==MouseButtons.Left)
+            if ((e.Button==MouseButtons.Left) || (e.Button == MouseButtons.Right))
             {
                 if (dragMode != DragMode.None) {
                     abortDrag();
@@ -618,7 +658,10 @@ namespace AudioProcessor
                     Invalidate();
                 }
 
-                dragMode = DragMode.MouseDown;
+                if (e.Button == MouseButtons.Left)
+                    dragMode = DragMode.MouseDown;
+                else
+                    dragMode = DragMode.MouseDownRight;
                 dragStart = mp;
             }
         }
@@ -629,8 +672,12 @@ namespace AudioProcessor
             switch (dragMode)
             {
                 case DragMode.None: return;
+                case DragMode.MouseDownRight:
+                    dragMode = DragMode.None;
+                    Invalidate();
+                    break;
                 case DragMode.MouseDown:
-                    // Window Seelct
+                    // Window Select
                     dragMode = DragMode.SelectWin;
                     dragStop = fromScreen(new Vector(e.Location.X, e.Location.Y));
                     showCaret = true;
@@ -642,6 +689,87 @@ namespace AudioProcessor
                     break;
 
             }
+        }
+
+        public string createUniqueNetName()
+        {
+            netCounter++;
+            return string.Format("NET{0}", netCounter);
+        }
+
+        private void netContextMenuDelete(object sender, EventArgs e)
+        {
+            MenuItem m = (MenuItem)sender;
+            ProcessingNet n = (ProcessingNet)m.Parent.Tag;
+            LockWorker();
+            // selection.unselect();
+            n.Disconnect();
+            nets.Remove(n);
+            // selection.removeConnections();
+            UnLockWorker();
+            Invalidate();
+        }
+
+        private void netContextMenuChangeName(object sender, EventArgs e)
+        {
+            MenuItem m = sender as MenuItem;
+            if (m == null) return;
+            ContextMenu mr = m.Parent as ContextMenu;
+            if (mr == null) return;
+            ProcessingNet n = (ProcessingNet)mr.Tag;
+            FlexibleInputWin fi = new FlexibleInputWin("Net Name", n.name);
+            fi.StartPosition = FormStartPosition.Manual;
+            fi.Location = Cursor.Position;
+            fi.ShowDialog();
+            if (fi.stringValue != null)
+                if (fi.stringValue.Length > 0)
+                    n.name = fi.stringValue;
+        }
+
+        private void netContextMenuMakeNamed(object sender, EventArgs e)
+        {
+            MenuItem m = (MenuItem)sender;
+            ProcessingNet n = (ProcessingNet)m.Parent.Tag;
+            n.isNamed = true;
+            Invalidate();
+        }
+
+        private void netContextMenuMakeUnNamed(object sender, EventArgs e)
+        {
+            MenuItem m = (MenuItem)sender;
+            ProcessingNet n = (ProcessingNet)m.Parent.Tag;
+            n.isNamed = false;
+            Invalidate();
+        }
+
+        private void showNetContextMenu(Point p, ProcessingNet net)
+        {
+            MenuItem[] menuItems;
+            if (net.isNamed)
+            {
+                menuItems = new MenuItem[]
+                {
+                    new MenuItem("Delete", 
+                        new EventHandler(netContextMenuDelete)),
+                    new MenuItem(string.Format("Change Name [{0}]",net.name),
+                        new EventHandler(netContextMenuChangeName)),
+                    new MenuItem("Make UnNamed Net",
+                        new EventHandler(netContextMenuMakeUnNamed))
+                };
+            }
+            else 
+            {
+                menuItems = new MenuItem[]
+                {
+                    new MenuItem("Delete",
+                        new EventHandler(netContextMenuDelete)),
+                    new MenuItem("Make Named Net",
+                        new EventHandler(netContextMenuMakeNamed))
+                };
+            };
+            ContextMenu menu = new ContextMenu(menuItems);
+            menu.Tag = net;
+            menu.Show(this, p);
         }
 
         protected override void OnMouseUp(MouseEventArgs e)
@@ -661,6 +789,24 @@ namespace AudioProcessor
                     if (selection.items > 0)
                         Invalidate();
                     dragMode = DragMode.None;
+                    break;
+                case DragMode.MouseDownRight:
+                    // Click
+                    Vector mpr = fromScreen(new Vector(e.Location.X, e.Location.Y));
+                    foreach (ProcessingNet n in nets)
+                    {
+                        n.selectOnHit(mpr, selection);
+                    }
+                    if (selection.items > 0)
+                        Invalidate();
+                    dragMode = DragMode.None;
+                    if (selection.items == 1)
+                    {
+                        ProcessingNet n = selection.getNet(0);
+                        if (n != null)
+                            showNetContextMenu(e.Location, n);
+                    }
+                    selection.unselect();
                     break;
                 case DragMode.SelectWin:
                     // unSelectAll();

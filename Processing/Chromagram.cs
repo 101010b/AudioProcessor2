@@ -28,6 +28,8 @@ namespace AudioProcessor.Processing
             this.ioE = new AudioProcessor.RTIO();
             this.ioF = new AudioProcessor.RTIO();
             this.clBlock = new AudioProcessor.RTChoice();
+            this.bnNormalize = new AudioProcessor.RTButton();
+            this.wfDisplay = new AudioProcessor.RTWaterfall();
             this.SuspendLayout();
             // 
             // dlF
@@ -332,8 +334,52 @@ namespace AudioProcessor.Processing
             this.clBlock.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.clBlock.xdim = 100;
             // 
+            // bnNormalize
+            // 
+            this.bnNormalize.buttonDim = new System.Drawing.Size(30, 15);
+            this.bnNormalize.buttonState = false;
+            this.bnNormalize.buttonType = AudioProcessor.RTButton.RTButtonType.ToggleButton;
+            this.bnNormalize.fillOffColor = System.Drawing.Color.Black;
+            this.bnNormalize.fillOnColor = System.Drawing.Color.DarkRed;
+            this.bnNormalize.frameHoldColor = System.Drawing.Color.Yellow;
+            this.bnNormalize.frameOffColor = System.Drawing.Color.DimGray;
+            this.bnNormalize.frameOnColor = System.Drawing.Color.Red;
+            this.bnNormalize.Location = new System.Drawing.Point(72, 161);
+            this.bnNormalize.Name = "bnNormalize";
+            this.bnNormalize.offText = "Off";
+            this.bnNormalize.onText = "On";
+            this.bnNormalize.Size = new System.Drawing.Size(82, 45);
+            this.bnNormalize.TabIndex = 29;
+            this.bnNormalize.Text = "rtButton1";
+            this.bnNormalize.textFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.bnNormalize.textOffColor = System.Drawing.Color.DimGray;
+            this.bnNormalize.textOnColor = System.Drawing.Color.Red;
+            this.bnNormalize.title = "Normalize";
+            this.bnNormalize.titleColor = System.Drawing.Color.DimGray;
+            this.bnNormalize.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.bnNormalize.titlePos = AudioProcessor.RTButton.RTTitlePos.Above;
+            // 
+            // wfDisplay
+            // 
+            this.wfDisplay.colorSet = "KrYW";
+            this.wfDisplay.displaySize = new System.Drawing.Size(100, 48);
+            this.wfDisplay.frameColor = System.Drawing.Color.DimGray;
+            this.wfDisplay.Location = new System.Drawing.Point(57, 223);
+            this.wfDisplay.Name = "wfDisplay";
+            this.wfDisplay.Size = new System.Drawing.Size(116, 72);
+            this.wfDisplay.TabIndex = 30;
+            this.wfDisplay.Text = "rtWaterfall1";
+            this.wfDisplay.timeSteps = 100;
+            this.wfDisplay.title = "Waterfall";
+            this.wfDisplay.titleColor = System.Drawing.Color.DimGray;
+            this.wfDisplay.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.wfDisplay.titlePos = AudioProcessor.GraphicsUtil.TextAlignment.above;
+            this.wfDisplay.ySteps = 12;
+            // 
             // Chromagram
             // 
+            this.Controls.Add(this.wfDisplay);
+            this.Controls.Add(this.bnNormalize);
             this.Controls.Add(this.clBlock);
             this.Controls.Add(this.ioC);
             this.Controls.Add(this.ioCis);
@@ -361,11 +407,12 @@ namespace AudioProcessor.Processing
 
         int blockSize;
         FFTProcessor.WindowType fftWindow;
+        bool normalize;
 
 
         FFTProcessor fft;
 
-        double f;
+        double fA;
         private RTDial dlF;
         private RTIO ioI;
         private RTChoice clWin;
@@ -383,7 +430,8 @@ namespace AudioProcessor.Processing
         private RTIO ioF;
         private RTChoice clBlock;
         int n;
-
+        private RTButton bnNormalize;
+        private RTWaterfall wfDisplay;
         int[] blocks = { 256, 512, 1024, 2048, 4096, 8192 };
 
         private void init()
@@ -405,18 +453,26 @@ namespace AudioProcessor.Processing
             clBlock.setEntries(bls);
             int bln = 0;
             for (int i = 1; i < blocks.Length; i++)
-                if (blocks[i] == bln)
+                if (blocks[i] == blockSize)
                     bln = i;
             clBlock.selectedItem = bln;
             blockSize = blocks[bln];
 
-            dlF.val = f;
+            dlF.val = fA;
+
+            bnNormalize.buttonState = normalize;
 
             clWin.choiceStateChanged += ClWin_choiceStateChanged;
             clBlock.choiceStateChanged += ClBlock_choiceStateChanged;
             dlF.valueChanged += DlF_valueChanged;
+            bnNormalize.buttonStateChanged += BnNormalize_buttonStateChanged;
 
             processingType = ProcessingType.Processor;
+        }
+
+        private void BnNormalize_buttonStateChanged(object sender, EventArgs e)
+        {
+            normalize = bnNormalize.buttonState;
         }
 
         private void ClBlock_choiceStateChanged(object sender, EventArgs e)
@@ -426,8 +482,8 @@ namespace AudioProcessor.Processing
 
         public Chromagram() : base()
         {
-            blockSize = 1024;
-            f = 55;
+            blockSize = 4096;
+            fA = 220;
             fftWindow = FFTProcessor.WindowType.Hann;
 
             init();
@@ -437,7 +493,8 @@ namespace AudioProcessor.Processing
         {
             blockSize = src.ReadInt32();
             fftWindow = (FFTProcessor.WindowType)src.ReadInt32();
-            f = src.ReadDouble();
+            fA = src.ReadDouble();
+            normalize = src.ReadBoolean();
 
             init();
         }
@@ -448,12 +505,13 @@ namespace AudioProcessor.Processing
 
             tgt.Write(blockSize);
             tgt.Write((int)fftWindow);
-            tgt.Write(f);
+            tgt.Write(fA);
+            tgt.Write(normalize);
         }
 
         private void DlF_valueChanged(object sender, EventArgs e)
         {
-            f = dlF.val;
+            fA = dlF.val;
         }
 
         private void ClWin_choiceStateChanged(object sender, EventArgs e)
@@ -466,6 +524,26 @@ namespace AudioProcessor.Processing
         private double[] im;
         private int buffInFill;
         private double[] oval;
+        private int[] addto;
+        private double[] addtoCoeff;
+        private double fA0 = -1;
+        private double[] on = new double[12];
+
+        private double lowPass(double f, double fc)
+        {
+            return 1 / (1 + (f / fc)*(f/fc));
+        }
+
+        private double highPass(double f, double fc)
+        {
+            return 1 - lowPass(f, fc);
+        }
+
+        private double bandPass(double f, double f1, double f2)
+        {
+            return highPass(f, f1) * lowPass(f, f2);
+        }
+
 
         public override void tick()
         {
@@ -501,6 +579,7 @@ namespace AudioProcessor.Processing
                 im = new double[blockSize / 2];
                 buffInFill = 0;
                 fft = null;
+                addto = null;
             }
             if ((fft != null) && (fft.windowType != fftWindow))
                 fft = new FFTProcessor(FFTProcessor.ProcessorMode.Bidirectional, blockSize, owner.sampleRate, fftWindow);
@@ -513,7 +592,28 @@ namespace AudioProcessor.Processing
             {
                 if (fft == null)
                     fft = new FFTProcessor(FFTProcessor.ProcessorMode.Bidirectional, blockSize, owner.sampleRate, fftWindow);
-                n = (int)Math.Floor((double)blockSize * f / (owner.sampleRate));
+                if ((addto == null) || (fA != fA0))
+                {
+                    fA0 = fA;
+                    double fC = fA * Math.Pow(2, -9.0 / 12.0);
+                    addto = new int[blockSize / 2];
+                    addtoCoeff = new double[blockSize / 2];
+                    for (int i = 0; i < blockSize / 2; i++)
+                    {
+                        double f = fft.freq[i];
+                        double weight = bandPass(f, fC, 20 * fC);
+                        if (weight < 0.1)
+                            addto[i] = -1;
+                        else
+                        {
+                            int fn = (int)Math.Floor(Math.Log(f / fC, 2.0) * 12 + 0.5);
+                            addto[i] = fn % 12;
+                            addtoCoeff[i] = weight;
+                        }
+                    }
+                }
+
+                // n = (int)Math.Floor((double)blockSize * fA / (owner.sampleRate));
                 fft.windowType = fftWindow;
 
                 fft.runFFT(ref buffIn, true, ref re, ref im);
@@ -521,57 +621,57 @@ namespace AudioProcessor.Processing
                 buffInFill -= blockSize / 2;
 
                 // Process FFT Data
-                double f0 = (double)owner.sampleRate / blockSize;
-                double[] on = new double[12];
+                //double[] on = new double[12];
+                for (int i = 0; i < 12; i++) on[i] = 0;
+                double[] n = new double[12];
+                for (int i = 0; i < addto.Length; i++)
+                {
+                    if (addto[i] >= 0)
+                    {
+                        on[addto[i]] += addtoCoeff[i] * (re[i] * re[i] + im[i] * im[i]);
+                        n[addto[i]] += addtoCoeff[i];
+                    }
+                }
                 double emax = 0;
                 double emin = 0;
-                for (int i=0;i<12;i++)
+                for (int i = 0; i < 12; i++)
                 {
-                    double ft = f * Math.Pow(2, (double)i / 12);
-                    double r = 0;
-                    int n = 0;
-                    while (ft < owner.sampleRate/2)
-                    {
-                        int bin = (int) Math.Floor(ft / f0 + 0.5);
-                        if ((bin > 0) && (bin < blockSize))
-                        {
-                            r = r + re[bin] * re[bin] + im[bin] * im[bin];
-                            n++;
-                        }
-                        if ((bin - 1 > 0) && (bin - 1 < blockSize))
-                        {
-                            r = r + re[bin - 1] * re[bin - 1] + im[bin - 1] * im[bin - 1];
-                            n++;
-                        }
-                        if ((bin + 1 > 0) && (bin + 1 < blockSize))
-                        {
-                            r = r + re[bin + 1] * re[bin + 1] + im[bin + 1] * im[bin + 1];
-                            n++;
-                        }
-                        ft = ft * 2;
-                    }
-                    r = Math.Sqrt(r / n);
+                    on[i] = Math.Sqrt(on[i] / n[i]);
                     if (i == 0)
-                        emax = emin = r;
+                    {
+                        emin = emax = on[i];
+                    }
                     else
                     {
-                        if (r < emin) emin = r;
-                        if (r > emax) emax = r;
+                        if (on[i] < emin) emin = on[i];
+                        if (on[i] > emax) emax = on[i];
                     }
-                    on[i] = r;
                 }
-                if (emax == emin) emax = emin + 1;
-                for (int i=0;i<12;i++)
-                    if (dbout[i] != null)
-                        dbout[i].SetTo((on[i]-emin)/(emax-emin));
+                if (normalize)
+                {
+                    if (emax == emin) emax = emin + 1;
+                    for (int i = 0; i < 12; i++)
+                        on[i] = (on[i] - emin) / (emax - emin);
+                    wfDisplay.addColumn(on);
+                } else
+                {
+                    double[] onLog = new double[12];
+                    for (int i = 0; i < 12; i++)
+                    {
+                        if (on[i] < 1e-5)
+                            onLog[i] = -100;
+                        else if (on[i] > 1e1)
+                            onLog[i] = 20;
+                        else
+                            onLog[i] = 20 * Math.Log10(on[i]);
+                        onLog[i] = (onLog[i] - (-100)) / (20 - (-100));
+                    }
+                    wfDisplay.addColumn(onLog);
+                }
             }
-            /*
-            for (int i = -3; i <= 3; i++)
-            {
-                if (dbout[i + 3] != null)
-                    dbout[i + 3].SetTo(oval[i + 3]);
-            }
-            */
+            for (int i = 0; i < 12; i++)
+                if (dbout[i] != null)
+                    dbout[i].SetTo(on[i]);
         }
 
         class RegisterClass1 : RTObjectReference

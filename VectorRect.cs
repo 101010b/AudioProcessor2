@@ -84,6 +84,35 @@ namespace AudioProcessor
 
         public static readonly VectorRect Empty = new VectorRect(Vector.Zero, Vector.Zero);
 
+        private static double min(double a, double b)
+        {
+            return (a < b) ? a : b;
+        }
+
+        private static double max(double a, double b)
+        {
+            return (a > b) ? a : b;
+        }
+
+        private static double min(double a, double b, double c)
+        {
+            return min(a, (b < c) ? b : c);
+        }
+
+        private static double max(double a, double b, double c)
+        {
+            return max(a, (b > c) ? b : c);
+        }
+
+        public static VectorRect containingThreePoints(Vector A, Vector B, Vector C)
+        {
+            double minx = min(A.x, B.x, C.x);
+            double miny = min(A.y, B.y, C.y);
+            double maxx = max(A.x, B.x, C.x);
+            double maxy = max(A.y, B.y, C.y);
+            return VectorRect.FromTwoPoints(minx, miny, maxx, maxy);
+        }
+
         public Rectangle rectangle
         {
             get { return new Rectangle(LL.Point, (UR - LL).Size); }

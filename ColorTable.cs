@@ -82,10 +82,7 @@ namespace AudioProcessor
         private int _N;
         public int N
         {
-            get
-            {
-                return _N;
-            }
+            get { return _N; }
             set
             {
                 _N = (value<2)?2:value;
@@ -96,17 +93,16 @@ namespace AudioProcessor
         private String _scheme;
         public String scheme
         {
-            get
-            {
-                return _scheme;
-            }
+            get { return _scheme; }
             set
             {
-                _scheme = value;
-                build();
+                if ((_scheme == null) || !_scheme.Equals(value))
+                {
+                    _scheme = value;
+                    build();
+                }
             }
         }
-
 
         // Constructors
         public ColorTable()

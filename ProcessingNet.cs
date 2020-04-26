@@ -13,9 +13,6 @@ namespace AudioProcessor
     public class ProcessingNet
     {
 
-        
-        
-
         class ProcessingConnection
         {
             public int i1;
@@ -78,6 +75,18 @@ namespace AudioProcessor
         SystemPanel owner;
         List<RTIO> connectedIOs;
         List<ProcessingConnection> connections;
+        private string _name;
+        public string name
+        {
+            set { _name = value; if (_isNamed) owner.Invalidate(); }
+            get { return _name; }
+        }
+        private bool _isNamed;
+        public bool isNamed
+        {
+            set { if (value != _isNamed) { _isNamed = value; owner.Invalidate(); } }
+            get { return _isNamed; }
+        }
 
         enum ProcessingNetType
         {
@@ -140,6 +149,9 @@ namespace AudioProcessor
             connectedIOs = new List<RTIO>();
             connections = new List<ProcessingConnection>();
 
+            _isNamed = false;
+            _name = owner.createUniqueNetName();
+
             init();
         }
 
@@ -148,6 +160,12 @@ namespace AudioProcessor
             owner = _owner;
             connectedIOs = new List<RTIO>();
             connections = new List<ProcessingConnection>();
+
+            _isNamed = src.ReadBoolean();
+            if (_isNamed)
+                _name = src.ReadString();
+            else
+                _name = owner.createUniqueNetName();
 
             init();
                         
@@ -183,6 +201,10 @@ namespace AudioProcessor
 
         public void writeToFile(BinaryWriter tgt)
         {
+            tgt.Write(_isNamed);
+            if (_isNamed)
+                tgt.Write(_name);
+
             tgt.Write(connectedIOs.Count);
             for (int i=0;i<connectedIOs.Count;i++)
             {
@@ -497,43 +519,154 @@ namespace AudioProcessor
             }
         }
 
+        private void getNamedPoints(RTIO io, out Vector pstart, out Vector pstop,
+            out Vector textpos, out Vector textdir)
+        {
+            Vector pos = Vector.Zero;
+            Vector dir = Vector.Zero;
+            VectorRect vr = VectorRect.Empty;
+            int rank = 0;
+            io.getPosAndDir(ref pos, ref dir, ref vr, ref rank);
+            pstart = owner.toScreen(pos);
+            VectorBox vx = GraphicsUtil.sizeText(owner.netNameFont, _name, 2, -1, -1);
+            pstop = pstart + dir * owner.scale * (vx.boundingDim().x + 20);
+            if (dir.x < 0)
+            {
+                textpos = pstop - dir * owner.scale * 10;
+                textdir = -dir;
+            }
+            else
+            {
+                textpos = pstart + dir * owner.scale * 10;
+                textdir = dir;
+            }
+
+        }
+
         public void draw(Graphics g)
         {
-            updateConnections();
-            foreach (ProcessingConnection pc in connections)
+            if (_isNamed)
             {
-                Pen drawpen = null;
-                if (pc.selected)
-                    drawpen = penLineSelected;
+                bool selected = false;
+                foreach (ProcessingConnection pc in connections)
+                    if (pc.selected) selected = true;
+
+                Pen drawPen = null;
+                if (selected)
+                    drawPen = penLineSelected;
                 else
                 {
                     if (valid)
-                        drawpen = penLineOk;
+                        drawPen = penLineOk;
                     else
-                        drawpen = penLineBad;
+                        drawPen = penLineBad;
                 }
-                pc.bc.draw(g, penBack, drawpen);
+                foreach (RTIO io in connectedIOs)
+                {
+                    Vector pstart, pstop, textpos, textdir;
+                    getNamedPoints(io, out pstart, out pstop, out textpos, out textdir);
+                    Point p1 = pstart.Point;
+                    Point p2 = pstop.Point;
+                    g.DrawLine(penBack, p1, p2);
+                    g.DrawLine(drawPen, p1, p2);
+                    GraphicsUtil.drawText(g, textpos, 
+                        owner.netNameFont, owner.scale, 
+                        _name, 0, 2, -1, -1, textdir, owner.netNameBrush);
+                }
+            } else
+            {
+                updateConnections();
+                foreach (ProcessingConnection pc in connections)
+                {
+                    Pen drawpen = null;
+                    if (pc.selected)
+                        drawpen = penLineSelected;
+                    else
+                    {
+                        if (valid)
+                            drawpen = penLineOk;
+                        else
+                            drawpen = penLineBad;
+                    }
+                    pc.bc.draw(g, penBack, drawpen);
+                }
             }
         }
 
         public void selectOnHit(Vector hv, APSelection sel)
         {
-            updateConnections();
-            Vector ps = owner.toScreen(hv);
-            for (int i = 0; i < connections.Count; i++)
+            if (_isNamed)
             {
-                if (connections[i].bc.linedist(ps) < 5)
-                    sel.select(this, i);
+                bool selected = false;
+                foreach (RTIO io in connectedIOs)
+                {
+                    if (!selected)
+                    {
+                        Vector pstart, pstop, textpos, textdir;
+                        getNamedPoints(io, out pstart, out pstop, out textpos, out textdir);
+                        Vector vv = textpos + 
+                            Vector.V(textdir.y, -textdir.x) * owner.Font.Height * owner.scale;
+                        VectorRect vx = VectorRect.containingThreePoints(pstart, pstop, vv);
+                        if (vx.inside(owner.toScreen(hv)))
+                            selected = true;
+                    }
+                }
+                if (selected)
+                {
+                    foreach (ProcessingConnection pc in connections)
+                    {
+                        pc.selected = true;
+                    }
+                    sel.select(this);
+                }
+            }
+            else
+            {
+                updateConnections();
+                Vector ps = owner.toScreen(hv);
+                for (int i = 0; i < connections.Count; i++)
+                {
+                    if (connections[i].bc.linedist(ps) < 10)
+                        sel.select(this, i);
+                }
             }
         }
 
         public void selectOnContained(VectorRect vr, APSelection sel)
         {
-            updateConnections();
-            VectorRect v = owner.toScreen(vr);
-            for (int i = 0; i < connections.Count; i++)
-                if (connections[i].bc.inside(v))
-                    sel.select(this, i);
+            if (_isNamed)
+            {
+                bool selected = false;
+                foreach (RTIO io in connectedIOs)
+                {
+                    if (!selected)
+                    {
+                        Vector pstart, pstop, textpos, textdir;
+                        getNamedPoints(io, out pstart, out pstop, out textpos, out textdir);
+                        Vector vv = textpos +
+                            Vector.V(textdir.y, -textdir.x) * owner.Font.Height * owner.scale;
+                        VectorRect vx = VectorRect.containingThreePoints(pstart, pstop, vv);
+                        if (owner.toScreen(vr).inside(vx))
+                            selected = true;
+                    }
+                }
+                if (selected)
+                {
+                    foreach (ProcessingConnection pc in connections)
+                    {
+                        pc.selected = true;
+                    }
+                    sel.select(this);
+                }
+            }
+            else
+            {
+                updateConnections();
+                VectorRect v = owner.toScreen(vr);
+                for (int i = 0; i < connections.Count; i++)
+                    if (connections[i].bc.inside(v))
+                        sel.select(this, i);
+            }
         }
     }
 }
