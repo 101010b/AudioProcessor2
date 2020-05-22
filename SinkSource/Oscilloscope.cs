@@ -33,7 +33,7 @@ namespace AudioProcessor.SinkSource
             this.ioA.title = "A";
             this.ioA.titleColor = System.Drawing.Color.Red;
             this.ioA.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioA.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioA.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioB
             // 
@@ -49,7 +49,7 @@ namespace AudioProcessor.SinkSource
             this.ioB.title = "B";
             this.ioB.titleColor = System.Drawing.Color.Lime;
             this.ioB.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioB.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioB.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioC
             // 
@@ -65,7 +65,7 @@ namespace AudioProcessor.SinkSource
             this.ioC.title = "C";
             this.ioC.titleColor = System.Drawing.Color.Aqua;
             this.ioC.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioC.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioC.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioD
             // 
@@ -81,7 +81,7 @@ namespace AudioProcessor.SinkSource
             this.ioD.title = "D";
             this.ioD.titleColor = System.Drawing.Color.Fuchsia;
             this.ioD.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioD.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioD.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // bnDisplayWin
             // 
@@ -185,7 +185,7 @@ namespace AudioProcessor.SinkSource
             tgt.Write(channels);
         }
 
-        private void processChannel(int channel, DataBuffer dbin)
+        private void processChannel(int channel, SignalBuffer dbin)
         {
             if (dbin != null)
             {
@@ -201,10 +201,10 @@ namespace AudioProcessor.SinkSource
         public override void tick()
         {
             if (ow == null) return;
-            if ((channels >= 1) && (ow.channels >= 1)) processChannel(0, getInputBuffer(ioA));
-            if ((channels >= 2) && (ow.channels >= 2)) processChannel(1, getInputBuffer(ioB));
-            if ((channels >= 3) && (ow.channels >= 3)) processChannel(2, getInputBuffer(ioC));
-            if ((channels >= 4) && (ow.channels >= 4)) processChannel(3, getInputBuffer(ioD));
+            if ((channels >= 1) && (ow.channels >= 1)) processChannel(0, getSignalInputBuffer(ioA));
+            if ((channels >= 2) && (ow.channels >= 2)) processChannel(1, getSignalInputBuffer(ioB));
+            if ((channels >= 3) && (ow.channels >= 3)) processChannel(2, getSignalInputBuffer(ioC));
+            if ((channels >= 4) && (ow.channels >= 4)) processChannel(3, getSignalInputBuffer(ioD));
         }
 
         private void BnDisplayWin_buttonStateChanged(object sender, EventArgs e)

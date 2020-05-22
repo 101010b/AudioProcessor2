@@ -39,7 +39,7 @@ namespace AudioProcessor.Processing
             this.ioOut.title = "Out";
             this.ioOut.titleColor = System.Drawing.Color.DimGray;
             this.ioOut.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioOut.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioOut.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // dlQm1
             // 
@@ -109,7 +109,7 @@ namespace AudioProcessor.Processing
             this.ioIn.title = "In";
             this.ioIn.titleColor = System.Drawing.Color.DimGray;
             this.ioIn.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioIn.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioIn.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // dlFp1
             // 
@@ -179,7 +179,7 @@ namespace AudioProcessor.Processing
             this.ioF.title = "f";
             this.ioF.titleColor = System.Drawing.Color.DimGray;
             this.ioF.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioF.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioF.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioQ
             // 
@@ -197,7 +197,7 @@ namespace AudioProcessor.Processing
             this.ioQ.title = "Q";
             this.ioQ.titleColor = System.Drawing.Color.DimGray;
             this.ioQ.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioQ.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioQ.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // VCF
             // 
@@ -320,16 +320,16 @@ namespace AudioProcessor.Processing
         {
             if (!_active) return;
 
-            DataBuffer dbin = getInputBuffer(ioIn);
-            DataBuffer dbout = getOutputBuffer(ioOut);
+            SignalBuffer dbin = getSignalInputBuffer(ioIn);
+            SignalBuffer dbout = getSignalOutputBuffer(ioOut);
             if (!active)
             {
                 if ((dbin != null) && (dbout != null))
                     dbout.CopyFrom(dbin);
                 return;
             }
-            DataBuffer dbf = getInputBuffer(ioF);
-            DataBuffer dbq = getInputBuffer(ioQ);
+            SignalBuffer dbf = getSignalInputBuffer(ioF);
+            SignalBuffer dbq = getSignalInputBuffer(ioQ);
 
             if (dbout == null)
                 return;

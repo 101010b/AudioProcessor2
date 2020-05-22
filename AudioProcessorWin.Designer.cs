@@ -40,9 +40,9 @@
             this.audioProcessorFileSaveAs = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.audioProcessorFileExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.windowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.audioProcessorWindowLog = new System.Windows.Forms.ToolStripMenuItem();
             this.audioProcessorToolBar = new System.Windows.Forms.ToolStrip();
@@ -60,6 +60,7 @@
             this.audioProcessorTSTools = new System.Windows.Forms.ToolStripMenuItem();
             this.audioProcessorTSControl = new System.Windows.Forms.ToolStripMenuItem();
             this.systemPanel = new AudioProcessor.SystemPanel();
+            this.audioProcessorTSData = new System.Windows.Forms.ToolStripMenuItem();
             this.audioProcessorStatusStrip.SuspendLayout();
             this.audioProcessorMenu.SuspendLayout();
             this.audioProcessorToolBar.SuspendLayout();
@@ -164,6 +165,14 @@
             this.audioProcessorFileExit.Size = new System.Drawing.Size(114, 22);
             this.audioProcessorFileExit.Text = "Exit";
             // 
+            // addToolStripMenuItem
+            // 
+            this.addToolStripMenuItem.BackColor = System.Drawing.Color.Black;
+            this.addToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(89, 20);
+            this.addToolStripMenuItem.Text = "New Element";
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
@@ -178,16 +187,8 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
-            // 
-            // addToolStripMenuItem
-            // 
-            this.addToolStripMenuItem.BackColor = System.Drawing.Color.Black;
-            this.addToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(89, 20);
-            this.addToolStripMenuItem.Text = "New Element";
             // 
             // windowToolStripMenuItem
             // 
@@ -203,7 +204,7 @@
             // audioProcessorWindowLog
             // 
             this.audioProcessorWindowLog.Name = "audioProcessorWindowLog";
-            this.audioProcessorWindowLog.Size = new System.Drawing.Size(180, 22);
+            this.audioProcessorWindowLog.Size = new System.Drawing.Size(94, 22);
             this.audioProcessorWindowLog.Text = "Log";
             // 
             // audioProcessorToolBar
@@ -224,7 +225,8 @@
             this.audioProcessorTSFilter,
             this.audioProcessorTSArith,
             this.audioProcessorTSTools,
-            this.audioProcessorTSControl});
+            this.audioProcessorTSControl,
+            this.audioProcessorTSData});
             this.audioProcessorToolBar.Location = new System.Drawing.Point(0, 24);
             this.audioProcessorToolBar.Name = "audioProcessorToolBar";
             this.audioProcessorToolBar.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -353,8 +355,20 @@
             this.systemPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.systemPanel.Location = new System.Drawing.Point(0, 51);
             this.systemPanel.Name = "systemPanel";
+            this.systemPanel.netNameColor = System.Drawing.Color.DimGray;
+            this.systemPanel.netNameFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.systemPanel.Size = new System.Drawing.Size(1230, 768);
             this.systemPanel.TabIndex = 4;
+            // 
+            // audioProcessorTSData
+            // 
+            this.audioProcessorTSData.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.audioProcessorTSData.Image = ((System.Drawing.Image)(resources.GetObject("audioProcessorTSData.Image")));
+            this.audioProcessorTSData.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.audioProcessorTSData.Name = "audioProcessorTSData";
+            this.audioProcessorTSData.Size = new System.Drawing.Size(32, 27);
+            this.audioProcessorTSData.Text = "Tools";
+            this.audioProcessorTSData.ToolTipText = "Tools";
             // 
             // AudioProcessorWin
             // 
@@ -412,6 +426,7 @@
         private System.Windows.Forms.ToolStripDropDownButton audioProcessingBufferLength;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem audioProcessorTSControl;
+        private System.Windows.Forms.ToolStripMenuItem audioProcessorTSData;
     }
 }
 

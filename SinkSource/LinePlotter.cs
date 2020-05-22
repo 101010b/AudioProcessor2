@@ -57,7 +57,7 @@ namespace AudioProcessor.SinkSource
             this.ioD.title = "D";
             this.ioD.titleColor = System.Drawing.Color.Fuchsia;
             this.ioD.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioD.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioD.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioC
             // 
@@ -73,7 +73,7 @@ namespace AudioProcessor.SinkSource
             this.ioC.title = "C";
             this.ioC.titleColor = System.Drawing.Color.Cyan;
             this.ioC.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioC.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioC.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioB
             // 
@@ -89,7 +89,7 @@ namespace AudioProcessor.SinkSource
             this.ioB.title = "B";
             this.ioB.titleColor = System.Drawing.Color.Lime;
             this.ioB.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioB.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioB.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioA
             // 
@@ -105,7 +105,7 @@ namespace AudioProcessor.SinkSource
             this.ioA.title = "A";
             this.ioA.titleColor = System.Drawing.Color.Red;
             this.ioA.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioA.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioA.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // LinePlotter
             // 
@@ -193,7 +193,7 @@ namespace AudioProcessor.SinkSource
             {
                 if (ioA.connectedTo != null)
                 {
-                    linePlotterWin.inputs[0].insert(ioA.connectedTo.output);
+                    linePlotterWin.inputs[0].insert(ioA.connectedTo.signalOutput);
                 }
                 else
                 {
@@ -204,7 +204,7 @@ namespace AudioProcessor.SinkSource
             {
                 if (ioB.connectedTo != null)
                 {
-                    linePlotterWin.inputs[1].insert(ioB.connectedTo.output);
+                    linePlotterWin.inputs[1].insert(ioB.connectedTo.signalOutput);
                 }
                 else
                 {
@@ -215,7 +215,7 @@ namespace AudioProcessor.SinkSource
             {
                 if (ioC.connectedTo != null)
                 {
-                    linePlotterWin.inputs[2].insert(ioC.connectedTo.output);
+                    linePlotterWin.inputs[2].insert(ioC.connectedTo.signalOutput);
                 }
                 else
                 {
@@ -226,7 +226,7 @@ namespace AudioProcessor.SinkSource
             {
                 if (ioD.connectedTo != null)
                 {
-                    linePlotterWin.inputs[3].insert(ioD.connectedTo.output);
+                    linePlotterWin.inputs[3].insert(ioD.connectedTo.signalOutput);
                 }
                 else
                 {

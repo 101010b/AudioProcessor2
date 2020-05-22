@@ -46,7 +46,7 @@ namespace AudioProcessor.Processing
             this.ioO1.title = "0°";
             this.ioO1.titleColor = System.Drawing.Color.DimGray;
             this.ioO1.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioO1.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioO1.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // dlFreq
             // 
@@ -88,7 +88,7 @@ namespace AudioProcessor.Processing
             this.ioI1.title = "FM";
             this.ioI1.titleColor = System.Drawing.Color.DimGray;
             this.ioI1.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioI1.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioI1.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioO2
             // 
@@ -105,7 +105,7 @@ namespace AudioProcessor.Processing
             this.ioO2.title = "0°";
             this.ioO2.titleColor = System.Drawing.Color.DimGray;
             this.ioO2.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioO2.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioO2.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ioI2
             // 
@@ -121,7 +121,7 @@ namespace AudioProcessor.Processing
             this.ioI2.title = "FM";
             this.ioI2.titleColor = System.Drawing.Color.DimGray;
             this.ioI2.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioI2.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioI2.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioO3
             // 
@@ -138,7 +138,7 @@ namespace AudioProcessor.Processing
             this.ioO3.title = "0°";
             this.ioO3.titleColor = System.Drawing.Color.DimGray;
             this.ioO3.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioO3.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioO3.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ioI3
             // 
@@ -154,7 +154,7 @@ namespace AudioProcessor.Processing
             this.ioI3.title = "FM";
             this.ioI3.titleColor = System.Drawing.Color.DimGray;
             this.ioI3.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioI3.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioI3.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioO4
             // 
@@ -171,7 +171,7 @@ namespace AudioProcessor.Processing
             this.ioO4.title = "0°";
             this.ioO4.titleColor = System.Drawing.Color.DimGray;
             this.ioO4.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioO4.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioO4.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ioI4
             // 
@@ -187,7 +187,7 @@ namespace AudioProcessor.Processing
             this.ioI4.title = "FM";
             this.ioI4.titleColor = System.Drawing.Color.DimGray;
             this.ioI4.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioI4.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioI4.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioO5
             // 
@@ -204,7 +204,7 @@ namespace AudioProcessor.Processing
             this.ioO5.title = "0°";
             this.ioO5.titleColor = System.Drawing.Color.DimGray;
             this.ioO5.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioO5.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioO5.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ioI5
             // 
@@ -220,7 +220,7 @@ namespace AudioProcessor.Processing
             this.ioI5.title = "FM";
             this.ioI5.titleColor = System.Drawing.Color.DimGray;
             this.ioI5.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioI5.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioI5.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioO6
             // 
@@ -237,7 +237,7 @@ namespace AudioProcessor.Processing
             this.ioO6.title = "0°";
             this.ioO6.titleColor = System.Drawing.Color.DimGray;
             this.ioO6.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioO6.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioO6.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ioI6
             // 
@@ -253,7 +253,7 @@ namespace AudioProcessor.Processing
             this.ioI6.title = "FM";
             this.ioI6.titleColor = System.Drawing.Color.DimGray;
             this.ioI6.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioI6.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioI6.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioO7
             // 
@@ -270,7 +270,7 @@ namespace AudioProcessor.Processing
             this.ioO7.title = "0°";
             this.ioO7.titleColor = System.Drawing.Color.DimGray;
             this.ioO7.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioO7.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioO7.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ioI7
             // 
@@ -286,7 +286,7 @@ namespace AudioProcessor.Processing
             this.ioI7.title = "FM";
             this.ioI7.titleColor = System.Drawing.Color.DimGray;
             this.ioI7.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioI7.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioI7.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioO8
             // 
@@ -303,7 +303,7 @@ namespace AudioProcessor.Processing
             this.ioO8.title = "0°";
             this.ioO8.titleColor = System.Drawing.Color.DimGray;
             this.ioO8.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioO8.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioO8.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ioI8
             // 
@@ -319,7 +319,7 @@ namespace AudioProcessor.Processing
             this.ioI8.title = "FM";
             this.ioI8.titleColor = System.Drawing.Color.DimGray;
             this.ioI8.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioI8.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioI8.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // dlQ
             // 
@@ -537,7 +537,7 @@ namespace AudioProcessor.Processing
             updateNeeded = false;
         }
 
-        private void processChannel(int ch, DataBuffer dbin, DataBuffer dbout)
+        private void processChannel(int ch, SignalBuffer dbin, SignalBuffer dbout)
         {
             if ((dbin == null) && (dbout == null))
                 return;
@@ -602,14 +602,14 @@ namespace AudioProcessor.Processing
             if (updateNeeded)
                 updateStages();
 
-            if (channels >= 1) processChannel(0, getInputBuffer(ioI1), getOutputBuffer(ioO1));
-            if (channels >= 2) processChannel(1, getInputBuffer(ioI2), getOutputBuffer(ioO2));
-            if (channels >= 3) processChannel(2, getInputBuffer(ioI3), getOutputBuffer(ioO3));
-            if (channels >= 4) processChannel(3, getInputBuffer(ioI4), getOutputBuffer(ioO4));
-            if (channels >= 5) processChannel(4, getInputBuffer(ioI5), getOutputBuffer(ioO5));
-            if (channels >= 6) processChannel(5, getInputBuffer(ioI6), getOutputBuffer(ioO6));
-            if (channels >= 7) processChannel(6, getInputBuffer(ioI7), getOutputBuffer(ioO7));
-            if (channels >= 8) processChannel(7, getInputBuffer(ioI8), getOutputBuffer(ioO8));
+            if (channels >= 1) processChannel(0, getSignalInputBuffer(ioI1), getSignalOutputBuffer(ioO1));
+            if (channels >= 2) processChannel(1, getSignalInputBuffer(ioI2), getSignalOutputBuffer(ioO2));
+            if (channels >= 3) processChannel(2, getSignalInputBuffer(ioI3), getSignalOutputBuffer(ioO3));
+            if (channels >= 4) processChannel(3, getSignalInputBuffer(ioI4), getSignalOutputBuffer(ioO4));
+            if (channels >= 5) processChannel(4, getSignalInputBuffer(ioI5), getSignalOutputBuffer(ioO5));
+            if (channels >= 6) processChannel(5, getSignalInputBuffer(ioI6), getSignalOutputBuffer(ioO6));
+            if (channels >= 7) processChannel(6, getSignalInputBuffer(ioI7), getSignalOutputBuffer(ioO7));
+            if (channels >= 8) processChannel(7, getSignalInputBuffer(ioI8), getSignalOutputBuffer(ioO8));
 
         }
 

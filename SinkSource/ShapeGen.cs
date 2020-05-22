@@ -45,7 +45,7 @@ namespace AudioProcessor.SinkSource
             this.ioSig.title = "S";
             this.ioSig.titleColor = System.Drawing.Color.DimGray;
             this.ioSig.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioSig.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioSig.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ioGateOut
             // 
@@ -64,7 +64,7 @@ namespace AudioProcessor.SinkSource
             this.ioGateOut.title = "gate";
             this.ioGateOut.titleColor = System.Drawing.Color.DimGray;
             this.ioGateOut.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioGateOut.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioGateOut.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ioGateIn
             // 
@@ -82,7 +82,7 @@ namespace AudioProcessor.SinkSource
             this.ioGateIn.title = "gate";
             this.ioGateIn.titleColor = System.Drawing.Color.DimGray;
             this.ioGateIn.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioGateIn.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioGateIn.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioTrig
             // 
@@ -100,7 +100,7 @@ namespace AudioProcessor.SinkSource
             this.ioTrig.title = "Trig";
             this.ioTrig.titleColor = System.Drawing.Color.DimGray;
             this.ioTrig.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioTrig.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioTrig.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // dlAttack
             // 
@@ -586,10 +586,10 @@ namespace AudioProcessor.SinkSource
 
         public override void tick()
         {
-            DataBuffer dbTrig = getInputBuffer(ioTrig);
-            DataBuffer dbGateIn = getInputBuffer(ioGateIn);
-            DataBuffer dbSig = getOutputBuffer(ioSig);
-            DataBuffer dbGateOut = getOutputBuffer(ioGateOut);
+            SignalBuffer dbTrig = getSignalInputBuffer(ioTrig);
+            SignalBuffer dbGateIn = getSignalInputBuffer(ioGateIn);
+            SignalBuffer dbSig = getSignalOutputBuffer(ioSig);
+            SignalBuffer dbGateOut = getSignalOutputBuffer(ioGateOut);
 
             if (!_active) return;
             if ((dbSig == null) && (dbGateOut == null)) return;

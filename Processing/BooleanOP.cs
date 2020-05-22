@@ -33,7 +33,7 @@ namespace AudioProcessor.Processing
             this.io1.title = "IO";
             this.io1.titleColor = System.Drawing.Color.DimGray;
             this.io1.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io1.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.io1.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // io2
             // 
@@ -49,7 +49,7 @@ namespace AudioProcessor.Processing
             this.io2.title = "IO";
             this.io2.titleColor = System.Drawing.Color.DimGray;
             this.io2.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io2.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.io2.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // io3
             // 
@@ -65,7 +65,7 @@ namespace AudioProcessor.Processing
             this.io3.title = "IO";
             this.io3.titleColor = System.Drawing.Color.DimGray;
             this.io3.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io3.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.io3.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // io4
             // 
@@ -81,7 +81,7 @@ namespace AudioProcessor.Processing
             this.io4.title = "IO";
             this.io4.titleColor = System.Drawing.Color.DimGray;
             this.io4.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io4.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.io4.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioOut
             // 
@@ -98,7 +98,7 @@ namespace AudioProcessor.Processing
             this.ioOut.title = "IO";
             this.ioOut.titleColor = System.Drawing.Color.DimGray;
             this.ioOut.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioOut.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioOut.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // BooleanOP
             // 
@@ -190,14 +190,14 @@ namespace AudioProcessor.Processing
 
         public override void tick()
         {
-            DataBuffer dbout = getOutputBuffer(ioOut);
+            SignalBuffer dbout = getSignalOutputBuffer(ioOut);
             if (dbout == null)
                 return;
-            DataBuffer[] dbin = new DataBuffer[channels];
-            if (channels >= 1) dbin[0] = getInputBuffer(io1);
-            if (channels >= 2) dbin[1] = getInputBuffer(io2);
-            if (channels >= 3) dbin[2] = getInputBuffer(io3);
-            if (channels >= 4) dbin[3] = getInputBuffer(io4);
+            SignalBuffer[] dbin = new SignalBuffer[channels];
+            if (channels >= 1) dbin[0] = getSignalInputBuffer(io1);
+            if (channels >= 2) dbin[1] = getSignalInputBuffer(io2);
+            if (channels >= 3) dbin[2] = getSignalInputBuffer(io3);
+            if (channels >= 4) dbin[3] = getSignalInputBuffer(io4);
 
             if (inputs == null)
                 inputs = new bool[channels,owner.blockSize];

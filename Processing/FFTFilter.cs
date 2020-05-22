@@ -32,7 +32,7 @@ namespace AudioProcessor.Processing
             this.ioI.title = "IO";
             this.ioI.titleColor = System.Drawing.Color.DimGray;
             this.ioI.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioI.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioI.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioO
             // 
@@ -49,7 +49,7 @@ namespace AudioProcessor.Processing
             this.ioO.title = "IO";
             this.ioO.titleColor = System.Drawing.Color.DimGray;
             this.ioO.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioO.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioO.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // dl1
             // 
@@ -300,8 +300,8 @@ namespace AudioProcessor.Processing
             if (fft == null)
                 fft = new FFTProcessor(FFTProcessor.ProcessorMode.Bidirectional, blockSize, owner.sampleRate, FFTProcessor.WindowType.Hann);
 
-            DataBuffer dbout = getOutputBuffer(ioO);
-            DataBuffer dbin = getInputBuffer(ioI);
+            SignalBuffer dbout = getSignalOutputBuffer(ioO);
+            SignalBuffer dbin = getSignalInputBuffer(ioI);
 
             if (!_active)
                 return;

@@ -74,7 +74,7 @@ namespace AudioProcessor.RealtimeSinkSource
             this.ioO2.title = "2";
             this.ioO2.titleColor = System.Drawing.Color.DimGray;
             this.ioO2.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioO2.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioO2.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ioO1
             // 
@@ -91,7 +91,7 @@ namespace AudioProcessor.RealtimeSinkSource
             this.ioO1.title = "1";
             this.ioO1.titleColor = System.Drawing.Color.DimGray;
             this.ioO1.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioO1.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioO1.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // slDev
             // 
@@ -124,7 +124,7 @@ namespace AudioProcessor.RealtimeSinkSource
             this.ioI2.title = "2";
             this.ioI2.titleColor = System.Drawing.Color.DimGray;
             this.ioI2.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioI2.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioI2.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioI1
             // 
@@ -140,7 +140,7 @@ namespace AudioProcessor.RealtimeSinkSource
             this.ioI1.title = "1";
             this.ioI1.titleColor = System.Drawing.Color.DimGray;
             this.ioI1.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioI1.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioI1.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioI4
             // 
@@ -156,7 +156,7 @@ namespace AudioProcessor.RealtimeSinkSource
             this.ioI4.title = "4";
             this.ioI4.titleColor = System.Drawing.Color.DimGray;
             this.ioI4.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioI4.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioI4.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioI3
             // 
@@ -172,7 +172,7 @@ namespace AudioProcessor.RealtimeSinkSource
             this.ioI3.title = "3";
             this.ioI3.titleColor = System.Drawing.Color.DimGray;
             this.ioI3.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioI3.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioI3.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioI8
             // 
@@ -188,7 +188,7 @@ namespace AudioProcessor.RealtimeSinkSource
             this.ioI8.title = "8";
             this.ioI8.titleColor = System.Drawing.Color.DimGray;
             this.ioI8.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioI8.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioI8.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioI7
             // 
@@ -204,7 +204,7 @@ namespace AudioProcessor.RealtimeSinkSource
             this.ioI7.title = "7";
             this.ioI7.titleColor = System.Drawing.Color.DimGray;
             this.ioI7.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioI7.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioI7.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioI6
             // 
@@ -220,7 +220,7 @@ namespace AudioProcessor.RealtimeSinkSource
             this.ioI6.title = "6";
             this.ioI6.titleColor = System.Drawing.Color.DimGray;
             this.ioI6.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioI6.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioI6.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioI5
             // 
@@ -236,7 +236,7 @@ namespace AudioProcessor.RealtimeSinkSource
             this.ioI5.title = "5";
             this.ioI5.titleColor = System.Drawing.Color.DimGray;
             this.ioI5.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioI5.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioI5.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioO4
             // 
@@ -253,7 +253,7 @@ namespace AudioProcessor.RealtimeSinkSource
             this.ioO4.title = "4";
             this.ioO4.titleColor = System.Drawing.Color.DimGray;
             this.ioO4.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioO4.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioO4.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ioO3
             // 
@@ -270,7 +270,7 @@ namespace AudioProcessor.RealtimeSinkSource
             this.ioO3.title = "3";
             this.ioO3.titleColor = System.Drawing.Color.DimGray;
             this.ioO3.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioO3.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioO3.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ioO8
             // 
@@ -287,7 +287,7 @@ namespace AudioProcessor.RealtimeSinkSource
             this.ioO8.title = "8";
             this.ioO8.titleColor = System.Drawing.Color.DimGray;
             this.ioO8.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioO8.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioO8.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ioO7
             // 
@@ -304,7 +304,7 @@ namespace AudioProcessor.RealtimeSinkSource
             this.ioO7.title = "7";
             this.ioO7.titleColor = System.Drawing.Color.DimGray;
             this.ioO7.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioO7.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioO7.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ioO6
             // 
@@ -321,7 +321,7 @@ namespace AudioProcessor.RealtimeSinkSource
             this.ioO6.title = "6";
             this.ioO6.titleColor = System.Drawing.Color.DimGray;
             this.ioO6.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioO6.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioO6.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ioO5
             // 
@@ -338,7 +338,7 @@ namespace AudioProcessor.RealtimeSinkSource
             this.ioO5.title = "5";
             this.ioO5.titleColor = System.Drawing.Color.DimGray;
             this.ioO5.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioO5.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioO5.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ASIODevice
             // 

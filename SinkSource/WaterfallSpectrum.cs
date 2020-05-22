@@ -30,7 +30,7 @@ namespace AudioProcessor.SinkSource
             this.ioIn.title = "In";
             this.ioIn.titleColor = System.Drawing.Color.DimGray;
             this.ioIn.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioIn.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioIn.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // bnDisplayWin
             // 
@@ -141,7 +141,7 @@ namespace AudioProcessor.SinkSource
             if (ow.ready == false) return;
             if (ioIn.connectedTo != null)
             {
-                ow.input.insert(ioIn.connectedTo.output);
+                ow.input.insert(ioIn.connectedTo.signalOutput);
                 ow.inputActive = true;
             }
             else

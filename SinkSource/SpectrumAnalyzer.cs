@@ -58,7 +58,7 @@ namespace AudioProcessor.SinkSource
             this.ioD.title = "D";
             this.ioD.titleColor = System.Drawing.Color.Fuchsia;
             this.ioD.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioD.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioD.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioC
             // 
@@ -74,7 +74,7 @@ namespace AudioProcessor.SinkSource
             this.ioC.title = "C";
             this.ioC.titleColor = System.Drawing.Color.Aqua;
             this.ioC.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioC.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioC.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioB
             // 
@@ -90,7 +90,7 @@ namespace AudioProcessor.SinkSource
             this.ioB.title = "B";
             this.ioB.titleColor = System.Drawing.Color.Lime;
             this.ioB.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioB.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioB.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioA
             // 
@@ -106,7 +106,7 @@ namespace AudioProcessor.SinkSource
             this.ioA.title = "A";
             this.ioA.titleColor = System.Drawing.Color.Red;
             this.ioA.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioA.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioA.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // SpectrumAnalyzer
             // 
@@ -207,7 +207,7 @@ namespace AudioProcessor.SinkSource
             {
                 if (ioA.connectedTo != null)
                 {
-                    ow.inputs[0].insert(ioA.connectedTo.output);
+                    ow.inputs[0].insert(ioA.connectedTo.signalOutput);
                     ow.inputsActive[0] = true;
                 }
                 else
@@ -220,7 +220,7 @@ namespace AudioProcessor.SinkSource
             {
                 if (ioB.connectedTo != null)
                 {
-                    ow.inputs[1].insert(ioB.connectedTo.output);
+                    ow.inputs[1].insert(ioB.connectedTo.signalOutput);
                     ow.inputsActive[1] = true;
                 }
                 else
@@ -233,7 +233,7 @@ namespace AudioProcessor.SinkSource
             {
                 if (ioC.connectedTo != null)
                 {
-                    ow.inputs[2].insert(ioC.connectedTo.output);
+                    ow.inputs[2].insert(ioC.connectedTo.signalOutput);
                     ow.inputsActive[2] = true;
                 }
                 else
@@ -246,7 +246,7 @@ namespace AudioProcessor.SinkSource
             {
                 if (ioD.connectedTo != null)
                 {
-                    ow.inputs[3].insert(ioD.connectedTo.output);
+                    ow.inputs[3].insert(ioD.connectedTo.signalOutput);
                     ow.inputsActive[3] = true;
                 }
                 else

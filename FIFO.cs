@@ -82,7 +82,7 @@ namespace AudioProcessor
             insert(src, 0, src.Length);
         }
 
-        public void insert(DataBuffer b)
+        public void insert(SignalBuffer b)
         {
             insert(b.data, 0, b.size);
         }
@@ -137,12 +137,12 @@ namespace AudioProcessor
             return retrieve(ref tgt, 0, tgt.Length);
         }
 
-        public Boolean retrieve(DataBuffer b)
+        public Boolean retrieve(SignalBuffer b)
         {
             return retrieve(ref b.data, 0, b.size);
         }
 
-        public Boolean retrieve(DataBuffer b, double defval)
+        public Boolean retrieve(SignalBuffer b, double defval)
         {
             Boolean rv= retrieve(ref b.data, 0, b.size);
             if (!rv)

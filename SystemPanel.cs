@@ -67,6 +67,9 @@ namespace AudioProcessor
 
         private int netCounter;
 
+        public Int64 timeStamp;
+        public Int64 timeStampOffset;
+
         // AudioProcessor.SinkSource.Sequencer test;
 
         enum DragMode
@@ -183,6 +186,8 @@ namespace AudioProcessor
             drawingTimer.Enabled = true;
 
             netCounter = 0;
+
+            timeStamp = 0;
 
         }
 
@@ -387,11 +392,15 @@ namespace AudioProcessor
             CallElementDisconnectInWorkThread = new CallElementDisconnectInWorkThreadDelegate(CallElementDisconnect);
 
             logText("AudioProcessor OnLine and running");
+            timeStampOffset = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+
             while (!stopWorkThread)
             {
                 Boolean syncavaillable = false;
                 double minWaitTime = 0;
                 double wt;
+
+                timeStamp++;
 
                 // First: Process Data Sources
                 foreach (RTForm pe in elements)

@@ -85,6 +85,13 @@ namespace AudioProcessor
             get { return _ySteps; }
         }
 
+        private bool _bipolar;
+        public bool bipolar
+        {
+            set { _bipolar = value; Invalidate(); }
+            get { return _bipolar; }
+        }
+
         public ColorTable colorTable;
         private byte[] data;
         private Bitmap bmap;
@@ -102,6 +109,7 @@ namespace AudioProcessor
             _colorSet = "KrYW";
             _timeSteps = 64;
             _ySteps = 16;
+            _bipolar = false;
             newColorSet();
             newDataSet();
 
@@ -183,7 +191,30 @@ namespace AudioProcessor
             byte[] pix = new byte[4];
             for (int y = 0; y < _ySteps; y++)
             {
-                colorTable.col(dt[_ySteps-1-y], ref pix[2], ref pix[1], ref pix[0]);
+                if (_bipolar)
+                    colorTable.col((dt[_ySteps - 1 - y] + 1.0) / 2.0, ref pix[2], ref pix[1], ref pix[0]);
+                else 
+                    colorTable.col(dt[_ySteps-1-y], ref pix[2], ref pix[1], ref pix[0]);
+                Array.Copy(pix, 0, data, y * _timeSteps * 4, 4);
+            }
+            if ((Parent != null) && (Parent.Parent != null) && (Parent.Parent is SystemPanel))
+                ((SystemPanel)(Parent.Parent)).scheduleRedraw(this);
+        }
+
+        public void addColumn(double[] dt, int start, int len)
+        {
+            if (dt == null) return;
+            if (start < 0) return;
+            if (start + len - 1 >= dt.Length) return;
+            if (len != _ySteps) return;
+            Array.Copy(data, 0, data, 4, data.Length - 4);
+            byte[] pix = new byte[4];
+            for (int y = 0; y < _ySteps; y++)
+            {
+                if (_bipolar)
+                    colorTable.col((dt[_ySteps - 1 - y] + 1.0) / 2.0, ref pix[2], ref pix[1], ref pix[0]);
+                else
+                    colorTable.col(dt[start + _ySteps - 1 - y], ref pix[2], ref pix[1], ref pix[0]);
                 Array.Copy(pix, 0, data, y * _timeSteps * 4, 4);
             }
             if ((Parent != null) && (Parent.Parent != null) && (Parent.Parent is SystemPanel))

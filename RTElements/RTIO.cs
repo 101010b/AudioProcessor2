@@ -59,15 +59,16 @@ namespace AudioProcessor
 
         public enum ProcessingIOType
         {
-            Input,
-            Output,
-            Bidirectional
+            SignalInput,
+            SignalOutput,
+            DataInput,
+            DataOutput
         }
-        private ProcessingIOType _type;
-        public ProcessingIOType type
+        private ProcessingIOType _IOtype;
+        public ProcessingIOType IOtype
         {
-            set { _type = value; Invalidate(); }
-            get { return _type; }
+            set { _IOtype = value; Invalidate(); }
+            get { return _IOtype; }
         }
 
         private Color _contactBackColor;
@@ -122,7 +123,7 @@ namespace AudioProcessor
             _titleFont = new Font(FontFamily.GenericSansSerif, 8);
             _titleColor = Color.DimGray;
             _showTitle = true;
-            _type = ProcessingIOType.Input;
+            _IOtype = ProcessingIOType.SignalInput;
             _contactColor = Color.DimGray;
             _contactBackColor = Color.Black;
             _contactHighlightColor = Color.Red;
@@ -261,20 +262,25 @@ namespace AudioProcessor
                     break;
             }
             g.DrawRectangle(contactPen, r);
-            switch (_type)
+            switch (_IOtype)
             {
-                case ProcessingIOType.Input:
-                    GraphicsUtil.drawArrow(g, center + dos * cwidth / 2 * 0.8, center - dos * cwidth / 2 * 0.8, 
-                        (_highlighted)?contactHighlightPen:contactPen);
+                case ProcessingIOType.SignalInput:
+                    GraphicsUtil.drawArrow(g, center + dos * cwidth / 2 * 0.8, center - dos * cwidth / 2 * 0.8,
+                        (_highlighted) ? contactHighlightPen : contactPen);
                     break;
-                case ProcessingIOType.Output:
+                case ProcessingIOType.SignalOutput:
                     GraphicsUtil.drawArrow(g, center - dos * cwidth / 2 * 0.8, center + dos * cwidth / 2 * 0.8,
                         (_highlighted) ? contactHighlightPen : contactPen);
                     break;
-                case ProcessingIOType.Bidirectional:
-                    GraphicsUtil.drawArrow(g, center - dos * cwidth / 2 * 0.8, center + dos * cwidth / 2 * 0.8,
+                case ProcessingIOType.DataInput:
+                    GraphicsUtil.drawDoubleArrow(g, center + dos * cwidth / 2 * 0.8, center - dos * cwidth / 2 * 0.8,
                         (_highlighted) ? contactHighlightPen : contactPen);
                     break;
+                case ProcessingIOType.DataOutput:
+                    GraphicsUtil.drawDoubleArrow(g, center - dos * cwidth / 2 * 0.8, center + dos * cwidth / 2 * 0.8,
+                        (_highlighted) ? contactHighlightPen : contactPen);
+                    break;
+
             }
 
             // Title

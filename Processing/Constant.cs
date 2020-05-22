@@ -56,7 +56,7 @@ namespace AudioProcessor.Processing
             this.ioOut.title = "IO";
             this.ioOut.titleColor = System.Drawing.Color.DimGray;
             this.ioOut.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioOut.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioOut.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // Constant
             // 
@@ -157,9 +157,9 @@ namespace AudioProcessor.Processing
             if (ioOut.connectedTo == null)
                 return;
             if (constantType == ConstantType.dB)
-                ioOut.connectedTo.input.SetTo(Math.Pow(10.0,value/20.0));
+                ioOut.connectedTo.signalInput.SetTo(Math.Pow(10.0,value/20.0));
             else
-                ioOut.connectedTo.input.SetTo(value);
+                ioOut.connectedTo.signalInput.SetTo(value);
         }
 
         class RegisterClass1 : RTObjectReference

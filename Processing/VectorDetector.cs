@@ -36,7 +36,7 @@ namespace AudioProcessor.Processing
             this.ioOQ.title = "Q";
             this.ioOQ.titleColor = System.Drawing.Color.DimGray;
             this.ioOQ.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioOQ.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioOQ.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ioOI
             // 
@@ -53,7 +53,7 @@ namespace AudioProcessor.Processing
             this.ioOI.title = "I";
             this.ioOI.titleColor = System.Drawing.Color.DimGray;
             this.ioOI.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioOI.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioOI.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ioIn
             // 
@@ -69,7 +69,7 @@ namespace AudioProcessor.Processing
             this.ioIn.title = "In";
             this.ioIn.titleColor = System.Drawing.Color.DimGray;
             this.ioIn.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioIn.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioIn.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioRef0
             // 
@@ -85,7 +85,7 @@ namespace AudioProcessor.Processing
             this.ioRef0.title = "0°";
             this.ioRef0.titleColor = System.Drawing.Color.DimGray;
             this.ioRef0.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioRef0.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioRef0.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioRef90
             // 
@@ -101,7 +101,7 @@ namespace AudioProcessor.Processing
             this.ioRef90.title = "90°";
             this.ioRef90.titleColor = System.Drawing.Color.DimGray;
             this.ioRef90.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioRef90.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioRef90.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioA
             // 
@@ -118,7 +118,7 @@ namespace AudioProcessor.Processing
             this.ioA.title = "|A|";
             this.ioA.titleColor = System.Drawing.Color.DimGray;
             this.ioA.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioA.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioA.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // dlF
             // 
@@ -223,13 +223,13 @@ namespace AudioProcessor.Processing
             if (!_active)
                 return;
 
-            DataBuffer IN = getInputBuffer(ioIn);
-            DataBuffer SIN = getInputBuffer(ioRef0);
-            DataBuffer COS = getInputBuffer(ioRef90);
+            SignalBuffer IN = getSignalInputBuffer(ioIn);
+            SignalBuffer SIN = getSignalInputBuffer(ioRef0);
+            SignalBuffer COS = getSignalInputBuffer(ioRef90);
 
-            DataBuffer OUTI = getOutputBuffer(ioOI);
-            DataBuffer OUTQ = getOutputBuffer(ioOQ);
-            DataBuffer OUTA = getOutputBuffer(ioA);
+            SignalBuffer OUTI = getSignalOutputBuffer(ioOI);
+            SignalBuffer OUTQ = getSignalOutputBuffer(ioOQ);
+            SignalBuffer OUTA = getSignalOutputBuffer(ioA);
 
             if ((IN == null) || (SIN == null) || (COS == null))
                 return;

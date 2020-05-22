@@ -474,6 +474,16 @@ namespace AudioProcessor
             g.DrawLine(p, to.Point, (to - v * 0.4 - right * 0.2).Point);
         }
 
+        public static void drawDoubleArrow(Graphics g, Vector from, Vector to, Pen p)
+        {
+            Vector v = to - from;
+            Vector right = v.vrot90();
+            g.DrawLine(p, (from+0.05*right).Point, (to+0.05*right).Point);
+            g.DrawLine(p, (from-0.05*right).Point, (to-0.05*right).Point);
+            g.DrawLine(p, (to+0.05*right).Point, (to - v * 0.4 + right * 0.2).Point);
+            g.DrawLine(p, (to-0.05*right).Point, (to - v * 0.4 - right * 0.2).Point);
+        }
+
         public static void drawTriangle(Graphics g, Vector center, double size, Vector direction, Pen p)
         {
             Vector A = center + direction * size / 2;

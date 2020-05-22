@@ -49,17 +49,17 @@ namespace AudioProcessor.Processing
             this.ioI1.contactColor = System.Drawing.Color.DimGray;
             this.ioI1.contactHighlightColor = System.Drawing.Color.Red;
             this.ioI1.highlighted = false;
+            this.ioI1.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             this.ioI1.Location = new System.Drawing.Point(0, 28);
             this.ioI1.Name = "ioI1";
             this.ioI1.orientation = AudioProcessor.RTIO.RTOrientation.West;
             this.ioI1.showTitle = true;
-            this.ioI1.Size = new System.Drawing.Size(55, 20);
+            this.ioI1.Size = new System.Drawing.Size(45, 20);
             this.ioI1.TabIndex = 11;
             this.ioI1.Text = "rtio1";
             this.ioI1.title = "1/M";
             this.ioI1.titleColor = System.Drawing.Color.DimGray;
             this.ioI1.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioI1.type = AudioProcessor.RTIO.ProcessingIOType.Input;
             // 
             // ioI2
             // 
@@ -67,6 +67,7 @@ namespace AudioProcessor.Processing
             this.ioI2.contactColor = System.Drawing.Color.DimGray;
             this.ioI2.contactHighlightColor = System.Drawing.Color.Red;
             this.ioI2.highlighted = false;
+            this.ioI2.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             this.ioI2.Location = new System.Drawing.Point(0, 54);
             this.ioI2.Name = "ioI2";
             this.ioI2.orientation = AudioProcessor.RTIO.RTOrientation.West;
@@ -77,7 +78,6 @@ namespace AudioProcessor.Processing
             this.ioI2.title = "2";
             this.ioI2.titleColor = System.Drawing.Color.DimGray;
             this.ioI2.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioI2.type = AudioProcessor.RTIO.ProcessingIOType.Input;
             // 
             // ioI3
             // 
@@ -85,6 +85,7 @@ namespace AudioProcessor.Processing
             this.ioI3.contactColor = System.Drawing.Color.DimGray;
             this.ioI3.contactHighlightColor = System.Drawing.Color.Red;
             this.ioI3.highlighted = false;
+            this.ioI3.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             this.ioI3.Location = new System.Drawing.Point(0, 80);
             this.ioI3.Name = "ioI3";
             this.ioI3.orientation = AudioProcessor.RTIO.RTOrientation.West;
@@ -95,7 +96,6 @@ namespace AudioProcessor.Processing
             this.ioI3.title = "3";
             this.ioI3.titleColor = System.Drawing.Color.DimGray;
             this.ioI3.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioI3.type = AudioProcessor.RTIO.ProcessingIOType.Input;
             // 
             // ioI4
             // 
@@ -103,6 +103,7 @@ namespace AudioProcessor.Processing
             this.ioI4.contactColor = System.Drawing.Color.DimGray;
             this.ioI4.contactHighlightColor = System.Drawing.Color.Red;
             this.ioI4.highlighted = false;
+            this.ioI4.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             this.ioI4.Location = new System.Drawing.Point(0, 106);
             this.ioI4.Name = "ioI4";
             this.ioI4.orientation = AudioProcessor.RTIO.RTOrientation.West;
@@ -113,7 +114,6 @@ namespace AudioProcessor.Processing
             this.ioI4.title = "4";
             this.ioI4.titleColor = System.Drawing.Color.DimGray;
             this.ioI4.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioI4.type = AudioProcessor.RTIO.ProcessingIOType.Input;
             // 
             // ioI5
             // 
@@ -121,6 +121,7 @@ namespace AudioProcessor.Processing
             this.ioI5.contactColor = System.Drawing.Color.DimGray;
             this.ioI5.contactHighlightColor = System.Drawing.Color.Red;
             this.ioI5.highlighted = false;
+            this.ioI5.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             this.ioI5.Location = new System.Drawing.Point(0, 132);
             this.ioI5.Name = "ioI5";
             this.ioI5.orientation = AudioProcessor.RTIO.RTOrientation.West;
@@ -131,7 +132,6 @@ namespace AudioProcessor.Processing
             this.ioI5.title = "5";
             this.ioI5.titleColor = System.Drawing.Color.DimGray;
             this.ioI5.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioI5.type = AudioProcessor.RTIO.ProcessingIOType.Input;
             // 
             // ioI6
             // 
@@ -139,6 +139,7 @@ namespace AudioProcessor.Processing
             this.ioI6.contactColor = System.Drawing.Color.DimGray;
             this.ioI6.contactHighlightColor = System.Drawing.Color.Red;
             this.ioI6.highlighted = false;
+            this.ioI6.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             this.ioI6.Location = new System.Drawing.Point(0, 158);
             this.ioI6.Name = "ioI6";
             this.ioI6.orientation = AudioProcessor.RTIO.RTOrientation.West;
@@ -149,7 +150,6 @@ namespace AudioProcessor.Processing
             this.ioI6.title = "6";
             this.ioI6.titleColor = System.Drawing.Color.DimGray;
             this.ioI6.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioI6.type = AudioProcessor.RTIO.ProcessingIOType.Input;
             // 
             // ioI7
             // 
@@ -157,6 +157,7 @@ namespace AudioProcessor.Processing
             this.ioI7.contactColor = System.Drawing.Color.DimGray;
             this.ioI7.contactHighlightColor = System.Drawing.Color.Red;
             this.ioI7.highlighted = false;
+            this.ioI7.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             this.ioI7.Location = new System.Drawing.Point(0, 184);
             this.ioI7.Name = "ioI7";
             this.ioI7.orientation = AudioProcessor.RTIO.RTOrientation.West;
@@ -167,7 +168,6 @@ namespace AudioProcessor.Processing
             this.ioI7.title = "7";
             this.ioI7.titleColor = System.Drawing.Color.DimGray;
             this.ioI7.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioI7.type = AudioProcessor.RTIO.ProcessingIOType.Input;
             // 
             // ioI8
             // 
@@ -175,6 +175,7 @@ namespace AudioProcessor.Processing
             this.ioI8.contactColor = System.Drawing.Color.DimGray;
             this.ioI8.contactHighlightColor = System.Drawing.Color.Red;
             this.ioI8.highlighted = false;
+            this.ioI8.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             this.ioI8.Location = new System.Drawing.Point(0, 210);
             this.ioI8.Name = "ioI8";
             this.ioI8.orientation = AudioProcessor.RTIO.RTOrientation.West;
@@ -185,7 +186,6 @@ namespace AudioProcessor.Processing
             this.ioI8.title = "8";
             this.ioI8.titleColor = System.Drawing.Color.DimGray;
             this.ioI8.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioI8.type = AudioProcessor.RTIO.ProcessingIOType.Input;
             // 
             // ioO8
             // 
@@ -194,7 +194,8 @@ namespace AudioProcessor.Processing
             this.ioO8.contactColor = System.Drawing.Color.DimGray;
             this.ioO8.contactHighlightColor = System.Drawing.Color.Red;
             this.ioO8.highlighted = false;
-            this.ioO8.Location = new System.Drawing.Point(357, 210);
+            this.ioO8.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
+            this.ioO8.Location = new System.Drawing.Point(305, 210);
             this.ioO8.Name = "ioO8";
             this.ioO8.orientation = AudioProcessor.RTIO.RTOrientation.East;
             this.ioO8.showTitle = true;
@@ -204,7 +205,6 @@ namespace AudioProcessor.Processing
             this.ioO8.title = "8";
             this.ioO8.titleColor = System.Drawing.Color.DimGray;
             this.ioO8.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioO8.type = AudioProcessor.RTIO.ProcessingIOType.Output;
             // 
             // ioO7
             // 
@@ -213,7 +213,8 @@ namespace AudioProcessor.Processing
             this.ioO7.contactColor = System.Drawing.Color.DimGray;
             this.ioO7.contactHighlightColor = System.Drawing.Color.Red;
             this.ioO7.highlighted = false;
-            this.ioO7.Location = new System.Drawing.Point(357, 184);
+            this.ioO7.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
+            this.ioO7.Location = new System.Drawing.Point(305, 184);
             this.ioO7.Name = "ioO7";
             this.ioO7.orientation = AudioProcessor.RTIO.RTOrientation.East;
             this.ioO7.showTitle = true;
@@ -223,7 +224,6 @@ namespace AudioProcessor.Processing
             this.ioO7.title = "7";
             this.ioO7.titleColor = System.Drawing.Color.DimGray;
             this.ioO7.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioO7.type = AudioProcessor.RTIO.ProcessingIOType.Output;
             // 
             // ioO6
             // 
@@ -232,7 +232,8 @@ namespace AudioProcessor.Processing
             this.ioO6.contactColor = System.Drawing.Color.DimGray;
             this.ioO6.contactHighlightColor = System.Drawing.Color.Red;
             this.ioO6.highlighted = false;
-            this.ioO6.Location = new System.Drawing.Point(357, 158);
+            this.ioO6.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
+            this.ioO6.Location = new System.Drawing.Point(305, 158);
             this.ioO6.Name = "ioO6";
             this.ioO6.orientation = AudioProcessor.RTIO.RTOrientation.East;
             this.ioO6.showTitle = true;
@@ -242,7 +243,6 @@ namespace AudioProcessor.Processing
             this.ioO6.title = "6";
             this.ioO6.titleColor = System.Drawing.Color.DimGray;
             this.ioO6.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioO6.type = AudioProcessor.RTIO.ProcessingIOType.Output;
             // 
             // ioO5
             // 
@@ -251,7 +251,8 @@ namespace AudioProcessor.Processing
             this.ioO5.contactColor = System.Drawing.Color.DimGray;
             this.ioO5.contactHighlightColor = System.Drawing.Color.Red;
             this.ioO5.highlighted = false;
-            this.ioO5.Location = new System.Drawing.Point(357, 132);
+            this.ioO5.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
+            this.ioO5.Location = new System.Drawing.Point(305, 132);
             this.ioO5.Name = "ioO5";
             this.ioO5.orientation = AudioProcessor.RTIO.RTOrientation.East;
             this.ioO5.showTitle = true;
@@ -261,7 +262,6 @@ namespace AudioProcessor.Processing
             this.ioO5.title = "5";
             this.ioO5.titleColor = System.Drawing.Color.DimGray;
             this.ioO5.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioO5.type = AudioProcessor.RTIO.ProcessingIOType.Output;
             // 
             // ioO4
             // 
@@ -270,7 +270,8 @@ namespace AudioProcessor.Processing
             this.ioO4.contactColor = System.Drawing.Color.DimGray;
             this.ioO4.contactHighlightColor = System.Drawing.Color.Red;
             this.ioO4.highlighted = false;
-            this.ioO4.Location = new System.Drawing.Point(357, 106);
+            this.ioO4.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
+            this.ioO4.Location = new System.Drawing.Point(305, 106);
             this.ioO4.Name = "ioO4";
             this.ioO4.orientation = AudioProcessor.RTIO.RTOrientation.East;
             this.ioO4.showTitle = true;
@@ -280,7 +281,6 @@ namespace AudioProcessor.Processing
             this.ioO4.title = "4";
             this.ioO4.titleColor = System.Drawing.Color.DimGray;
             this.ioO4.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioO4.type = AudioProcessor.RTIO.ProcessingIOType.Output;
             // 
             // ioO3
             // 
@@ -289,7 +289,8 @@ namespace AudioProcessor.Processing
             this.ioO3.contactColor = System.Drawing.Color.DimGray;
             this.ioO3.contactHighlightColor = System.Drawing.Color.Red;
             this.ioO3.highlighted = false;
-            this.ioO3.Location = new System.Drawing.Point(357, 80);
+            this.ioO3.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
+            this.ioO3.Location = new System.Drawing.Point(305, 80);
             this.ioO3.Name = "ioO3";
             this.ioO3.orientation = AudioProcessor.RTIO.RTOrientation.East;
             this.ioO3.showTitle = true;
@@ -299,7 +300,6 @@ namespace AudioProcessor.Processing
             this.ioO3.title = "3";
             this.ioO3.titleColor = System.Drawing.Color.DimGray;
             this.ioO3.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioO3.type = AudioProcessor.RTIO.ProcessingIOType.Output;
             // 
             // ioO2
             // 
@@ -308,7 +308,8 @@ namespace AudioProcessor.Processing
             this.ioO2.contactColor = System.Drawing.Color.DimGray;
             this.ioO2.contactHighlightColor = System.Drawing.Color.Red;
             this.ioO2.highlighted = false;
-            this.ioO2.Location = new System.Drawing.Point(357, 54);
+            this.ioO2.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
+            this.ioO2.Location = new System.Drawing.Point(305, 54);
             this.ioO2.Name = "ioO2";
             this.ioO2.orientation = AudioProcessor.RTIO.RTOrientation.East;
             this.ioO2.showTitle = true;
@@ -318,7 +319,6 @@ namespace AudioProcessor.Processing
             this.ioO2.title = "2";
             this.ioO2.titleColor = System.Drawing.Color.DimGray;
             this.ioO2.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioO2.type = AudioProcessor.RTIO.ProcessingIOType.Output;
             // 
             // ioO1
             // 
@@ -327,7 +327,8 @@ namespace AudioProcessor.Processing
             this.ioO1.contactColor = System.Drawing.Color.DimGray;
             this.ioO1.contactHighlightColor = System.Drawing.Color.Red;
             this.ioO1.highlighted = false;
-            this.ioO1.Location = new System.Drawing.Point(357, 28);
+            this.ioO1.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
+            this.ioO1.Location = new System.Drawing.Point(305, 28);
             this.ioO1.Name = "ioO1";
             this.ioO1.orientation = AudioProcessor.RTIO.RTOrientation.East;
             this.ioO1.showTitle = true;
@@ -337,7 +338,6 @@ namespace AudioProcessor.Processing
             this.ioO1.title = "1";
             this.ioO1.titleColor = System.Drawing.Color.DimGray;
             this.ioO1.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioO1.type = AudioProcessor.RTIO.ProcessingIOType.Output;
             // 
             // dlGain
             // 
@@ -345,7 +345,7 @@ namespace AudioProcessor.Processing
             this.dlGain.dialDiameter = 50D;
             this.dlGain.dialMarkColor = System.Drawing.Color.Red;
             this.dlGain.format = "F2";
-            this.dlGain.Location = new System.Drawing.Point(61, 25);
+            this.dlGain.Location = new System.Drawing.Point(55, 4);
             this.dlGain.logScale = false;
             this.dlGain.maxVal = 100D;
             this.dlGain.minVal = -100D;
@@ -368,16 +368,21 @@ namespace AudioProcessor.Processing
             // clTime
             // 
             this.clTime.backColor = System.Drawing.Color.Black;
+            this.clTime.choiceType = AudioProcessor.RTChoice.ChoiceType.ListDefined;
             this.clTime.frontColor = System.Drawing.Color.DimGray;
-            this.clTime.Location = new System.Drawing.Point(46, 147);
+            this.clTime.Location = new System.Drawing.Point(43, 108);
             this.clTime.Name = "clTime";
+            this.clTime.numericMax = 100;
+            this.clTime.numericMin = 0;
+            this.clTime.offString = "off";
             this.clTime.selectedItem = -1;
-            this.clTime.Size = new System.Drawing.Size(118, 20);
+            this.clTime.Size = new System.Drawing.Size(106, 20);
             this.clTime.TabIndex = 29;
             this.clTime.Text = "rtChoice1";
             this.clTime.title = "Time";
             this.clTime.titleColor = System.Drawing.Color.DimGray;
             this.clTime.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.clTime.valueFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.clTime.xdim = 60;
             // 
             // bnAC
@@ -390,7 +395,7 @@ namespace AudioProcessor.Processing
             this.bnAC.frameHoldColor = System.Drawing.Color.Yellow;
             this.bnAC.frameOffColor = System.Drawing.Color.DimGray;
             this.bnAC.frameOnColor = System.Drawing.Color.Red;
-            this.bnAC.Location = new System.Drawing.Point(58, 119);
+            this.bnAC.Location = new System.Drawing.Point(52, 88);
             this.bnAC.Name = "bnAC";
             this.bnAC.offText = "DC";
             this.bnAC.onText = "AC";
@@ -412,14 +417,14 @@ namespace AudioProcessor.Processing
             this.lv1.format = "F2";
             this.lv1.frameColor = System.Drawing.Color.DimGray;
             this.lv1.levelType = AudioProcessor.RTLevel.RTLevelType.LinearH;
-            this.lv1.Location = new System.Drawing.Point(179, 28);
+            this.lv1.Location = new System.Drawing.Point(155, 28);
             this.lv1.logScale = false;
             this.lv1.max = 20D;
             this.lv1.min = -120D;
             this.lv1.Name = "lv1";
             this.lv1.openAngle = 150;
             this.lv1.pointColor = System.Drawing.Color.Red;
-            this.lv1.Size = new System.Drawing.Size(172, 20);
+            this.lv1.Size = new System.Drawing.Size(159, 20);
             this.lv1.TabIndex = 31;
             this.lv1.Text = "rtLevel1";
             this.lv1.title = "level";
@@ -439,14 +444,14 @@ namespace AudioProcessor.Processing
             this.lv2.format = "F2";
             this.lv2.frameColor = System.Drawing.Color.DimGray;
             this.lv2.levelType = AudioProcessor.RTLevel.RTLevelType.LinearH;
-            this.lv2.Location = new System.Drawing.Point(179, 54);
+            this.lv2.Location = new System.Drawing.Point(155, 54);
             this.lv2.logScale = false;
             this.lv2.max = 20D;
             this.lv2.min = -120D;
             this.lv2.Name = "lv2";
             this.lv2.openAngle = 150;
             this.lv2.pointColor = System.Drawing.Color.Red;
-            this.lv2.Size = new System.Drawing.Size(172, 20);
+            this.lv2.Size = new System.Drawing.Size(159, 20);
             this.lv2.TabIndex = 32;
             this.lv2.Text = "rtLevel2";
             this.lv2.title = "level";
@@ -466,14 +471,14 @@ namespace AudioProcessor.Processing
             this.lv4.format = "F2";
             this.lv4.frameColor = System.Drawing.Color.DimGray;
             this.lv4.levelType = AudioProcessor.RTLevel.RTLevelType.LinearH;
-            this.lv4.Location = new System.Drawing.Point(179, 106);
+            this.lv4.Location = new System.Drawing.Point(155, 106);
             this.lv4.logScale = false;
             this.lv4.max = 20D;
             this.lv4.min = -120D;
             this.lv4.Name = "lv4";
             this.lv4.openAngle = 150;
             this.lv4.pointColor = System.Drawing.Color.Red;
-            this.lv4.Size = new System.Drawing.Size(172, 20);
+            this.lv4.Size = new System.Drawing.Size(159, 20);
             this.lv4.TabIndex = 34;
             this.lv4.Text = "rtLevel3";
             this.lv4.title = "level";
@@ -493,14 +498,14 @@ namespace AudioProcessor.Processing
             this.lv3.format = "F2";
             this.lv3.frameColor = System.Drawing.Color.DimGray;
             this.lv3.levelType = AudioProcessor.RTLevel.RTLevelType.LinearH;
-            this.lv3.Location = new System.Drawing.Point(179, 80);
+            this.lv3.Location = new System.Drawing.Point(155, 80);
             this.lv3.logScale = false;
             this.lv3.max = 20D;
             this.lv3.min = -120D;
             this.lv3.Name = "lv3";
             this.lv3.openAngle = 150;
             this.lv3.pointColor = System.Drawing.Color.Red;
-            this.lv3.Size = new System.Drawing.Size(172, 20);
+            this.lv3.Size = new System.Drawing.Size(159, 20);
             this.lv3.TabIndex = 33;
             this.lv3.Text = "rtLevel4";
             this.lv3.title = "level";
@@ -520,14 +525,14 @@ namespace AudioProcessor.Processing
             this.lv6.format = "F2";
             this.lv6.frameColor = System.Drawing.Color.DimGray;
             this.lv6.levelType = AudioProcessor.RTLevel.RTLevelType.LinearH;
-            this.lv6.Location = new System.Drawing.Point(179, 158);
+            this.lv6.Location = new System.Drawing.Point(155, 158);
             this.lv6.logScale = false;
             this.lv6.max = 20D;
             this.lv6.min = -120D;
             this.lv6.Name = "lv6";
             this.lv6.openAngle = 150;
             this.lv6.pointColor = System.Drawing.Color.Red;
-            this.lv6.Size = new System.Drawing.Size(172, 20);
+            this.lv6.Size = new System.Drawing.Size(159, 20);
             this.lv6.TabIndex = 36;
             this.lv6.Text = "rtLevel5";
             this.lv6.title = "level";
@@ -547,14 +552,14 @@ namespace AudioProcessor.Processing
             this.lv5.format = "F2";
             this.lv5.frameColor = System.Drawing.Color.DimGray;
             this.lv5.levelType = AudioProcessor.RTLevel.RTLevelType.LinearH;
-            this.lv5.Location = new System.Drawing.Point(179, 132);
+            this.lv5.Location = new System.Drawing.Point(155, 132);
             this.lv5.logScale = false;
             this.lv5.max = 20D;
             this.lv5.min = -120D;
             this.lv5.Name = "lv5";
             this.lv5.openAngle = 150;
             this.lv5.pointColor = System.Drawing.Color.Red;
-            this.lv5.Size = new System.Drawing.Size(172, 20);
+            this.lv5.Size = new System.Drawing.Size(159, 20);
             this.lv5.TabIndex = 35;
             this.lv5.Text = "rtLevel6";
             this.lv5.title = "level";
@@ -574,14 +579,14 @@ namespace AudioProcessor.Processing
             this.lv8.format = "F2";
             this.lv8.frameColor = System.Drawing.Color.DimGray;
             this.lv8.levelType = AudioProcessor.RTLevel.RTLevelType.LinearH;
-            this.lv8.Location = new System.Drawing.Point(179, 210);
+            this.lv8.Location = new System.Drawing.Point(155, 210);
             this.lv8.logScale = false;
             this.lv8.max = 20D;
             this.lv8.min = -120D;
             this.lv8.Name = "lv8";
             this.lv8.openAngle = 150;
             this.lv8.pointColor = System.Drawing.Color.Red;
-            this.lv8.Size = new System.Drawing.Size(172, 20);
+            this.lv8.Size = new System.Drawing.Size(159, 20);
             this.lv8.TabIndex = 38;
             this.lv8.Text = "rtLevel7";
             this.lv8.title = "level";
@@ -601,14 +606,14 @@ namespace AudioProcessor.Processing
             this.lv7.format = "F2";
             this.lv7.frameColor = System.Drawing.Color.DimGray;
             this.lv7.levelType = AudioProcessor.RTLevel.RTLevelType.LinearH;
-            this.lv7.Location = new System.Drawing.Point(179, 184);
+            this.lv7.Location = new System.Drawing.Point(155, 184);
             this.lv7.logScale = false;
             this.lv7.max = 20D;
             this.lv7.min = -120D;
             this.lv7.Name = "lv7";
             this.lv7.openAngle = 150;
             this.lv7.pointColor = System.Drawing.Color.Red;
-            this.lv7.Size = new System.Drawing.Size(172, 20);
+            this.lv7.Size = new System.Drawing.Size(159, 20);
             this.lv7.TabIndex = 37;
             this.lv7.Text = "rtLevel8";
             this.lv7.title = "level";
@@ -631,7 +636,7 @@ namespace AudioProcessor.Processing
             this.bnSet.frameHoldColor = System.Drawing.Color.Yellow;
             this.bnSet.frameOffColor = System.Drawing.Color.DimGray;
             this.bnSet.frameOnColor = System.Drawing.Color.Red;
-            this.bnSet.Location = new System.Drawing.Point(110, 119);
+            this.bnSet.Location = new System.Drawing.Point(104, 88);
             this.bnSet.Name = "bnSet";
             this.bnSet.offText = "Set";
             this.bnSet.onText = "Set";
@@ -656,7 +661,7 @@ namespace AudioProcessor.Processing
             this.bnPost.frameHoldColor = System.Drawing.Color.Yellow;
             this.bnPost.frameOffColor = System.Drawing.Color.DimGray;
             this.bnPost.frameOnColor = System.Drawing.Color.Red;
-            this.bnPost.Location = new System.Drawing.Point(110, 1);
+            this.bnPost.Location = new System.Drawing.Point(228, 5);
             this.bnPost.Name = "bnPost";
             this.bnPost.offText = "Pre";
             this.bnPost.onText = "Post";
@@ -705,7 +710,7 @@ namespace AudioProcessor.Processing
             this.Name = "FixedGain";
             this.shrinkSize = new System.Drawing.Size(95, 239);
             this.shrinkTitle = "X";
-            this.Size = new System.Drawing.Size(399, 239);
+            this.Size = new System.Drawing.Size(347, 239);
             this.title = "Fixed Gain";
             this.ResumeLayout(false);
 
@@ -768,12 +773,12 @@ namespace AudioProcessor.Processing
             int h = Height;
             int hh = Height;
             if (inputs < 8) { ioI8.Hide(); ioO8.Hide(); lv8.Hide(); h = ioI8.Location.Y; hh = ioI8.Location.Y; }
-            if (inputs < 7) { ioI7.Hide(); ioO7.Hide(); lv7.Hide(); h = ioI8.Location.Y; hh = ioI7.Location.Y; }
-            if (inputs < 6) { ioI6.Hide(); ioO6.Hide(); lv6.Hide(); h = ioI8.Location.Y; hh = ioI6.Location.Y; }
-            if (inputs < 5) { ioI5.Hide(); ioO5.Hide(); lv5.Hide(); h = ioI8.Location.Y; hh = ioI5.Location.Y; }
-            if (inputs < 4) { ioI4.Hide(); ioO4.Hide(); lv4.Hide(); h = ioI8.Location.Y; hh = ioI4.Location.Y; }
-            if (inputs < 3) { ioI3.Hide(); ioO3.Hide(); lv3.Hide(); h = ioI8.Location.Y; hh = ioI3.Location.Y; }
-            if (inputs < 2) { ioI2.Hide(); ioO2.Hide(); lv2.Hide(); h = ioI8.Location.Y; hh = ioI2.Location.Y; }
+            if (inputs < 7) { ioI7.Hide(); ioO7.Hide(); lv7.Hide(); h = ioI7.Location.Y; hh = ioI7.Location.Y; }
+            if (inputs < 6) { ioI6.Hide(); ioO6.Hide(); lv6.Hide(); h = ioI6.Location.Y; hh = ioI6.Location.Y; }
+            if (inputs < 5) { ioI5.Hide(); ioO5.Hide(); lv5.Hide(); h = ioI5.Location.Y; hh = ioI5.Location.Y; }
+            if (inputs < 4) { ioI4.Hide(); ioO4.Hide(); lv4.Hide(); h = ioI5.Location.Y; hh = ioI4.Location.Y; }
+            if (inputs < 3) { ioI3.Hide(); ioO3.Hide(); lv3.Hide(); h = ioI5.Location.Y; hh = ioI3.Location.Y; }
+            if (inputs < 2) { ioI2.Hide(); ioO2.Hide(); lv2.Hide(); h = ioI5.Location.Y; hh = ioI2.Location.Y; }
             Height = h;
             shrinkSize = new System.Drawing.Size(shrinkSize.Width, hh);
 
@@ -863,7 +868,7 @@ namespace AudioProcessor.Processing
             postgain = bnPost.buttonState;
         }
        
-        private void processChannel(int channel, double a, DataBuffer dbin, DataBuffer dbout, RTLevel lvl)
+        private void processChannel(int channel, double a, SignalBuffer dbin, SignalBuffer dbout, RTLevel lvl)
         {
             if ((dbin != null) && (dbout != null))
             {
@@ -906,14 +911,14 @@ namespace AudioProcessor.Processing
             countMax = (int)Math.Floor(TimingsD[windowselect] * owner.sampleRate + 0.5);
             double a = Math.Pow(10.0, gain / 20.0);
 
-            if (inputs >= 1) processChannel(0, a, getInputBuffer(ioI1), getOutputBuffer(ioO1), lv1);
-            if (inputs >= 2) processChannel(1, a, getInputBuffer(ioI2), getOutputBuffer(ioO2), lv2);
-            if (inputs >= 3) processChannel(2, a, getInputBuffer(ioI3), getOutputBuffer(ioO3), lv3);
-            if (inputs >= 4) processChannel(3, a, getInputBuffer(ioI4), getOutputBuffer(ioO4), lv4);
-            if (inputs >= 5) processChannel(4, a, getInputBuffer(ioI5), getOutputBuffer(ioO5), lv5);
-            if (inputs >= 6) processChannel(5, a, getInputBuffer(ioI6), getOutputBuffer(ioO6), lv6);
-            if (inputs >= 7) processChannel(6, a, getInputBuffer(ioI7), getOutputBuffer(ioO7), lv7);
-            if (inputs >= 8) processChannel(7, a, getInputBuffer(ioI8), getOutputBuffer(ioO8), lv8);
+            if (inputs >= 1) processChannel(0, a, getSignalInputBuffer(ioI1), getSignalOutputBuffer(ioO1), lv1);
+            if (inputs >= 2) processChannel(1, a, getSignalInputBuffer(ioI2), getSignalOutputBuffer(ioO2), lv2);
+            if (inputs >= 3) processChannel(2, a, getSignalInputBuffer(ioI3), getSignalOutputBuffer(ioO3), lv3);
+            if (inputs >= 4) processChannel(3, a, getSignalInputBuffer(ioI4), getSignalOutputBuffer(ioO4), lv4);
+            if (inputs >= 5) processChannel(4, a, getSignalInputBuffer(ioI5), getSignalOutputBuffer(ioO5), lv5);
+            if (inputs >= 6) processChannel(5, a, getSignalInputBuffer(ioI6), getSignalOutputBuffer(ioO6), lv6);
+            if (inputs >= 7) processChannel(6, a, getSignalInputBuffer(ioI7), getSignalOutputBuffer(ioO7), lv7);
+            if (inputs >= 8) processChannel(7, a, getSignalInputBuffer(ioI8), getSignalOutputBuffer(ioO8), lv8);
 
             count = (count + owner.blockSize) % countMax;
         }

@@ -82,7 +82,7 @@ namespace AudioProcessor.AsyncSinkSource
             this.ioPitch.title = "pitch";
             this.ioPitch.titleColor = System.Drawing.Color.DimGray;
             this.ioPitch.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioPitch.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioPitch.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ioTrig
             // 
@@ -99,7 +99,7 @@ namespace AudioProcessor.AsyncSinkSource
             this.ioTrig.title = "Trg";
             this.ioTrig.titleColor = System.Drawing.Color.DimGray;
             this.ioTrig.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioTrig.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioTrig.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ioAmp
             // 
@@ -116,7 +116,7 @@ namespace AudioProcessor.AsyncSinkSource
             this.ioAmp.title = "amp";
             this.ioAmp.titleColor = System.Drawing.Color.DimGray;
             this.ioAmp.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioAmp.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioAmp.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ioC1
             // 
@@ -133,7 +133,7 @@ namespace AudioProcessor.AsyncSinkSource
             this.ioC1.title = "C1";
             this.ioC1.titleColor = System.Drawing.Color.DimGray;
             this.ioC1.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioC1.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioC1.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ioC2
             // 
@@ -150,7 +150,7 @@ namespace AudioProcessor.AsyncSinkSource
             this.ioC2.title = "C2";
             this.ioC2.titleColor = System.Drawing.Color.DimGray;
             this.ioC2.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioC2.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioC2.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ioC3
             // 
@@ -167,7 +167,7 @@ namespace AudioProcessor.AsyncSinkSource
             this.ioC3.title = "C3";
             this.ioC3.titleColor = System.Drawing.Color.DimGray;
             this.ioC3.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioC3.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioC3.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ioC4
             // 
@@ -184,7 +184,7 @@ namespace AudioProcessor.AsyncSinkSource
             this.ioC4.title = "C4";
             this.ioC4.titleColor = System.Drawing.Color.DimGray;
             this.ioC4.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioC4.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioC4.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // MIDI_In
             // 
@@ -450,13 +450,13 @@ namespace AudioProcessor.AsyncSinkSource
         {
             if (!active) return;
 
-            DataBuffer dbtrig = getOutputBuffer(ioTrig);
-            DataBuffer dbpitch = getOutputBuffer(ioPitch);
-            DataBuffer dbamp = getOutputBuffer(ioAmp);
-            DataBuffer dbC1 = getOutputBuffer(ioC1);
-            DataBuffer dbC2 = getOutputBuffer(ioC2);
-            DataBuffer dbC3 = getOutputBuffer(ioC3);
-            DataBuffer dbC4 = getOutputBuffer(ioC4);
+            SignalBuffer dbtrig = getSignalOutputBuffer(ioTrig);
+            SignalBuffer dbpitch = getSignalOutputBuffer(ioPitch);
+            SignalBuffer dbamp = getSignalOutputBuffer(ioAmp);
+            SignalBuffer dbC1 = getSignalOutputBuffer(ioC1);
+            SignalBuffer dbC2 = getSignalOutputBuffer(ioC2);
+            SignalBuffer dbC3 = getSignalOutputBuffer(ioC3);
+            SignalBuffer dbC4 = getSignalOutputBuffer(ioC4);
 
             for (int i = 0; i < owner.blockSize; i++)
             {

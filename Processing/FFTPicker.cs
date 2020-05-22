@@ -64,7 +64,7 @@ namespace AudioProcessor.Processing
             this.ioI.title = "FM";
             this.ioI.titleColor = System.Drawing.Color.DimGray;
             this.ioI.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioI.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioI.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioP3
             // 
@@ -81,7 +81,7 @@ namespace AudioProcessor.Processing
             this.ioP3.title = "+3";
             this.ioP3.titleColor = System.Drawing.Color.DimGray;
             this.ioP3.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioP3.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioP3.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // clWin
             // 
@@ -113,7 +113,7 @@ namespace AudioProcessor.Processing
             this.ioP2.title = "+2";
             this.ioP2.titleColor = System.Drawing.Color.DimGray;
             this.ioP2.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioP2.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioP2.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ioP1
             // 
@@ -130,7 +130,7 @@ namespace AudioProcessor.Processing
             this.ioP1.title = "+1";
             this.ioP1.titleColor = System.Drawing.Color.DimGray;
             this.ioP1.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioP1.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioP1.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // io0
             // 
@@ -147,7 +147,7 @@ namespace AudioProcessor.Processing
             this.io0.title = "";
             this.io0.titleColor = System.Drawing.Color.DimGray;
             this.io0.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io0.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.io0.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ioM1
             // 
@@ -164,7 +164,7 @@ namespace AudioProcessor.Processing
             this.ioM1.title = "-1";
             this.ioM1.titleColor = System.Drawing.Color.DimGray;
             this.ioM1.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioM1.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioM1.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ioM2
             // 
@@ -181,7 +181,7 @@ namespace AudioProcessor.Processing
             this.ioM2.title = "-2";
             this.ioM2.titleColor = System.Drawing.Color.DimGray;
             this.ioM2.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioM2.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioM2.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ioM3
             // 
@@ -198,7 +198,7 @@ namespace AudioProcessor.Processing
             this.ioM3.title = "-3";
             this.ioM3.titleColor = System.Drawing.Color.DimGray;
             this.ioM3.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioM3.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioM3.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // FFTPicker
             // 
@@ -315,15 +315,15 @@ namespace AudioProcessor.Processing
             if (!_active)
                 return;
 
-            DataBuffer dbin = getInputBuffer(ioI);
-            DataBuffer[] dbout = new DataBuffer[7];
-            dbout[0] = getOutputBuffer(ioM3);
-            dbout[1] = getOutputBuffer(ioM2);
-            dbout[2] = getOutputBuffer(ioM1);
-            dbout[3] = getOutputBuffer(io0);
-            dbout[4] = getOutputBuffer(ioP1);
-            dbout[5] = getOutputBuffer(ioP2);
-            dbout[6] = getOutputBuffer(ioP3);
+            SignalBuffer dbin = getSignalInputBuffer(ioI);
+            SignalBuffer[] dbout = new SignalBuffer[7];
+            dbout[0] = getSignalOutputBuffer(ioM3);
+            dbout[1] = getSignalOutputBuffer(ioM2);
+            dbout[2] = getSignalOutputBuffer(ioM1);
+            dbout[3] = getSignalOutputBuffer(io0);
+            dbout[4] = getSignalOutputBuffer(ioP1);
+            dbout[5] = getSignalOutputBuffer(ioP2);
+            dbout[6] = getSignalOutputBuffer(ioP3);
 
             if (dbin == null)
                 return;

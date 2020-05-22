@@ -32,7 +32,7 @@ namespace AudioProcessor.Processing
             this.ioA.title = "A";
             this.ioA.titleColor = System.Drawing.Color.DimGray;
             this.ioA.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioA.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioA.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioB
             // 
@@ -48,7 +48,7 @@ namespace AudioProcessor.Processing
             this.ioB.title = "B";
             this.ioB.titleColor = System.Drawing.Color.DimGray;
             this.ioB.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioB.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioB.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioOut
             // 
@@ -65,7 +65,7 @@ namespace AudioProcessor.Processing
             this.ioOut.title = "A";
             this.ioOut.titleColor = System.Drawing.Color.DimGray;
             this.ioOut.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioOut.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioOut.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // Compare
             // 
@@ -133,9 +133,9 @@ namespace AudioProcessor.Processing
 
         public override void tick()
         {
-            DataBuffer dbA = getInputBuffer(ioA);
-            DataBuffer dbB = getInputBuffer(ioB);
-            DataBuffer dbout = getOutputBuffer(ioOut);
+            SignalBuffer dbA = getSignalInputBuffer(ioA);
+            SignalBuffer dbB = getSignalInputBuffer(ioB);
+            SignalBuffer dbout = getSignalOutputBuffer(ioOut);
 
             if (dbout == null)
                 return;

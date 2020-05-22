@@ -84,7 +84,7 @@ namespace AudioProcessor.SinkSource
             this.ioTrig.title = "Trig";
             this.ioTrig.titleColor = System.Drawing.Color.DimGray;
             this.ioTrig.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioTrig.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioTrig.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioGate
             // 
@@ -101,7 +101,7 @@ namespace AudioProcessor.SinkSource
             this.ioGate.title = "gate";
             this.ioGate.titleColor = System.Drawing.Color.DimGray;
             this.ioGate.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioGate.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioGate.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ioSig
             // 
@@ -118,7 +118,7 @@ namespace AudioProcessor.SinkSource
             this.ioSig.title = "S";
             this.ioSig.titleColor = System.Drawing.Color.DimGray;
             this.ioSig.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioSig.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioSig.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // dlStart
             // 
@@ -347,9 +347,9 @@ namespace AudioProcessor.SinkSource
 
         public override void tick()
         {
-            DataBuffer dbout = getOutputBuffer(ioSig);
-            DataBuffer dbtrig = getOutputBuffer(ioGate);
-            DataBuffer dbtrigin = getInputBuffer(ioTrig);
+            SignalBuffer dbout = getSignalOutputBuffer(ioSig);
+            SignalBuffer dbtrig = getSignalOutputBuffer(ioGate);
+            SignalBuffer dbtrigin = getSignalInputBuffer(ioTrig);
 
             if ((dbout == null) && (dbtrig == null)) return;
             if (!_active) return;

@@ -53,7 +53,6 @@ namespace AudioProcessor
             Processing.Constant.Register(processingObjects);
             Processing.FFTFilter.Register(processingObjects);
             Processing.FFTPicker.Register(processingObjects);
-            Processing.Chromagram.Register(processingObjects);
             Processing.FixedGain.Register(processingObjects);
             Processing.IIRAFilter.Register(processingObjects);
             Processing.IIRFilter.Register(processingObjects);
@@ -69,6 +68,15 @@ namespace AudioProcessor
             Processing.VectorDetector.Register(processingObjects);
             Processing.VMux.Register(processingObjects);
             Processing.Echo.Register(processingObjects);
+
+            DataProcessing.Chromagram.Register(processingObjects);
+            DataProcessing.MFCC.Register(processingObjects);
+            DataProcessing.DataDeMux.Register(processingObjects);
+            DataProcessing.DataFileWriter.Register(processingObjects);
+            DataProcessing.DataWaterfallDisplay.Register(processingObjects);
+            DataProcessing.DataSubset.Register(processingObjects);
+            DataProcessing.DataMerge.Register(processingObjects);
+            DataProcessing.DataViewer.Register(processingObjects);
         }
 
         private int[] sampleRateOptions = new int[] { 11025, 22050, 44100, 48000, 88200, 96000, 176400, 192000 };
@@ -130,6 +138,8 @@ namespace AudioProcessor
                     pos = audioProcessorTSTools;
                 if (add[0].Equals("Control"))
                     pos = audioProcessorTSControl;
+                if (add[0].Equals("Data"))
+                    pos = audioProcessorTSData;
                 if (pos != null)
                 {
                     add.RemoveAt(0);

@@ -79,7 +79,7 @@ namespace AudioProcessor.SinkSource
             this.ioPitch.title = "Pitch";
             this.ioPitch.titleColor = System.Drawing.Color.DimGray;
             this.ioPitch.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioPitch.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioPitch.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ioGate
             // 
@@ -98,7 +98,7 @@ namespace AudioProcessor.SinkSource
             this.ioGate.title = "Gate";
             this.ioGate.titleColor = System.Drawing.Color.DimGray;
             this.ioGate.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioGate.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioGate.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // rtChoice1
             // 
@@ -155,7 +155,7 @@ namespace AudioProcessor.SinkSource
             this.ioSync.title = "Sync";
             this.ioSync.titleColor = System.Drawing.Color.DimGray;
             this.ioSync.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioSync.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioSync.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioAmp
             // 
@@ -174,7 +174,7 @@ namespace AudioProcessor.SinkSource
             this.ioAmp.title = "Amp";
             this.ioAmp.titleColor = System.Drawing.Color.DimGray;
             this.ioAmp.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioAmp.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioAmp.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // dloct
             // 
@@ -354,10 +354,10 @@ namespace AudioProcessor.SinkSource
         public override void tick()
         {
             if (!_active) return;
-            DataBuffer dbsync = getInputBuffer(ioSync);
-            DataBuffer dbpitch = getOutputBuffer(ioPitch);
-            DataBuffer dbamp = getOutputBuffer(ioAmp);
-            DataBuffer dbgate = getOutputBuffer(ioGate);
+            SignalBuffer dbsync = getSignalInputBuffer(ioSync);
+            SignalBuffer dbpitch = getSignalOutputBuffer(ioPitch);
+            SignalBuffer dbamp = getSignalOutputBuffer(ioAmp);
+            SignalBuffer dbgate = getSignalOutputBuffer(ioGate);
 
             if ((dbpitch == null) && (dbgate == null)) return;
             int c = 0;

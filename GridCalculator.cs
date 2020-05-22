@@ -462,7 +462,11 @@ namespace AudioProcessor
         public double getInterpolatedPos(double data)
         { // from data space to screen
             if (logScale)
+            {
+                if (data <= _min/2) data = _min/2;
+                if (data >= _max*2) data = _max*2;
                 return _low + Math.Log(data / _min) / Math.Log(_max / _min) * (_high - _low);
+            }
             else
                 return _low + (data - _min) / (_max - _min) * (_high - _low);
         }
@@ -478,7 +482,11 @@ namespace AudioProcessor
         public double getRelativePos(double data)
         { // From data to relative (0..1)
             if (logScale)
+            {
+                if (data < _min / 2) data = _min / 2;
+                if (data > _max * 2) data = _max * 2;
                 return Math.Log(data / _min) / Math.Log(_max / _min);
+            }
             else
                 return (data- _min) / (_max - _min);
         }

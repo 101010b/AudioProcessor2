@@ -37,7 +37,7 @@ namespace AudioProcessor.Processing
             this.ioO.title = "Avg";
             this.ioO.titleColor = System.Drawing.Color.DimGray;
             this.ioO.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioO.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioO.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ioI
             // 
@@ -53,7 +53,7 @@ namespace AudioProcessor.Processing
             this.ioI.title = "In";
             this.ioI.titleColor = System.Drawing.Color.DimGray;
             this.ioI.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioI.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioI.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioT
             // 
@@ -70,7 +70,7 @@ namespace AudioProcessor.Processing
             this.ioT.title = "Trig";
             this.ioT.titleColor = System.Drawing.Color.DimGray;
             this.ioT.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioT.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioT.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // slAlgo
             // 
@@ -267,7 +267,7 @@ namespace AudioProcessor.Processing
             if (!_active)
                 return;
 
-            DataBuffer dbout = getOutputBuffer(ioO);
+            SignalBuffer dbout = getSignalOutputBuffer(ioO);
             if (dbout == null)
                 return;
 
@@ -282,13 +282,13 @@ namespace AudioProcessor.Processing
 
 
             if (ioI.connectedTo != null)
-                averager.process(ioI.connectedTo.output.data,owner.blockSize);
+                averager.process(ioI.connectedTo.signalOutput.data,owner.blockSize);
             else
                 averager.process(owner.blockSize);
 
             Array.Copy(outlist, dbout.data, owner.blockSize);
             if (ioT.connectedTo != null)
-                Array.Copy(triglist, ioT.connectedTo.input.data, owner.blockSize);
+                Array.Copy(triglist, ioT.connectedTo.signalInput.data, owner.blockSize);
         }
 
         class RegisterClass : RTObjectReference

@@ -91,10 +91,41 @@
     <Compile Include="BiQuadC.cs" />
     <Compile Include="ColorTable.cs" />
     <Compile Include="Complex.cs" />
+    <Compile Include="DataBuffer.cs" />
+    <Compile Include="DataProcessing\DataMerge.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DataProcessing\DataSubset.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DataProcessing\DataViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DataProcessing\DataViewerScreen.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataProcessing\DataViewerWin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataProcessing\DataViewerWin.Designer.cs">
+      <DependentUpon>DataViewerWin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataProcessing\DataWaterfallDisplay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DataProcessing\DataFileWriter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DataProcessing\MFCC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="DynamicDelay.cs" />
     <Compile Include="MathUtils.cs" />
     <Compile Include="Matrix2x2.cs" />
-    <Compile Include="Processing\Chromagram.cs">
+    <Compile Include="DataProcessing\Chromagram.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DataProcessing\DataDeMux.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Processing\Echo.cs">
@@ -127,7 +158,7 @@
     <Compile Include="Processing\Constant.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DataBuffer.cs" />
+    <Compile Include="SignalBuffer.cs" />
     <Compile Include="DrawColor.cs" />
     <Compile Include="FFTProcessor.cs" />
     <Compile Include="FIFO.cs" />
@@ -398,11 +429,35 @@
     <EmbeddedResource Include="AudioProcessorWin.resx">
       <DependentUpon>AudioProcessorWin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DataProcessing\DataFileWriter.resx">
+      <DependentUpon>DataFileWriter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataProcessing\DataMerge.resx">
+      <DependentUpon>DataMerge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataProcessing\DataSubset.resx">
+      <DependentUpon>DataSubset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataProcessing\DataViewer.resx">
+      <DependentUpon>DataViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataProcessing\DataViewerWin.resx">
+      <DependentUpon>DataViewerWin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataProcessing\DataWaterfallDisplay.resx">
+      <DependentUpon>DataWaterfallDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataProcessing\MFCC.resx">
+      <DependentUpon>MFCC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LogWin.resx">
       <DependentUpon>LogWin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Processing\chromagram.resx">
+    <EmbeddedResource Include="DataProcessing\chromagram.resx">
       <DependentUpon>Chromagram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataProcessing\DataDeMux.resx">
+      <DependentUpon>DataDeMux.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Processing\Echo.resx">
       <DependentUpon>Echo.cs</DependentUpon>
@@ -581,6 +636,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="icons\data.png" />
     <Content Include="icons\arithmetic.png" />
     <Content Include="icons\control.png" />
     <Content Include="icons\delete.png" />

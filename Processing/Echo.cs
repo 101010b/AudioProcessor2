@@ -32,7 +32,7 @@ namespace AudioProcessor.Processing
             this.ioI.title = "IO";
             this.ioI.titleColor = System.Drawing.Color.DimGray;
             this.ioI.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioI.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioI.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioO
             // 
@@ -49,7 +49,7 @@ namespace AudioProcessor.Processing
             this.ioO.title = "IO";
             this.ioO.titleColor = System.Drawing.Color.DimGray;
             this.ioO.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioO.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioO.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // dlDelay
             // 
@@ -215,8 +215,8 @@ namespace AudioProcessor.Processing
         public override void tick()
         {
             if (!_active) return;
-            DataBuffer dbin = getInputBuffer(ioI);
-            DataBuffer dbout = getOutputBuffer(ioO);
+            SignalBuffer dbin = getSignalInputBuffer(ioI);
+            SignalBuffer dbout = getSignalOutputBuffer(ioO);
             UInt32 pick = (UInt32)Math.Floor(delay * owner.sampleRate + 0.5);
             if (pick > 10 * owner.sampleRate)
                 pick = (UInt32) (10 * owner.sampleRate); // Hard limit to 10s !

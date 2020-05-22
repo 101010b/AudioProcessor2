@@ -90,12 +90,12 @@ namespace AudioProcessor
 
         enum ProcessingNetType
         {
-            Undefined,
-            OneInput,
-            Bidirectional    
+            Unknown,
+            Signal,
+            Data
         }
-        ProcessingNetType type;
-        Boolean valid;
+        ProcessingNetType netType;
+        bool valid;
 
         private Color _colorBack = Color.Black;
         private Pen penBack;
@@ -126,12 +126,14 @@ namespace AudioProcessor
             get { return _colorLineSelected; }
         }
 
-        public DataBuffer input;
-        public DataBuffer output;
+        public SignalBuffer signalInput;
+        public SignalBuffer signalOutput;
+
+        public DataBuffer dataInput;
+        public DataBuffer dataOutput;
 
         private void init()
         {
-            type = ProcessingNetType.Undefined;
             valid = false;
 
             penBack = new Pen(_colorBack, 5);
@@ -139,8 +141,8 @@ namespace AudioProcessor
             penLineBad = new Pen(_colorLineBad, 3);
             penLineSelected = new Pen(_colorLineSelected, 3);
 
-            input = new DataBuffer(owner.blockSize);
-            output = new DataBuffer(owner.blockSize);
+            signalInput = new SignalBuffer(owner.blockSize);
+            signalOutput = new SignalBuffer(owner.blockSize);
         }
 
         public ProcessingNet(SystemPanel _owner)
@@ -151,6 +153,7 @@ namespace AudioProcessor
 
             _isNamed = false;
             _name = owner.createUniqueNetName();
+            netType = ProcessingNetType.Unknown;
 
             init();
         }
@@ -166,6 +169,8 @@ namespace AudioProcessor
                 _name = src.ReadString();
             else
                 _name = owner.createUniqueNetName();
+
+            netType = ProcessingNetType.Unknown;
 
             init();
                         
@@ -196,6 +201,7 @@ namespace AudioProcessor
                     throw new Exception("Bad Input File: File corrupt in Net Read");
                 connections.Add(new ProcessingConnection(a, b));
             }
+
             CheckValidity();
         }
 
@@ -221,29 +227,75 @@ namespace AudioProcessor
 
         public void tick()
         {
-            output.CopyFrom(input);
-            input.zero();
+            switch (netType)
+            {
+                case ProcessingNetType.Unknown:
+                    signalInput = signalOutput = null;
+                    dataInput = dataOutput = null;
+                    break;
+                case ProcessingNetType.Signal:
+                    if (signalInput == null)
+                        signalInput = new SignalBuffer(owner.blockSize);
+                    if (signalOutput == null)
+                        signalOutput = new SignalBuffer(owner.blockSize);
+                    signalOutput.CopyFrom(signalInput);
+                    signalInput.zero();
+                    dataInput = dataOutput = null;
+                    break;
+                case ProcessingNetType.Data:
+                    if (dataInput == null)
+                        dataInput = new DataBuffer();
+                    if (dataOutput == null)
+                        dataOutput = new DataBuffer();
+                    dataOutput.CopyFrom(dataInput);
+                    dataInput.clear();
+                    signalInput = signalOutput = null;
+                    break;
+            }
         }
 
         void CheckValidity()
         {
             int inputs = 0;
             int outputs = 0;
-            int bidir = 0;
+            bool isSignal = false;
+            bool isData = false;
             for (int i = 0; i < connectedIOs.Count; i++)
             {
-                if (connectedIOs[i].type == RTIO.ProcessingIOType.Input)
-                    inputs++;
-                if (connectedIOs[i].type == RTIO.ProcessingIOType.Output)
-                    outputs++;
-                if (connectedIOs[i].type == RTIO.ProcessingIOType.Bidirectional)
-                    bidir++;
+                switch (connectedIOs[i].IOtype)
+                {
+                    case RTIO.ProcessingIOType.SignalInput:
+                        inputs++;
+                        isSignal = true;
+                        break;
+                    case RTIO.ProcessingIOType.SignalOutput:
+                        outputs++;
+                        isSignal = true;
+                        break;
+                    case RTIO.ProcessingIOType.DataInput:
+                        inputs++;
+                        isData = true;
+                        break;
+                    case RTIO.ProcessingIOType.DataOutput:
+                        outputs++;
+                        isData = true;
+                        break;
+                }
             }
             valid = true;
+            if (isSignal && isData)
+                valid = false;
             if (outputs != 1)
                 valid = false;
-            if ((inputs > 0) && ((outputs + bidir) == 0))
-                valid = false;
+            if (valid)
+            {
+                if (isSignal)
+                    netType = ProcessingNetType.Signal;
+                else
+                    netType = ProcessingNetType.Data;
+            }
+            else
+                netType = ProcessingNetType.Unknown;
         }
 
         public void addConnection(RTIO IOstart, RTIO IOstop)
@@ -561,6 +613,10 @@ namespace AudioProcessor
                     else
                         drawPen = penLineBad;
                 }
+                if (netType == ProcessingNetType.Data)
+                    drawPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+                else
+                    drawPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
                 foreach (RTIO io in connectedIOs)
                 {
                     Vector pstart, pstop, textpos, textdir;
@@ -588,6 +644,10 @@ namespace AudioProcessor
                         else
                             drawpen = penLineBad;
                     }
+                    if (netType == ProcessingNetType.Data)
+                        drawpen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+                    else
+                        drawpen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
                     pc.bc.draw(g, penBack, drawpen);
                 }
             }

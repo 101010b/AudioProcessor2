@@ -52,7 +52,7 @@ namespace AudioProcessor.RealtimeSinkSource
             this.ioL.title = "L";
             this.ioL.titleColor = System.Drawing.Color.DimGray;
             this.ioL.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioL.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioL.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioR
             // 
@@ -68,7 +68,7 @@ namespace AudioProcessor.RealtimeSinkSource
             this.ioR.title = "R";
             this.ioR.titleColor = System.Drawing.Color.DimGray;
             this.ioR.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioR.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioR.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ledOvl
             // 

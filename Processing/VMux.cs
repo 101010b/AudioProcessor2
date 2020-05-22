@@ -37,7 +37,7 @@ namespace AudioProcessor.Processing
             this.ioSel.title = "sel";
             this.ioSel.titleColor = System.Drawing.Color.DimGray;
             this.ioSel.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioSel.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioSel.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioO
             // 
@@ -54,7 +54,7 @@ namespace AudioProcessor.Processing
             this.ioO.title = "Out";
             this.ioO.titleColor = System.Drawing.Color.DimGray;
             this.ioO.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioO.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioO.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ioI1
             // 
@@ -70,7 +70,7 @@ namespace AudioProcessor.Processing
             this.ioI1.title = "In(1)";
             this.ioI1.titleColor = System.Drawing.Color.DimGray;
             this.ioI1.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioI1.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioI1.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioI0
             // 
@@ -86,7 +86,7 @@ namespace AudioProcessor.Processing
             this.ioI0.title = "In(0)";
             this.ioI0.titleColor = System.Drawing.Color.DimGray;
             this.ioI0.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioI0.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioI0.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // VMux
             // 
@@ -128,10 +128,10 @@ namespace AudioProcessor.Processing
 
         public override void tick()
         {
-            DataBuffer dbA = getInputBuffer(ioI0);
-            DataBuffer dbB = getInputBuffer(ioI1);
-            DataBuffer dbSel = getInputBuffer(ioSel);
-            DataBuffer dbOut = getOutputBuffer(ioO);
+            SignalBuffer dbA = getSignalInputBuffer(ioI0);
+            SignalBuffer dbB = getSignalInputBuffer(ioI1);
+            SignalBuffer dbSel = getSignalInputBuffer(ioSel);
+            SignalBuffer dbOut = getSignalOutputBuffer(ioO);
 
             if (dbOut == null)
                 return;

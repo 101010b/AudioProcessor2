@@ -74,7 +74,7 @@ namespace AudioProcessor.SinkSource
             this.io1.title = "L,1";
             this.io1.titleColor = System.Drawing.Color.DimGray;
             this.io1.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io1.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.io1.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // io2
             // 
@@ -93,7 +93,7 @@ namespace AudioProcessor.SinkSource
             this.io2.title = "R,2";
             this.io2.titleColor = System.Drawing.Color.DimGray;
             this.io2.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io2.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.io2.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // io3
             // 
@@ -112,7 +112,7 @@ namespace AudioProcessor.SinkSource
             this.io3.title = "3";
             this.io3.titleColor = System.Drawing.Color.DimGray;
             this.io3.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io3.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.io3.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // io4
             // 
@@ -131,7 +131,7 @@ namespace AudioProcessor.SinkSource
             this.io4.title = "4";
             this.io4.titleColor = System.Drawing.Color.DimGray;
             this.io4.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io4.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.io4.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ioGate
             // 
@@ -149,7 +149,7 @@ namespace AudioProcessor.SinkSource
             this.ioGate.title = "Gate";
             this.ioGate.titleColor = System.Drawing.Color.DimGray;
             this.ioGate.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioGate.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioGate.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // bnLoop
             // 
@@ -269,7 +269,7 @@ namespace AudioProcessor.SinkSource
             this.ioSpeed.title = "Speed";
             this.ioSpeed.titleColor = System.Drawing.Color.DimGray;
             this.ioSpeed.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioSpeed.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioSpeed.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ledPlay
             // 
@@ -311,7 +311,7 @@ namespace AudioProcessor.SinkSource
             this.io8.title = "8";
             this.io8.titleColor = System.Drawing.Color.DimGray;
             this.io8.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io8.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.io8.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // io7
             // 
@@ -330,7 +330,7 @@ namespace AudioProcessor.SinkSource
             this.io7.title = "7";
             this.io7.titleColor = System.Drawing.Color.DimGray;
             this.io7.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io7.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.io7.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // io6
             // 
@@ -349,7 +349,7 @@ namespace AudioProcessor.SinkSource
             this.io6.title = "6";
             this.io6.titleColor = System.Drawing.Color.DimGray;
             this.io6.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io6.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.io6.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // io5
             // 
@@ -368,7 +368,7 @@ namespace AudioProcessor.SinkSource
             this.io5.title = "5";
             this.io5.titleColor = System.Drawing.Color.DimGray;
             this.io5.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io5.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.io5.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // WavFileReader
             // 
@@ -586,22 +586,22 @@ namespace AudioProcessor.SinkSource
             if ((wave == null) || !wave.valid || !_active)
                 return;
 
-            DataBuffer dbgate = null;
-            DataBuffer dbspeed = null;
+            SignalBuffer dbgate = null;
+            SignalBuffer dbspeed = null;
             if (ioGate.connectedTo != null)
-                dbgate = ioGate.connectedTo.output;
+                dbgate = ioGate.connectedTo.signalOutput;
             if (ioSpeed.connectedTo != null)
-                dbspeed = ioSpeed.connectedTo.output;
+                dbspeed = ioSpeed.connectedTo.signalOutput;
             int chs = min(channels, wave.channels);
-            DataBuffer[] outputs = new DataBuffer[chs];
-            if ((chs > 0) && (io1.connectedTo != null)) outputs[0] = io1.connectedTo.input;
-            if ((chs > 1) && (io2.connectedTo != null)) outputs[1] = io2.connectedTo.input;
-            if ((chs > 2) && (io3.connectedTo != null)) outputs[2] = io3.connectedTo.input;
-            if ((chs > 3) && (io4.connectedTo != null)) outputs[3] = io4.connectedTo.input;
-            if ((chs > 4) && (io5.connectedTo != null)) outputs[4] = io5.connectedTo.input;
-            if ((chs > 5) && (io6.connectedTo != null)) outputs[5] = io6.connectedTo.input;
-            if ((chs > 6) && (io7.connectedTo != null)) outputs[6] = io7.connectedTo.input;
-            if ((chs > 7) && (io8.connectedTo != null)) outputs[7] = io8.connectedTo.input;
+            SignalBuffer[] outputs = new SignalBuffer[chs];
+            if ((chs > 0) && (io1.connectedTo != null)) outputs[0] = io1.connectedTo.signalInput;
+            if ((chs > 1) && (io2.connectedTo != null)) outputs[1] = io2.connectedTo.signalInput;
+            if ((chs > 2) && (io3.connectedTo != null)) outputs[2] = io3.connectedTo.signalInput;
+            if ((chs > 3) && (io4.connectedTo != null)) outputs[3] = io4.connectedTo.signalInput;
+            if ((chs > 4) && (io5.connectedTo != null)) outputs[4] = io5.connectedTo.signalInput;
+            if ((chs > 5) && (io6.connectedTo != null)) outputs[5] = io6.connectedTo.signalInput;
+            if ((chs > 6) && (io7.connectedTo != null)) outputs[6] = io7.connectedTo.signalInput;
+            if ((chs > 7) && (io8.connectedTo != null)) outputs[7] = io8.connectedTo.signalInput;
             double gain = Math.Pow(10, amp / 20);
             for (int i=0;i<owner.blockSize;i++)
             {

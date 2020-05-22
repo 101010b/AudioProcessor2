@@ -35,7 +35,7 @@ namespace AudioProcessor.SinkSource
             this.ioOut.title = "Out";
             this.ioOut.titleColor = System.Drawing.Color.DimGray;
             this.ioOut.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioOut.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioOut.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // dlAmp
             // 
@@ -79,7 +79,7 @@ namespace AudioProcessor.SinkSource
             this.ioAM.title = "AM";
             this.ioAM.titleColor = System.Drawing.Color.DimGray;
             this.ioAM.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioAM.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioAM.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // bnANoOfs
             // 
@@ -226,11 +226,11 @@ namespace AudioProcessor.SinkSource
         {
             if (!_active)
                 return;
-            DataBuffer dbout = getOutputBuffer(ioOut);
+            SignalBuffer dbout = getSignalOutputBuffer(ioOut);
             if (dbout == null)
                 return;
 
-            DataBuffer dbAM = getInputBuffer(ioAM);
+            SignalBuffer dbAM = getSignalInputBuffer(ioAM);
             double amp0;
             if (inAmp)
                 amp0 = Math.Pow(10.0, genAmp / 20.0);

@@ -446,18 +446,36 @@ namespace AudioProcessor
             selected = true;
         }
         */
-        public DataBuffer getInputBuffer(RTIO io)
+        public SignalBuffer getSignalInputBuffer(RTIO io)
         {
             if (io == null) return null;
             if (io.connectedTo == null) return null;
-            return io.connectedTo.output;
+            if (io.IOtype != RTIO.ProcessingIOType.SignalInput) return null;
+            return io.connectedTo.signalOutput;
         }
 
-        public DataBuffer getOutputBuffer(RTIO io)
+        public SignalBuffer getSignalOutputBuffer(RTIO io)
         {
             if (io == null) return null;
             if (io.connectedTo == null) return null;
-            return io.connectedTo.input;
+            if (io.IOtype != RTIO.ProcessingIOType.SignalOutput) return null;
+            return io.connectedTo.signalInput;
+        }
+
+        public DataBuffer getDataInputBuffer(RTIO io)
+        {
+            if (io == null) return null;
+            if (io.connectedTo == null) return null;
+            if (io.IOtype != RTIO.ProcessingIOType.DataInput) return null;
+            return io.connectedTo.dataOutput;
+        }
+
+        public DataBuffer getDataOutputBuffer(RTIO io)
+        {
+            if (io == null) return null;
+            if (io.connectedTo == null) return null;
+            if (io.IOtype != RTIO.ProcessingIOType.DataOutput) return null;
+            return io.connectedTo.dataInput;
         }
 
         public enum DragMode

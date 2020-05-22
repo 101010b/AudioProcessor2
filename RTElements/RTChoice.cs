@@ -39,6 +39,13 @@ namespace AudioProcessor
             get { return _titleFont; }
         }
 
+        private Font _valueFont;
+        public Font valueFont
+        {
+            set { _valueFont = value; Invalidate(); }
+            get { return _valueFont; }
+        }
+
         private int _xdim;
         public int xdim
         {
@@ -47,31 +54,59 @@ namespace AudioProcessor
         }
 
         private Color _frontColor;
+        private Pen frontPen;
+        private Brush frontBrush;
         public Color frontColor
         {
-            set { _frontColor = value; Invalidate(); }
+            set { _frontColor = value;
+                frontPen = new Pen(_frontColor);
+                frontBrush = new SolidBrush(_frontColor);
+                Invalidate(); }
             get { return _frontColor; }
         }
 
         private Color _backColor;
+        private Brush backBrush;
         public Color backColor
         {
-            set { _backColor = value; Invalidate(); }
+            set { _backColor = value; backBrush = new SolidBrush(_backColor); Invalidate(); }
             get { return _backColor; }
         }
 
-        private List<RTDrawable> _entries;
-        /*public List<RTDrawable> entries
+        public enum ChoiceType
         {
-            set { _entries = value; Invalidate(); }
-            get
-            {
-                if (_entries == null)
-                    _entries = new List<RTDrawable>();
-                return _entries;
-            }
-        }*/
+            ListDefined,
+            Numeric,
+            NumericOff
+        };
+        private ChoiceType _choiceType;
+        public ChoiceType choiceType
+        {
+            set { _choiceType = value; Invalidate(); }
+            get { return _choiceType; }
+        }
+        private string _offString;
+        public string offString
+        {
+            set { _offString = value; Invalidate(); }
+            get { return _offString; }
+        }
 
+        private int _numericMin;
+        public int numericMin
+        {
+            set { _numericMin = value; Invalidate(); }
+            get { return _numericMin; }
+        }
+
+        private int _numericMax;
+        public int numericMax
+        {
+            set { _numericMax = value; Invalidate(); }
+            get { return _numericMax; }
+        }
+
+        private List<RTDrawable> _entries;
         public void setEntries(List<RTDrawable> entries)
         {
             _entries = entries;
@@ -85,33 +120,72 @@ namespace AudioProcessor
         {
             set
             {
-                if ((_entries == null) || (_entries.Count == 0))
+                switch (_choiceType)
                 {
-                    _selectedItem = -1;
-                }
-                else
-                {
-                    if ((value < 0) || (value >= _entries.Count))
-                        _selectedItem = -1;
-                    else
-                        _selectedItem = value;
+                    case ChoiceType.ListDefined:
+                        if ((_entries == null) || (_entries.Count == 0))
+                        {
+                            _selectedItem = -1;
+                        }
+                        else
+                        {
+                            if ((value < 0) || (value >= _entries.Count))
+                                _selectedItem = -1;
+                            else
+                                _selectedItem = value;
+                        }
+                        break;
+                    case ChoiceType.Numeric:
+                        if (_numericMax < _numericMin)
+                            _selectedItem = -1;
+                        else
+                        {
+                            if (value < 0)
+                                _selectedItem = _numericMin;
+                            else if (value > (_numericMax - _numericMin))
+                                _selectedItem = _numericMax;
+                            else
+                                _selectedItem = value;
+                        }
+                        break;
+                    case ChoiceType.NumericOff:
+                        if (_numericMax < _numericMin)
+                            _selectedItem = -1;
+                        else
+                        {
+                            if (value < -1)
+                                _selectedItem = -1;
+                            else if (value > (_numericMax - _numericMin))
+                                _selectedItem = _numericMax;
+                            else
+                                _selectedItem = value;
+                        }
+                        break;
                 }
                 Invalidate();
             }
             get { return _selectedItem; }
         }
 
-
         public RTChoice()
         {
             _title = "Choice";
             _titleColor = Color.DimGray;
             _titleFont = new Font(FontFamily.GenericSansSerif, 8);
+            _valueFont = new Font(FontFamily.GenericSansSerif, 8);
             _xdim = 50;
             _selectedItem = -1;
             _frontColor = Color.DimGray;
+            frontPen = new Pen(_frontColor);
+            frontBrush = new SolidBrush(_frontColor);
             _backColor = Color.Black;
+            backBrush = new SolidBrush(_backColor);
             _entries = new List<RTDrawable>();
+            _offString = "off";
+            _numericMin = 0;
+            _numericMax = 100;
+            _choiceType = ChoiceType.ListDefined;
+
             //_entries.Add(new RTDrawableText("bla"));
             //_entries.Add(new RTDrawableWaveform(RTDrawableWaveform.WaveForm.Sine, -0.5));
             //_entries.Add(new RTDrawableWaveform(RTDrawableWaveform.WaveForm.Triangle, -0.5));
@@ -136,7 +210,18 @@ namespace AudioProcessor
         {
             EventHandler handler = choiceStateChanged;
             ChoiceStateChangedEventArgs e = new ChoiceStateChangedEventArgs();
-            e.val = selval;
+            switch (_choiceType)
+            {
+                case ChoiceType.ListDefined:
+                    e.val = selval;
+                    break;
+                case ChoiceType.Numeric:
+                    e.val = _numericMin + selval;
+                    break;
+                case ChoiceType.NumericOff:
+                    e.val = _numericMin + selval;
+                    break;
+            }
             handler?.Invoke(this, e);
         }
 
@@ -179,24 +264,45 @@ namespace AudioProcessor
             Pen framePen = new Pen(frontColor);
             g.DrawRectangle(framePen, sel);
             sel.Inflate(-1, -1);
-            if ((_entries != null) && (_entries.Count > 0) && (selectedItem >= 0) && (selectedItem < _entries.Count))
+            switch (_choiceType)
             {
-                _entries[_selectedItem].draw(g, backColor, frontColor, sel);
-            }
-            if ((_entries != null) && (_entries.Count > 0))
-            {
-                if (_selectedItem < _entries.Count-1)
-                {
-                    // Draw Up Button
-                    // g.DrawRectangle(framePen, up);
-                    GraphicsUtil.drawTriangle(g, Vector.V(up), (double)up.Height, Vector.V(0, -1),framePen);
-                }
-                if (_selectedItem > 0)
-                {
-                    // Draw Down Button
-                    // g.DrawRectangle(framePen, down);
-                    GraphicsUtil.drawTriangle(g, Vector.V(down), (double)up.Height, Vector.V(0, 1), framePen);
-                }
+                case ChoiceType.ListDefined:
+                    if ((_entries != null) && (_entries.Count > 0) && (selectedItem >= 0) && (selectedItem < _entries.Count))
+                    {
+                        _entries[_selectedItem].draw(g, backColor, frontColor, sel);
+                    }
+                    if ((_entries != null) && (_entries.Count > 0))
+                    {
+                        if (_selectedItem < _entries.Count - 1)
+                            GraphicsUtil.drawTriangle(g, Vector.V(up), (double)up.Height, Vector.V(0, -1), framePen);
+                        if (_selectedItem > 0)
+                            GraphicsUtil.drawTriangle(g, Vector.V(down), (double)up.Height, Vector.V(0, 1), framePen);
+                    }
+                    break;
+                case ChoiceType.Numeric:
+                    g.FillRectangle(backBrush, sel);
+                    g.DrawRectangle(framePen, sel);
+                    GraphicsUtil.drawText(g, Vector.V(sel), _valueFont, scale,
+                        String.Format("{0}", _numericMin + _selectedItem), 0, 2, 0, 0, Vector.X, frontBrush);
+                    if (_selectedItem < (_numericMax-_numericMin))
+                        GraphicsUtil.drawTriangle(g, Vector.V(up), (double)up.Height, Vector.V(0, -1), framePen);
+                    if (_selectedItem > 0)
+                        GraphicsUtil.drawTriangle(g, Vector.V(down), (double)up.Height, Vector.V(0, 1), framePen);
+                    break;
+                case ChoiceType.NumericOff:
+                    g.FillRectangle(backBrush, sel);
+                    g.DrawRectangle(framePen, sel);
+                    if (_selectedItem == -1)
+                        GraphicsUtil.drawText(g, Vector.V(sel), _valueFont, scale,
+                            _offString, 0, 2, 0, 0, Vector.X, frontBrush);
+                    else
+                        GraphicsUtil.drawText(g, Vector.V(sel), _valueFont, scale,
+                            String.Format("{0}", _numericMin + _selectedItem), 0, 2, 0, 0, Vector.X, frontBrush);
+                    if (_selectedItem < (_numericMax - _numericMin))
+                        GraphicsUtil.drawTriangle(g, Vector.V(up), (double)up.Height, Vector.V(0, -1), framePen);
+                    if (_selectedItem >= 0)
+                        GraphicsUtil.drawTriangle(g, Vector.V(down), (double)up.Height, Vector.V(0, 1), framePen);
+                    break;
             }
         }
 
@@ -223,13 +329,38 @@ namespace AudioProcessor
             {
                 int dy = (int)Math.Floor((e.Y - dragStart)*scale / Height+0.5);
                 int newsel = dragSel + dy;
-                if (newsel < 0) newsel = 0;
-                if (newsel >= _entries.Count) newsel = _entries.Count - 1;
-                if (newsel != _selectedItem)
+                switch (_choiceType)
                 {
-                    _selectedItem = newsel;
-                    newValue();
-                    Invalidate();
+                    case ChoiceType.ListDefined:
+                        if (newsel < 0) newsel = 0;
+                        if (newsel >= _entries.Count) newsel = _entries.Count - 1;
+                        if (newsel != _selectedItem)
+                        {
+                            _selectedItem = newsel;
+                            newValue();
+                            Invalidate();
+                        }
+                        break;
+                    case ChoiceType.Numeric:
+                        if (newsel < 0) newsel = 0;
+                        if (newsel >= (_numericMax-_numericMin+1)) newsel = (_numericMax - _numericMin + 1) - 1;
+                        if (newsel != _selectedItem)
+                        {
+                            _selectedItem = newsel;
+                            newValue();
+                            Invalidate();
+                        }
+                        break;
+                    case ChoiceType.NumericOff:
+                        if (newsel < -1) newsel = -1;
+                        if (newsel >= (_numericMax - _numericMin + 1)) newsel = (_numericMax - _numericMin + 1) - 1;
+                        if (newsel != _selectedItem)
+                        {
+                            _selectedItem = newsel;
+                            newValue();
+                            Invalidate();
+                        }
+                        break;
                 }
             } else 
                 forwardOnMouseMove(e);
@@ -242,13 +373,38 @@ namespace AudioProcessor
             {
                 int dy = (int)Math.Floor((e.Y - dragStart) * scale / Height + 0.5);
                 int newsel = dragSel + dy;
-                if (newsel < 0) newsel = 0;
-                if (newsel >= _entries.Count) newsel = _entries.Count - 1;
-                if (newsel != _selectedItem)
+                switch (_choiceType)
                 {
-                    _selectedItem = newsel;
-                    newValue();
-                    Invalidate();
+                    case ChoiceType.ListDefined:
+                        if (newsel < 0) newsel = 0;
+                        if (newsel >= _entries.Count) newsel = _entries.Count - 1;
+                        if (newsel != _selectedItem)
+                        {
+                            _selectedItem = newsel;
+                            newValue();
+                            Invalidate();
+                        }
+                        break;
+                    case ChoiceType.Numeric:
+                        if (newsel < 0) newsel = 0;
+                        if (newsel >= (_numericMax - _numericMin + 1)) newsel = (_numericMax - _numericMin + 1) - 1;
+                        if (newsel != _selectedItem)
+                        {
+                            _selectedItem = newsel;
+                            newValue();
+                            Invalidate();
+                        }
+                        break;
+                    case ChoiceType.NumericOff:
+                        if (newsel < -1) newsel = -1;
+                        if (newsel >= (_numericMax - _numericMin + 1)) newsel = (_numericMax - _numericMin + 1) - 1;
+                        if (newsel != _selectedItem)
+                        {
+                            _selectedItem = newsel;
+                            newValue();
+                            Invalidate();
+                        }
+                        break;
                 }
                 dragMode = DragMode.Idle;
             }
@@ -268,29 +424,92 @@ namespace AudioProcessor
                 getFrames(ref sel, ref up, ref down);
                 if (sel.Contains(e.Location))
                 {
-                    if ((_entries != null) && (_entries.Count > 0))
+                    switch (_choiceType)
                     {
-                        dragStart = e.Y;
-                        dragSel = _selectedItem;
-                        dragMode = DragMode.Dragging;
+                        case ChoiceType.ListDefined:
+                            if ((_entries != null) && (_entries.Count > 0))
+                            {
+                                dragStart = e.Y;
+                                dragSel = _selectedItem;
+                                dragMode = DragMode.Dragging;
+                            }
+                            break;
+                        case ChoiceType.Numeric:
+                            if (_numericMin < _numericMax)
+                            {
+                                dragStart = e.Y;
+                                dragSel = _selectedItem;
+                                dragMode = DragMode.Dragging;
+                            }
+                            break;
+                        case ChoiceType.NumericOff:
+                            if (_numericMin <= _numericMax)
+                            {
+                                dragStart = e.Y;
+                                dragSel = _selectedItem;
+                                dragMode = DragMode.Dragging;
+                            }
+                            break;
                     }
                 }
                 else if (up.Contains(e.Location))
                 {
-                    if ((_entries != null) && (_entries.Count > 0) && (_selectedItem < _entries.Count - 1))
+                    switch (_choiceType)
                     {
-                        _selectedItem++;
-                        newValue();
-                        Invalidate();
+                        case ChoiceType.ListDefined:
+                            if ((_entries != null) && (_entries.Count > 0) && (_selectedItem < _entries.Count - 1))
+                            {
+                                _selectedItem++;
+                                newValue();
+                                Invalidate();
+                            }
+                            break;
+                        case ChoiceType.Numeric:
+                            if ((_numericMin < _numericMax) && (_selectedItem < (_numericMax-_numericMin)))
+                            {
+                                _selectedItem++;
+                                newValue();
+                                Invalidate();
+                            }
+                            break;
+                        case ChoiceType.NumericOff:
+                            if ((_numericMin <= _numericMax) && (_selectedItem < (_numericMax - _numericMin)))
+                            {
+                                _selectedItem++;
+                                newValue();
+                                Invalidate();
+                            }
+                            break;
                     }
                 }
                 else if (down.Contains(e.Location))
                 {
-                    if ((_entries != null) && (_entries.Count > 0) && (_selectedItem > 0))
+                    switch(_choiceType)
                     {
-                        _selectedItem--;
-                        newValue();
-                        Invalidate();
+                        case ChoiceType.ListDefined:
+                            if ((_entries != null) && (_entries.Count > 0) && (_selectedItem > 0))
+                            {
+                                _selectedItem--;
+                                newValue();
+                                Invalidate();
+                            }
+                            break;
+                        case ChoiceType.Numeric:
+                            if ((_numericMin < _numericMax) && (_selectedItem > 0))
+                            {
+                                _selectedItem--;
+                                newValue();
+                                Invalidate();
+                            }
+                            break;
+                        case ChoiceType.NumericOff:
+                            if ((_numericMin <= _numericMax) && (_selectedItem >= 0))
+                            {
+                                _selectedItem--;
+                                newValue();
+                                Invalidate();
+                            }
+                            break;
                     }
                 }
                 else

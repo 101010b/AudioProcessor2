@@ -252,7 +252,7 @@ namespace AudioProcessor.RealtimeSinkSource
                             if (IOfromDriver[i] != null)
                             {
                                 if (_active && (IOfromDriver[i].connectedTo != null))
-                                    fromDriver[i].retrieve(IOfromDriver[i].connectedTo.input, 0.0);
+                                    fromDriver[i].retrieve(IOfromDriver[i].connectedTo.signalInput, 0.0);
                                 else
                                     fromDriver[i].flush(owner.blockSize);
                             }
@@ -282,7 +282,7 @@ namespace AudioProcessor.RealtimeSinkSource
                             if (IOtoDriver[i] != null)
                             {
                                 if (_active && (IOtoDriver[i].connectedTo != null))
-                                    toDriver[i].insert(IOtoDriver[i].connectedTo.output);
+                                    toDriver[i].insert(IOtoDriver[i].connectedTo.signalOutput);
                                 else
                                     toDriver[i].insert(0, owner.blockSize);
                             }

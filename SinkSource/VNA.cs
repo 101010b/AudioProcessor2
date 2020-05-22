@@ -39,7 +39,7 @@ namespace AudioProcessor.SinkSource
             this.ioB1.title = "B1";
             this.ioB1.titleColor = System.Drawing.Color.DimGray;
             this.ioB1.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioB1.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioB1.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioB2
             // 
@@ -55,7 +55,7 @@ namespace AudioProcessor.SinkSource
             this.ioB2.title = "B2";
             this.ioB2.titleColor = System.Drawing.Color.DimGray;
             this.ioB2.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioB2.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioB2.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioB3
             // 
@@ -71,7 +71,7 @@ namespace AudioProcessor.SinkSource
             this.ioB3.title = "B3";
             this.ioB3.titleColor = System.Drawing.Color.DimGray;
             this.ioB3.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioB3.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioB3.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioB4
             // 
@@ -87,7 +87,7 @@ namespace AudioProcessor.SinkSource
             this.ioB4.title = "B4";
             this.ioB4.titleColor = System.Drawing.Color.DimGray;
             this.ioB4.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioB4.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioB4.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioB5
             // 
@@ -103,7 +103,7 @@ namespace AudioProcessor.SinkSource
             this.ioB5.title = "B5";
             this.ioB5.titleColor = System.Drawing.Color.DimGray;
             this.ioB5.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioB5.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioB5.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioB6
             // 
@@ -119,7 +119,7 @@ namespace AudioProcessor.SinkSource
             this.ioB6.title = "B6";
             this.ioB6.titleColor = System.Drawing.Color.DimGray;
             this.ioB6.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioB6.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioB6.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioB7
             // 
@@ -135,7 +135,7 @@ namespace AudioProcessor.SinkSource
             this.ioB7.title = "B7";
             this.ioB7.titleColor = System.Drawing.Color.DimGray;
             this.ioB7.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioB7.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioB7.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioB8
             // 
@@ -151,7 +151,7 @@ namespace AudioProcessor.SinkSource
             this.ioB8.title = "B8";
             this.ioB8.titleColor = System.Drawing.Color.DimGray;
             this.ioB8.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioB8.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioB8.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioA
             // 
@@ -167,7 +167,7 @@ namespace AudioProcessor.SinkSource
             this.ioA.title = "A";
             this.ioA.titleColor = System.Drawing.Color.DimGray;
             this.ioA.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioA.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioA.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioRF
             // 
@@ -184,7 +184,7 @@ namespace AudioProcessor.SinkSource
             this.ioRF.title = "RF";
             this.ioRF.titleColor = System.Drawing.Color.DimGray;
             this.ioRF.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioRF.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioRF.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // bnDisplayWin
             // 
@@ -464,18 +464,18 @@ namespace AudioProcessor.SinkSource
 
             if (vnaState == VNAState.Idle) return;
 
-            DataBuffer RF = getOutputBuffer(ioRF);
-            DataBuffer A = getInputBuffer(ioA);
+            SignalBuffer RF = getSignalOutputBuffer(ioRF);
+            SignalBuffer A = getSignalInputBuffer(ioA);
             // DataBuffer B = null;
-            DataBuffer[] B = new DataBuffer[channels];
-            if (channels > 0) B[0] = getInputBuffer(ioB1);
-            if (channels > 1) B[1] = getInputBuffer(ioB2);
-            if (channels > 2) B[2] = getInputBuffer(ioB3);
-            if (channels > 3) B[3] = getInputBuffer(ioB4);
-            if (channels > 4) B[4] = getInputBuffer(ioB5);
-            if (channels > 5) B[5] = getInputBuffer(ioB6);
-            if (channels > 6) B[6] = getInputBuffer(ioB7);
-            if (channels > 7) B[7] = getInputBuffer(ioB8);
+            SignalBuffer[] B = new SignalBuffer[channels];
+            if (channels > 0) B[0] = getSignalInputBuffer(ioB1);
+            if (channels > 1) B[1] = getSignalInputBuffer(ioB2);
+            if (channels > 2) B[2] = getSignalInputBuffer(ioB3);
+            if (channels > 3) B[3] = getSignalInputBuffer(ioB4);
+            if (channels > 4) B[4] = getSignalInputBuffer(ioB5);
+            if (channels > 5) B[5] = getSignalInputBuffer(ioB6);
+            if (channels > 6) B[6] = getSignalInputBuffer(ioB7);
+            if (channels > 7) B[7] = getSignalInputBuffer(ioB8);
 
             double phisave = phi;
             double dphi = 2.0 * Math.PI * f / owner.sampleRate;

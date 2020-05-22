@@ -38,7 +38,7 @@ namespace AudioProcessor.Processing
             this.ioOut.title = "IO";
             this.ioOut.titleColor = System.Drawing.Color.DimGray;
             this.ioOut.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioOut.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioOut.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // io8
             // 
@@ -54,7 +54,7 @@ namespace AudioProcessor.Processing
             this.io8.title = "IO";
             this.io8.titleColor = System.Drawing.Color.DimGray;
             this.io8.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io8.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.io8.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // io7
             // 
@@ -70,7 +70,7 @@ namespace AudioProcessor.Processing
             this.io7.title = "IO";
             this.io7.titleColor = System.Drawing.Color.DimGray;
             this.io7.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io7.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.io7.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // io6
             // 
@@ -86,7 +86,7 @@ namespace AudioProcessor.Processing
             this.io6.title = "IO";
             this.io6.titleColor = System.Drawing.Color.DimGray;
             this.io6.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io6.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.io6.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // io5
             // 
@@ -102,7 +102,7 @@ namespace AudioProcessor.Processing
             this.io5.title = "IO";
             this.io5.titleColor = System.Drawing.Color.DimGray;
             this.io5.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io5.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.io5.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // io4
             // 
@@ -118,7 +118,7 @@ namespace AudioProcessor.Processing
             this.io4.title = "IO";
             this.io4.titleColor = System.Drawing.Color.DimGray;
             this.io4.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io4.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.io4.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // io3
             // 
@@ -134,7 +134,7 @@ namespace AudioProcessor.Processing
             this.io3.title = "IO";
             this.io3.titleColor = System.Drawing.Color.DimGray;
             this.io3.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io3.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.io3.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // io2
             // 
@@ -150,7 +150,7 @@ namespace AudioProcessor.Processing
             this.io2.title = "IO";
             this.io2.titleColor = System.Drawing.Color.DimGray;
             this.io2.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io2.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.io2.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // io1
             // 
@@ -166,7 +166,7 @@ namespace AudioProcessor.Processing
             this.io1.title = "IO";
             this.io1.titleColor = System.Drawing.Color.DimGray;
             this.io1.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io1.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.io1.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // Sub
             // 
@@ -249,19 +249,19 @@ namespace AudioProcessor.Processing
 
         public override void tick()
         {
-            DataBuffer dbout = getOutputBuffer(ioOut);
+            SignalBuffer dbout = getSignalOutputBuffer(ioOut);
             if (dbout == null)
                 return;
 
             dbout.zero();
-            if ((inputs > 0) && (io1.connectedTo != null)) { DataBuffer db = getInputBuffer(io1); for (int i = 0; i < owner.blockSize; i++) dbout.data[i] = db.data[i]; }
-            if ((inputs > 1) && (io2.connectedTo != null)) { DataBuffer db = getInputBuffer(io2); for (int i = 0; i < owner.blockSize; i++) dbout.data[i] -= db.data[i]; }
-            if ((inputs > 2) && (io3.connectedTo != null)) { DataBuffer db = getInputBuffer(io3); for (int i = 0; i < owner.blockSize; i++) dbout.data[i] -= db.data[i]; }
-            if ((inputs > 3) && (io4.connectedTo != null)) { DataBuffer db = getInputBuffer(io4); for (int i = 0; i < owner.blockSize; i++) dbout.data[i] -= db.data[i]; }
-            if ((inputs > 4) && (io5.connectedTo != null)) { DataBuffer db = getInputBuffer(io5); for (int i = 0; i < owner.blockSize; i++) dbout.data[i] -= db.data[i]; }
-            if ((inputs > 5) && (io6.connectedTo != null)) { DataBuffer db = getInputBuffer(io6); for (int i = 0; i < owner.blockSize; i++) dbout.data[i] -= db.data[i]; }
-            if ((inputs > 6) && (io7.connectedTo != null)) { DataBuffer db = getInputBuffer(io7); for (int i = 0; i < owner.blockSize; i++) dbout.data[i] -= db.data[i]; }
-            if ((inputs > 7) && (io8.connectedTo != null)) { DataBuffer db = getInputBuffer(io8); for (int i = 0; i < owner.blockSize; i++) dbout.data[i] -= db.data[i]; }
+            if ((inputs > 0) && (io1.connectedTo != null)) { SignalBuffer db = getSignalInputBuffer(io1); for (int i = 0; i < owner.blockSize; i++) dbout.data[i] = db.data[i]; }
+            if ((inputs > 1) && (io2.connectedTo != null)) { SignalBuffer db = getSignalInputBuffer(io2); for (int i = 0; i < owner.blockSize; i++) dbout.data[i] -= db.data[i]; }
+            if ((inputs > 2) && (io3.connectedTo != null)) { SignalBuffer db = getSignalInputBuffer(io3); for (int i = 0; i < owner.blockSize; i++) dbout.data[i] -= db.data[i]; }
+            if ((inputs > 3) && (io4.connectedTo != null)) { SignalBuffer db = getSignalInputBuffer(io4); for (int i = 0; i < owner.blockSize; i++) dbout.data[i] -= db.data[i]; }
+            if ((inputs > 4) && (io5.connectedTo != null)) { SignalBuffer db = getSignalInputBuffer(io5); for (int i = 0; i < owner.blockSize; i++) dbout.data[i] -= db.data[i]; }
+            if ((inputs > 5) && (io6.connectedTo != null)) { SignalBuffer db = getSignalInputBuffer(io6); for (int i = 0; i < owner.blockSize; i++) dbout.data[i] -= db.data[i]; }
+            if ((inputs > 6) && (io7.connectedTo != null)) { SignalBuffer db = getSignalInputBuffer(io7); for (int i = 0; i < owner.blockSize; i++) dbout.data[i] -= db.data[i]; }
+            if ((inputs > 7) && (io8.connectedTo != null)) { SignalBuffer db = getSignalInputBuffer(io8); for (int i = 0; i < owner.blockSize; i++) dbout.data[i] -= db.data[i]; }
 
         }
 

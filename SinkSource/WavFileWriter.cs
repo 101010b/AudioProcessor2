@@ -43,7 +43,7 @@ namespace AudioProcessor.SinkSource
             this.io1.title = "1,L";
             this.io1.titleColor = System.Drawing.Color.DimGray;
             this.io1.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io1.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.io1.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // io2
             // 
@@ -59,7 +59,7 @@ namespace AudioProcessor.SinkSource
             this.io2.title = "2,R";
             this.io2.titleColor = System.Drawing.Color.DimGray;
             this.io2.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io2.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.io2.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // io3
             // 
@@ -75,7 +75,7 @@ namespace AudioProcessor.SinkSource
             this.io3.title = "3";
             this.io3.titleColor = System.Drawing.Color.DimGray;
             this.io3.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io3.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.io3.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // io4
             // 
@@ -91,7 +91,7 @@ namespace AudioProcessor.SinkSource
             this.io4.title = "4";
             this.io4.titleColor = System.Drawing.Color.DimGray;
             this.io4.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io4.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.io4.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // io8
             // 
@@ -107,7 +107,7 @@ namespace AudioProcessor.SinkSource
             this.io8.title = "8";
             this.io8.titleColor = System.Drawing.Color.DimGray;
             this.io8.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io8.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.io8.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // io7
             // 
@@ -123,7 +123,7 @@ namespace AudioProcessor.SinkSource
             this.io7.title = "7";
             this.io7.titleColor = System.Drawing.Color.DimGray;
             this.io7.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io7.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.io7.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // io6
             // 
@@ -139,7 +139,7 @@ namespace AudioProcessor.SinkSource
             this.io6.title = "6";
             this.io6.titleColor = System.Drawing.Color.DimGray;
             this.io6.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io6.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.io6.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // io5
             // 
@@ -155,7 +155,7 @@ namespace AudioProcessor.SinkSource
             this.io5.title = "5";
             this.io5.titleColor = System.Drawing.Color.DimGray;
             this.io5.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io5.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.io5.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // bnFile
             // 
@@ -196,7 +196,7 @@ namespace AudioProcessor.SinkSource
             this.ioGate.title = "gate";
             this.ioGate.titleColor = System.Drawing.Color.DimGray;
             this.ioGate.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioGate.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioGate.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ledRecord
             // 
@@ -543,19 +543,19 @@ namespace AudioProcessor.SinkSource
                 Array.Clear(writeBuf, 0, writeBuf.Length);
                 int smps = 0;
 
-                DataBuffer[] dbin = new DataBuffer[channels];
-                if ((channels > 0) && (io1.connectedTo != null)) dbin[0] = io1.connectedTo.output;
-                if ((channels > 1) && (io2.connectedTo != null)) dbin[1] = io2.connectedTo.output;
-                if ((channels > 2) && (io3.connectedTo != null)) dbin[2] = io3.connectedTo.output;
-                if ((channels > 3) && (io4.connectedTo != null)) dbin[3] = io4.connectedTo.output;
-                if ((channels > 4) && (io5.connectedTo != null)) dbin[4] = io5.connectedTo.output;
-                if ((channels > 5) && (io6.connectedTo != null)) dbin[5] = io6.connectedTo.output;
-                if ((channels > 6) && (io7.connectedTo != null)) dbin[6] = io7.connectedTo.output;
-                if ((channels > 7) && (io8.connectedTo != null)) dbin[7] = io8.connectedTo.output;
+                SignalBuffer[] dbin = new SignalBuffer[channels];
+                if ((channels > 0) && (io1.connectedTo != null)) dbin[0] = io1.connectedTo.signalOutput;
+                if ((channels > 1) && (io2.connectedTo != null)) dbin[1] = io2.connectedTo.signalOutput;
+                if ((channels > 2) && (io3.connectedTo != null)) dbin[2] = io3.connectedTo.signalOutput;
+                if ((channels > 3) && (io4.connectedTo != null)) dbin[3] = io4.connectedTo.signalOutput;
+                if ((channels > 4) && (io5.connectedTo != null)) dbin[4] = io5.connectedTo.signalOutput;
+                if ((channels > 5) && (io6.connectedTo != null)) dbin[5] = io6.connectedTo.signalOutput;
+                if ((channels > 6) && (io7.connectedTo != null)) dbin[6] = io7.connectedTo.signalOutput;
+                if ((channels > 7) && (io8.connectedTo != null)) dbin[7] = io8.connectedTo.signalOutput;
 
                 if (ioGate.connectedTo != null)
                 {
-                    DataBuffer db = ioGate.connectedTo.output;
+                    SignalBuffer db = ioGate.connectedTo.signalOutput;
                     for (int i = 0; i < owner.blockSize; i++)
                     {
                         active[i] = (db.data[i] > 0.5) && manualActive;

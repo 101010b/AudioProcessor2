@@ -70,7 +70,7 @@ namespace AudioProcessor.SinkSource
             this.ioFM.title = "FM";
             this.ioFM.titleColor = System.Drawing.Color.DimGray;
             this.ioFM.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioFM.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioFM.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioAM
             // 
@@ -88,7 +88,7 @@ namespace AudioProcessor.SinkSource
             this.ioAM.title = "AM";
             this.ioAM.titleColor = System.Drawing.Color.DimGray;
             this.ioAM.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioAM.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioAM.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // dlFreq
             // 
@@ -159,7 +159,7 @@ namespace AudioProcessor.SinkSource
             this.io0.title = "0°";
             this.io0.titleColor = System.Drawing.Color.DimGray;
             this.io0.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io0.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.io0.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ioSyncOut
             // 
@@ -178,7 +178,7 @@ namespace AudioProcessor.SinkSource
             this.ioSyncOut.title = "Sync";
             this.ioSyncOut.titleColor = System.Drawing.Color.DimGray;
             this.ioSyncOut.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioSyncOut.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.ioSyncOut.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // ioPWM
             // 
@@ -196,7 +196,7 @@ namespace AudioProcessor.SinkSource
             this.ioPWM.title = "PWM";
             this.ioPWM.titleColor = System.Drawing.Color.DimGray;
             this.ioPWM.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioPWM.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioPWM.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // ioSyncIn
             // 
@@ -214,7 +214,7 @@ namespace AudioProcessor.SinkSource
             this.ioSyncIn.title = "Sync";
             this.ioSyncIn.titleColor = System.Drawing.Color.DimGray;
             this.ioSyncIn.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.ioSyncIn.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.ioSyncIn.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // chWaveForm
             // 
@@ -248,7 +248,7 @@ namespace AudioProcessor.SinkSource
             this.io90.title = "90°";
             this.io90.titleColor = System.Drawing.Color.DimGray;
             this.io90.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io90.type = AudioProcessor.RTIO.ProcessingIOType.Output;
+            this.io90.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
             // 
             // dlPWM
             // 
@@ -504,13 +504,13 @@ namespace AudioProcessor.SinkSource
 
         public override void tick()
         {
-            DataBuffer dbFM = getInputBuffer(ioFM);
-            DataBuffer dbAM = getInputBuffer(ioAM);
-            DataBuffer dbPWM = getInputBuffer(ioPWM);
-            DataBuffer dbSync = getInputBuffer(ioSyncIn);
-            DataBuffer dbout = getOutputBuffer(io0);
-            DataBuffer dboutninety = getOutputBuffer(io90);
-            DataBuffer dbtrig = getOutputBuffer(ioSyncOut);
+            SignalBuffer dbFM = getSignalInputBuffer(ioFM);
+            SignalBuffer dbAM = getSignalInputBuffer(ioAM);
+            SignalBuffer dbPWM = getSignalInputBuffer(ioPWM);
+            SignalBuffer dbSync = getSignalInputBuffer(ioSyncIn);
+            SignalBuffer dbout = getSignalOutputBuffer(io0);
+            SignalBuffer dboutninety = getSignalOutputBuffer(io90);
+            SignalBuffer dbtrig = getSignalOutputBuffer(ioSyncOut);
 
             if (!_active) return;
 

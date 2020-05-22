@@ -67,7 +67,7 @@ namespace AudioProcessor.Processing
             this.io1.title = "IO";
             this.io1.titleColor = System.Drawing.Color.DimGray;
             this.io1.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io1.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.io1.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // io2
             // 
@@ -83,7 +83,7 @@ namespace AudioProcessor.Processing
             this.io2.title = "IO";
             this.io2.titleColor = System.Drawing.Color.DimGray;
             this.io2.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io2.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.io2.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // led2
             // 
@@ -122,7 +122,7 @@ namespace AudioProcessor.Processing
             this.io3.title = "IO";
             this.io3.titleColor = System.Drawing.Color.DimGray;
             this.io3.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io3.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.io3.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // led3
             // 
@@ -161,7 +161,7 @@ namespace AudioProcessor.Processing
             this.io4.title = "IO";
             this.io4.titleColor = System.Drawing.Color.DimGray;
             this.io4.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io4.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.io4.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // led4
             // 
@@ -200,7 +200,7 @@ namespace AudioProcessor.Processing
             this.io5.title = "IO";
             this.io5.titleColor = System.Drawing.Color.DimGray;
             this.io5.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io5.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.io5.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // led5
             // 
@@ -239,7 +239,7 @@ namespace AudioProcessor.Processing
             this.io6.title = "IO";
             this.io6.titleColor = System.Drawing.Color.DimGray;
             this.io6.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io6.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.io6.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // led6
             // 
@@ -278,7 +278,7 @@ namespace AudioProcessor.Processing
             this.io7.title = "IO";
             this.io7.titleColor = System.Drawing.Color.DimGray;
             this.io7.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io7.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.io7.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // led7
             // 
@@ -317,7 +317,7 @@ namespace AudioProcessor.Processing
             this.io8.title = "IO";
             this.io8.titleColor = System.Drawing.Color.DimGray;
             this.io8.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io8.type = AudioProcessor.RTIO.ProcessingIOType.Input;
+            this.io8.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // led8
             // 
@@ -429,7 +429,7 @@ namespace AudioProcessor.Processing
             tgt.Write(channels);
         }
 
-        private void processChannel(DataBuffer d, RTLED rl, int led)
+        private void processChannel(SignalBuffer d, RTLED rl, int led)
         {
             Boolean restate = state[led];
             if (d != null)
@@ -451,14 +451,14 @@ namespace AudioProcessor.Processing
 
         public override void tick()
         {
-            if (channels > 0) processChannel(getInputBuffer(io1), led1, 0);
-            if (channels > 1) processChannel(getInputBuffer(io2), led2, 1);
-            if (channels > 2) processChannel(getInputBuffer(io3), led3, 2);
-            if (channels > 3) processChannel(getInputBuffer(io4), led4, 3);
-            if (channels > 4) processChannel(getInputBuffer(io5), led5, 4);
-            if (channels > 5) processChannel(getInputBuffer(io6), led6, 5);
-            if (channels > 6) processChannel(getInputBuffer(io7), led7, 6);
-            if (channels > 7) processChannel(getInputBuffer(io8), led8, 7);
+            if (channels > 0) processChannel(getSignalInputBuffer(io1), led1, 0);
+            if (channels > 1) processChannel(getSignalInputBuffer(io2), led2, 1);
+            if (channels > 2) processChannel(getSignalInputBuffer(io3), led3, 2);
+            if (channels > 3) processChannel(getSignalInputBuffer(io4), led4, 3);
+            if (channels > 4) processChannel(getSignalInputBuffer(io5), led5, 4);
+            if (channels > 5) processChannel(getSignalInputBuffer(io6), led6, 5);
+            if (channels > 6) processChannel(getSignalInputBuffer(io7), led7, 6);
+            if (channels > 7) processChannel(getSignalInputBuffer(io8), led8, 7);
         }
 
         class RegisterClass1 : RTObjectReference
