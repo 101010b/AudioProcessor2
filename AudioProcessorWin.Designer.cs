@@ -59,8 +59,8 @@
             this.audioProcessorTSArith = new System.Windows.Forms.ToolStripMenuItem();
             this.audioProcessorTSTools = new System.Windows.Forms.ToolStripMenuItem();
             this.audioProcessorTSControl = new System.Windows.Forms.ToolStripMenuItem();
-            this.systemPanel = new AudioProcessor.SystemPanel();
             this.audioProcessorTSData = new System.Windows.Forms.ToolStripMenuItem();
+            this.systemPanel = new AudioProcessor.SystemPanel();
             this.audioProcessorStatusStrip.SuspendLayout();
             this.audioProcessorMenu.SuspendLayout();
             this.audioProcessorToolBar.SuspendLayout();
@@ -344,8 +344,18 @@
             this.audioProcessorTSControl.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.audioProcessorTSControl.Name = "audioProcessorTSControl";
             this.audioProcessorTSControl.Size = new System.Drawing.Size(32, 27);
-            this.audioProcessorTSControl.Text = "Tools";
-            this.audioProcessorTSControl.ToolTipText = "Tools";
+            this.audioProcessorTSControl.Text = "Controls";
+            this.audioProcessorTSControl.ToolTipText = "Controls";
+            // 
+            // audioProcessorTSData
+            // 
+            this.audioProcessorTSData.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.audioProcessorTSData.Image = ((System.Drawing.Image)(resources.GetObject("audioProcessorTSData.Image")));
+            this.audioProcessorTSData.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.audioProcessorTSData.Name = "audioProcessorTSData";
+            this.audioProcessorTSData.Size = new System.Drawing.Size(32, 27);
+            this.audioProcessorTSData.Text = "Data";
+            this.audioProcessorTSData.ToolTipText = "Data";
             // 
             // systemPanel
             // 
@@ -359,16 +369,6 @@
             this.systemPanel.netNameFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.systemPanel.Size = new System.Drawing.Size(1230, 768);
             this.systemPanel.TabIndex = 4;
-            // 
-            // audioProcessorTSData
-            // 
-            this.audioProcessorTSData.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.audioProcessorTSData.Image = ((System.Drawing.Image)(resources.GetObject("audioProcessorTSData.Image")));
-            this.audioProcessorTSData.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.audioProcessorTSData.Name = "audioProcessorTSData";
-            this.audioProcessorTSData.Size = new System.Drawing.Size(32, 27);
-            this.audioProcessorTSData.Text = "Tools";
-            this.audioProcessorTSData.ToolTipText = "Tools";
             // 
             // AudioProcessorWin
             // 

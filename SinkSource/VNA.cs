@@ -237,11 +237,112 @@ namespace AudioProcessor.SinkSource
 
         public int channels;
 
-        public Boolean running;
-        private Boolean stopnow;
+        public class vnaconfig
+        {
+            // Display
+            public enum PlotMode
+            {
+                absA, absB, absBA, logA, logB, logBA, phiBA, phiA, phiB
+            }
+            public readonly string[] PlotModeNames = new string[] 
+            {
+                "abs(A)", "abs(B)", "abs(B/A)", "A[dBFS]", "B[dBFS]", "B/A[dBFS]","Phi(B/A)","Phi(A)", "Phi(B)"
+            };
+            public bool displayDual;
+            public double displayFMin;
+            public double displayFMax;
+            public bool displayLogF;
+            public PlotMode displayPlotY1;
+            public PlotMode displayPlotY2;
+            public double displayY1Min;
+            public double displayY1Max;
+            public double displayY2Min;
+            public double displayY2Max;
+
+
+            // Sweep
+            public bool sweepLogF;
+            public double sweepFMin;
+            public double sweepFMax;
+            public int sweepPoints;
+            public double sweepLoopDelay;
+            public int sweepMPeriods;
+
+            // Corrections
+            public int compPhaseBlocks;
+
+            public vnaconfig()
+            {
+                displayDual = false;
+                displayFMin = 100;
+                displayFMax = 10000;
+                displayLogF = true;
+                displayPlotY1 = PlotMode.logBA;
+                displayPlotY2 = PlotMode.phiBA;
+                displayY1Min = -120;
+                displayY1Max = 20;
+                displayY2Min = -180;
+                displayY2Max = 180;
+                sweepLogF = true;
+                sweepFMin = 100;
+                sweepFMax = 10000;
+                sweepPoints = 61;
+                sweepLoopDelay = 0.7;
+                sweepMPeriods = 20;
+                compPhaseBlocks = 0;
+            }
+
+            public vnaconfig(BinaryReader src)
+            {
+                displayDual = src.ReadBoolean();
+                displayFMin = src.ReadDouble();
+                displayFMax = src.ReadDouble();
+                displayLogF = src.ReadBoolean();
+                displayPlotY1 = (PlotMode)src.ReadInt32();
+                displayPlotY2 = (PlotMode)src.ReadInt32();
+                displayY1Min = src.ReadDouble();
+                displayY1Max = src.ReadDouble();
+                displayY2Min = src.ReadDouble();
+                displayY2Max = src.ReadDouble();
+                sweepLogF = src.ReadBoolean();
+                sweepFMin = src.ReadDouble();
+                sweepFMax = src.ReadDouble();
+                sweepPoints = src.ReadInt32();
+                sweepLoopDelay = src.ReadDouble();
+                sweepMPeriods = src.ReadInt32();
+                compPhaseBlocks = src.ReadInt32();
+            }
+
+            public void write(BinaryWriter tgt)
+            {
+                tgt.Write(displayDual);
+                tgt.Write(displayFMin);
+                tgt.Write(displayFMax);
+                tgt.Write(displayLogF);
+                tgt.Write((int)displayPlotY1);
+                tgt.Write((int)displayPlotY2);
+                tgt.Write(displayY1Min);
+                tgt.Write(displayY1Max);
+                tgt.Write(displayY2Min);
+                tgt.Write(displayY2Max);
+                tgt.Write(sweepLogF);
+                tgt.Write(sweepFMin);
+                tgt.Write(sweepFMax);
+                tgt.Write(sweepPoints);
+                tgt.Write(sweepLoopDelay);
+                tgt.Write(sweepMPeriods);
+                tgt.Write(compPhaseBlocks);
+            }
+        }
+
+        public bool running;
+        private bool stopnow;
+        public vnaconfig config;
+
+        // Current sweep setup
         private double fstart;
         private double fstop;
-        private Boolean logsweep;
+        private bool logsweep;
         private int periods;
         private int step;
         private int steps;
@@ -373,18 +474,14 @@ namespace AudioProcessor.SinkSource
         public VNA(int _channels): base()
         {
             channels = _channels;
+            config = new vnaconfig();
             init();
         }
 
         public VNA(SystemPanel _owner, BinaryReader src):base(_owner, src)
         {
             channels = src.ReadInt32();
-
-            /*fstart = src.ReadDouble();
-            fstop = src.ReadDouble();
-            logsweep = src.ReadBoolean();
-            periods = src.ReadInt32();
-            steps = src.ReadInt32();*/
+            config = new vnaconfig(src);
 
             init();
         }
@@ -394,11 +491,8 @@ namespace AudioProcessor.SinkSource
             base.writeToFile(tgt);
 
             tgt.Write(channels);
-            /*tgt.Write(fstart);
-            tgt.Write(fstop);
-            tgt.Write(logsweep);
-            tgt.Write(periods);
-            tgt.Write(steps);*/
+
+            config.write(tgt);
         }
 
         private void BnDisplayWin_buttonStateChanged(object sender, EventArgs e)
@@ -415,7 +509,8 @@ namespace AudioProcessor.SinkSource
             }
         }
 
-        public void runSweep(double _fstart, double _fstop, Boolean _logsweep, int _steps, double delay, int _periods)
+        // public void runSweep(double _fstart, double _fstop, bool _logsweep, int _steps, double delay, int _periods)
+        public void runSweep()
         {
             if (running)
             {
@@ -423,18 +518,24 @@ namespace AudioProcessor.SinkSource
                 dataFifo.flush();
             }
 
-            fstart = _fstart;
-            fstop = _fstop;
-            logsweep = _logsweep;
-            steps = _steps;
+            fstart = config.sweepFMin;
+            fstop = config.sweepFMax;
+            logsweep = config.sweepLogF;
+            steps = config.sweepPoints;
+            periods = config.sweepMPeriods;
+            delaySamples = (int)Math.Floor(config.sweepLoopDelay * owner.sampleRate + 0.5);
+
+            //fstart = _fstart;
+            //fstop = _fstop;
+            //logsweep = _logsweep;
+            //steps = _steps;
             step = 0;
             substep = 0;
-            f = _fstart;
+            f = fstart;
 
             dataFifo.flush();
 
-            delaySamples = (int) Math.Floor(delay * owner.sampleRate + 0.5);
-            periods = _periods;
+            // delaySamples = (int) Math.Floor(delay * owner.sampleRate + 0.5);
             stopnow = false;
             vnaState = VNAState.WaitDelay;
             running = true;
@@ -543,6 +644,14 @@ namespace AudioProcessor.SinkSource
                         dp.A = new Complex(ASINint * scalef, ACOSint * scalef);
                         for (int j=0;j<channels;j++)
                             dp.B[j] = new Complex(BSINint[j] * scalef, BCOSint[j] * scalef);
+                        // Phase Correction
+                        if (config.compPhaseBlocks != 0)
+                        {
+                            double delay = (double)config.compPhaseBlocks * owner.blockSize / owner.sampleRate; // in s
+                            double phase = -2.0 * Math.PI * delay * f;
+                            Complex corr = new Complex(Math.Cos(phase), Math.Sin(phase));
+                            dp.A *= corr;
+                        }
                         dataFifo.put(dp);
 
                         substep = 0;

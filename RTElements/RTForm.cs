@@ -250,7 +250,8 @@ namespace AudioProcessor
             {
                 foreach (Control ct in Controls)
                 {
-                    if ((ct is RTControl) && !(ct is RTIO))
+                    // if ((ct is RTControl) && !(ct is RTIO))
+                    if ((ct is RTControl) && (((RTControl)ct).hideOnShrink))
                     {
                         RTControl c = (RTControl)ct;
                         c.Shrink(true);
@@ -273,7 +274,8 @@ namespace AudioProcessor
             {
                 foreach (Control ct in Controls)
                 {
-                    if ((ct is RTControl) && !(ct is RTIO))
+                    // if ((ct is RTControl) && !(ct is RTIO))
+                    if ((ct is RTControl) && (((RTControl)ct).hideOnShrink))
                     {
                         RTControl c = (RTControl)ct;
                         c.Shrink(false);
@@ -435,17 +437,7 @@ namespace AudioProcessor
                 }
             }
         }
-        /*
-        public void unSelect()
-        {
-            selected = false;
-        }
 
-        public void doSelect()
-        {
-            selected = true;
-        }
-        */
         public SignalBuffer getSignalInputBuffer(RTIO io)
         {
             if (io == null) return null;
@@ -527,15 +519,6 @@ namespace AudioProcessor
             if (_hasActiveSwitch) x1 += activeButton.Width;
             if (_canShrink) x2 -= shrinkButton.Width;
             int centerpos = (x1 + x2) / 2;
-            
-            /*
-            if (_selected)
-            {
-                Rectangle titlebar = cr;
-                titlebar.Height = deleteButton.Height+1;
-                g.FillRectangle(selectBrush, titlebar);
-            }
-            */
 
             cr.Width -= 1;
             cr.Height -= 1;

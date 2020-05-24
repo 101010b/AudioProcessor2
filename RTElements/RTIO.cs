@@ -129,6 +129,7 @@ namespace AudioProcessor
             _contactHighlightColor = Color.Red;
             _orientation = RTOrientation.East;
             _highlighted = false;
+            _hideOnShrink = false; // IOs stay on shrink by default
             // this.DoubleBuffered = true;
 
             titleBrush = new SolidBrush(_titleColor);

@@ -68,6 +68,10 @@
             this.vnaSweepFMin = new System.Windows.Forms.NumericUpDown();
             this.vnaSweepLog = new System.Windows.Forms.CheckBox();
             this.vnaScreen = new AudioProcessor.SinkSource.VNAScreen();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.vnaPhaseCorr = new System.Windows.Forms.NumericUpDown();
             this.panel2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -83,6 +87,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.vnaSweepPoints)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vnaSweepFMax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vnaSweepFMin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vnaPhaseCorr)).BeginInit();
             this.SuspendLayout();
             // 
             // vnaDisplayReset
@@ -90,10 +95,10 @@
             this.vnaDisplayReset.BackColor = System.Drawing.Color.Black;
             this.vnaDisplayReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.vnaDisplayReset.ForeColor = System.Drawing.Color.White;
-            this.vnaDisplayReset.Location = new System.Drawing.Point(165, 81);
+            this.vnaDisplayReset.Location = new System.Drawing.Point(108, 12);
             this.vnaDisplayReset.Margin = new System.Windows.Forms.Padding(2);
             this.vnaDisplayReset.Name = "vnaDisplayReset";
-            this.vnaDisplayReset.Size = new System.Drawing.Size(140, 19);
+            this.vnaDisplayReset.Size = new System.Drawing.Size(53, 44);
             this.vnaDisplayReset.TabIndex = 39;
             this.vnaDisplayReset.Text = "Zoom all";
             this.vnaDisplayReset.UseVisualStyleBackColor = false;
@@ -103,7 +108,7 @@
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.Color.Black;
             this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(113, 39);
+            this.label12.Location = new System.Drawing.Point(102, 39);
             this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(20, 13);
@@ -206,6 +211,8 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.Black;
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.vnaDisplayReset);
@@ -236,7 +243,7 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Black;
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(125, 61);
+            this.label4.Location = new System.Drawing.Point(125, 81);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(37, 13);
@@ -248,7 +255,7 @@
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Black;
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(125, 41);
+            this.label5.Location = new System.Drawing.Point(125, 61);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(34, 13);
@@ -264,7 +271,7 @@
             0,
             0,
             0});
-            this.vnaDisplayY2Max.Location = new System.Drawing.Point(237, 59);
+            this.vnaDisplayY2Max.Location = new System.Drawing.Point(237, 79);
             this.vnaDisplayY2Max.Margin = new System.Windows.Forms.Padding(2);
             this.vnaDisplayY2Max.Maximum = new decimal(new int[] {
             180,
@@ -294,7 +301,7 @@
             0,
             0,
             0});
-            this.vnaDisplayY2Min.Location = new System.Drawing.Point(237, 40);
+            this.vnaDisplayY2Min.Location = new System.Drawing.Point(237, 60);
             this.vnaDisplayY2Min.Margin = new System.Windows.Forms.Padding(2);
             this.vnaDisplayY2Min.Maximum = new decimal(new int[] {
             180,
@@ -324,7 +331,7 @@
             0,
             0,
             0});
-            this.vnaDisplayY1Max.Location = new System.Drawing.Point(165, 59);
+            this.vnaDisplayY1Max.Location = new System.Drawing.Point(165, 79);
             this.vnaDisplayY1Max.Margin = new System.Windows.Forms.Padding(2);
             this.vnaDisplayY1Max.Maximum = new decimal(new int[] {
             200,
@@ -354,7 +361,7 @@
             0,
             0,
             0});
-            this.vnaDisplayY1Min.Location = new System.Drawing.Point(165, 40);
+            this.vnaDisplayY1Min.Location = new System.Drawing.Point(165, 60);
             this.vnaDisplayY1Min.Margin = new System.Windows.Forms.Padding(2);
             this.vnaDisplayY1Min.Maximum = new decimal(new int[] {
             200,
@@ -380,7 +387,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Black;
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(7, 61);
+            this.label2.Location = new System.Drawing.Point(7, 81);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(36, 13);
@@ -396,7 +403,7 @@
             0,
             0,
             0});
-            this.vnaDisplayFMax.Location = new System.Drawing.Point(43, 59);
+            this.vnaDisplayFMax.Location = new System.Drawing.Point(43, 79);
             this.vnaDisplayFMax.Margin = new System.Windows.Forms.Padding(2);
             this.vnaDisplayFMax.Maximum = new decimal(new int[] {
             100000,
@@ -422,7 +429,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Black;
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(7, 41);
+            this.label3.Location = new System.Drawing.Point(7, 61);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(33, 13);
@@ -438,7 +445,7 @@
             0,
             0,
             0});
-            this.vnaDisplayFMin.Location = new System.Drawing.Point(43, 40);
+            this.vnaDisplayFMin.Location = new System.Drawing.Point(43, 60);
             this.vnaDisplayFMin.Margin = new System.Windows.Forms.Padding(2);
             this.vnaDisplayFMin.Maximum = new decimal(new int[] {
             100000,
@@ -466,7 +473,7 @@
             this.vnaDisplayY2Type.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.vnaDisplayY2Type.ForeColor = System.Drawing.Color.White;
             this.vnaDisplayY2Type.FormattingEnabled = true;
-            this.vnaDisplayY2Type.Location = new System.Drawing.Point(237, 15);
+            this.vnaDisplayY2Type.Location = new System.Drawing.Point(237, 36);
             this.vnaDisplayY2Type.Margin = new System.Windows.Forms.Padding(2);
             this.vnaDisplayY2Type.Name = "vnaDisplayY2Type";
             this.vnaDisplayY2Type.Size = new System.Drawing.Size(68, 21);
@@ -479,7 +486,7 @@
             this.vnaDisplayY1Type.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.vnaDisplayY1Type.ForeColor = System.Drawing.Color.White;
             this.vnaDisplayY1Type.FormattingEnabled = true;
-            this.vnaDisplayY1Type.Location = new System.Drawing.Point(165, 15);
+            this.vnaDisplayY1Type.Location = new System.Drawing.Point(165, 36);
             this.vnaDisplayY1Type.Margin = new System.Windows.Forms.Padding(2);
             this.vnaDisplayY1Type.Name = "vnaDisplayY1Type";
             this.vnaDisplayY1Type.Size = new System.Drawing.Size(68, 21);
@@ -503,7 +510,7 @@
             this.vnaDisplayFLog.AutoSize = true;
             this.vnaDisplayFLog.BackColor = System.Drawing.Color.Black;
             this.vnaDisplayFLog.ForeColor = System.Drawing.Color.White;
-            this.vnaDisplayFLog.Location = new System.Drawing.Point(8, 82);
+            this.vnaDisplayFLog.Location = new System.Drawing.Point(8, 37);
             this.vnaDisplayFLog.Margin = new System.Windows.Forms.Padding(2);
             this.vnaDisplayFLog.Name = "vnaDisplayFLog";
             this.vnaDisplayFLog.Size = new System.Drawing.Size(53, 17);
@@ -514,6 +521,8 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Black;
+            this.groupBox1.Controls.Add(this.vnaPhaseCorr);
+            this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.vnaSweepPeriods);
             this.groupBox1.Controls.Add(this.label6);
@@ -560,7 +569,7 @@
             0,
             0,
             0});
-            this.vnaSweepPeriods.Location = new System.Drawing.Point(69, 79);
+            this.vnaSweepPeriods.Location = new System.Drawing.Point(66, 79);
             this.vnaSweepPeriods.Margin = new System.Windows.Forms.Padding(2);
             this.vnaSweepPeriods.Minimum = new decimal(new int[] {
             1,
@@ -568,7 +577,7 @@
             0,
             0});
             this.vnaSweepPeriods.Name = "vnaSweepPeriods";
-            this.vnaSweepPeriods.Size = new System.Drawing.Size(68, 20);
+            this.vnaSweepPeriods.Size = new System.Drawing.Size(51, 20);
             this.vnaSweepPeriods.TabIndex = 55;
             this.vnaSweepPeriods.Value = new decimal(new int[] {
             20,
@@ -581,7 +590,7 @@
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Black;
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(141, 60);
+            this.label6.Location = new System.Drawing.Point(120, 60);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(20, 13);
@@ -622,7 +631,7 @@
             0,
             0,
             0});
-            this.vnaSweepDelay.Location = new System.Drawing.Point(69, 59);
+            this.vnaSweepDelay.Location = new System.Drawing.Point(66, 59);
             this.vnaSweepDelay.Margin = new System.Windows.Forms.Padding(2);
             this.vnaSweepDelay.Maximum = new decimal(new int[] {
             5000,
@@ -635,7 +644,7 @@
             0,
             0});
             this.vnaSweepDelay.Name = "vnaSweepDelay";
-            this.vnaSweepDelay.Size = new System.Drawing.Size(68, 20);
+            this.vnaSweepDelay.Size = new System.Drawing.Size(51, 20);
             this.vnaSweepDelay.TabIndex = 35;
             this.vnaSweepDelay.Value = new decimal(new int[] {
             100,
@@ -648,7 +657,7 @@
             this.label14.AutoSize = true;
             this.label14.BackColor = System.Drawing.Color.Black;
             this.label14.ForeColor = System.Drawing.Color.White;
-            this.label14.Location = new System.Drawing.Point(137, 39);
+            this.label14.Location = new System.Drawing.Point(185, 19);
             this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(36, 13);
@@ -664,7 +673,7 @@
             0,
             0,
             0});
-            this.vnaSweepPoints.Location = new System.Drawing.Point(177, 37);
+            this.vnaSweepPoints.Location = new System.Drawing.Point(183, 37);
             this.vnaSweepPoints.Margin = new System.Windows.Forms.Padding(2);
             this.vnaSweepPoints.Maximum = new decimal(new int[] {
             801,
@@ -707,7 +716,7 @@
             0,
             0});
             this.vnaSweepFMax.Name = "vnaSweepFMax";
-            this.vnaSweepFMax.Size = new System.Drawing.Size(68, 20);
+            this.vnaSweepFMax.Size = new System.Drawing.Size(56, 20);
             this.vnaSweepFMax.TabIndex = 30;
             this.vnaSweepFMax.Value = new decimal(new int[] {
             20000,
@@ -720,7 +729,7 @@
             this.label11.AutoSize = true;
             this.label11.BackColor = System.Drawing.Color.Black;
             this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(113, 19);
+            this.label11.Location = new System.Drawing.Point(102, 19);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(20, 13);
@@ -756,7 +765,7 @@
             0,
             0});
             this.vnaSweepFMin.Name = "vnaSweepFMin";
-            this.vnaSweepFMin.Size = new System.Drawing.Size(68, 20);
+            this.vnaSweepFMin.Size = new System.Drawing.Size(56, 20);
             this.vnaSweepFMin.TabIndex = 27;
             this.vnaSweepFMin.Value = new decimal(new int[] {
             100,
@@ -769,7 +778,7 @@
             this.vnaSweepLog.AutoSize = true;
             this.vnaSweepLog.BackColor = System.Drawing.Color.Black;
             this.vnaSweepLog.ForeColor = System.Drawing.Color.White;
-            this.vnaSweepLog.Location = new System.Drawing.Point(149, 18);
+            this.vnaSweepLog.Location = new System.Drawing.Point(128, 20);
             this.vnaSweepLog.Margin = new System.Windows.Forms.Padding(2);
             this.vnaSweepLog.Name = "vnaSweepLog";
             this.vnaSweepLog.Size = new System.Drawing.Size(44, 17);
@@ -792,6 +801,62 @@
             this.vnaScreen.Name = "vnaScreen";
             this.vnaScreen.Size = new System.Drawing.Size(746, 388);
             this.vnaScreen.TabIndex = 7;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Black;
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(185, 19);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(20, 13);
+            this.label8.TabIndex = 53;
+            this.label8.Text = "Y1";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.Black;
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(254, 19);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(20, 13);
+            this.label9.TabIndex = 54;
+            this.label9.Text = "Y2";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.Color.Black;
+            this.label15.ForeColor = System.Drawing.Color.White;
+            this.label15.Location = new System.Drawing.Point(146, 63);
+            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(38, 13);
+            this.label15.TabIndex = 57;
+            this.label15.Text = "PhsCr.";
+            // 
+            // vnaPhaseCorr
+            // 
+            this.vnaPhaseCorr.BackColor = System.Drawing.Color.Black;
+            this.vnaPhaseCorr.ForeColor = System.Drawing.Color.White;
+            this.vnaPhaseCorr.Location = new System.Drawing.Point(131, 79);
+            this.vnaPhaseCorr.Margin = new System.Windows.Forms.Padding(2);
+            this.vnaPhaseCorr.Maximum = new decimal(new int[] {
+            4096,
+            0,
+            0,
+            0});
+            this.vnaPhaseCorr.Minimum = new decimal(new int[] {
+            4096,
+            0,
+            0,
+            -2147483648});
+            this.vnaPhaseCorr.Name = "vnaPhaseCorr";
+            this.vnaPhaseCorr.Size = new System.Drawing.Size(51, 20);
+            this.vnaPhaseCorr.TabIndex = 58;
             // 
             // VNAWin
             // 
@@ -821,6 +886,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.vnaSweepPoints)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vnaSweepFMax)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vnaSweepFMin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vnaPhaseCorr)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -865,5 +931,9 @@
         private System.Windows.Forms.Button vnaDelete;
         private System.Windows.Forms.Button vnaToMemory;
         public System.Windows.Forms.ListBox vnaMemoryList;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.NumericUpDown vnaPhaseCorr;
+        private System.Windows.Forms.Label label15;
     }
 }

@@ -17,8 +17,8 @@ namespace AudioProcessor.SinkSource
 
         public bool dualDisplay;
         Plot plot1, plot2;
-        public VNAWin.PlotMode plot1Mode;
-        public VNAWin.PlotMode plot2Mode;
+        public VNA.vnaconfig.PlotMode plot1Mode;
+        public VNA.vnaconfig.PlotMode plot2Mode;
 
         public class PlotSet
         {
@@ -30,6 +30,8 @@ namespace AudioProcessor.SinkSource
             public PlotTrace logA;
             public PlotTrace[] logB;
             public PlotTrace[] logBA;
+            public PlotTrace phiA;
+            public PlotTrace[] phiB;
         }
         List<PlotSet> plotSet;
         PlotSet current;
@@ -147,8 +149,8 @@ namespace AudioProcessor.SinkSource
             newSize();
 
             dualDisplay = false;
-            plot1Mode = VNAWin.PlotMode.logBA;
-            plot2Mode = VNAWin.PlotMode.phiBA;
+            plot1Mode = VNA.vnaconfig.PlotMode.logBA;
+            plot2Mode = VNA.vnaconfig.PlotMode.phiBA;
 
             logX = true;
 
@@ -158,7 +160,7 @@ namespace AudioProcessor.SinkSource
             if (root == null)
                 x = new GridCalculator(0.1, 100000, 1, 0.1, 1.1, 100, 20000, logX, xleft, xright, xlableSize.x);
             else
-                x = new GridCalculator(0.1, 100000, 1, 0.1, 1.1, root.sweepFMin, root.sweepFMax, logX, xleft, xright, xlableSize.x);
+                x = new GridCalculator(0.1, 100000, 1, 0.1, 1.1, root.vna.config.sweepFMin, root.vna.config.sweepFMax, logX, xleft, xright, xlableSize.x);
 
             y1 = new GridCalculator(-200, 200, 1, 1, 1.1, -100, 20, false, yd1bottom, yd1top, ylableSize.y);
             y2 = new GridCalculator(-200, 200, 1, 1, 1.1, -180, 180, false, yd2bottom, yd2top, ylableSize.y);
@@ -200,24 +202,26 @@ namespace AudioProcessor.SinkSource
             yd2bottom = Height - 10 - xlableSize.y;
         }
 
-        private PlotTrace[] getTrace(PlotSet p, VNAWin.PlotMode mode)
+        private PlotTrace[] getTrace(PlotSet p, VNA.vnaconfig.PlotMode mode)
         {
             if (p == null)
                 return null;
             switch (mode)
             {
-                case VNAWin.PlotMode.absA: return new PlotTrace[1] { p.absA };
-                case VNAWin.PlotMode.absB: return p.absB;
-                case VNAWin.PlotMode.absBA: return p.absBA;
-                case VNAWin.PlotMode.phiBA: return p.phiBA;
-                case VNAWin.PlotMode.logA: return new PlotTrace[1] { p.logA };
-                case VNAWin.PlotMode.logB: return p.logB;
-                case VNAWin.PlotMode.logBA: return p.logBA;
+                case VNA.vnaconfig.PlotMode.absA: return new PlotTrace[1] { p.absA };
+                case VNA.vnaconfig.PlotMode.absB: return p.absB;
+                case VNA.vnaconfig.PlotMode.absBA: return p.absBA;
+                case VNA.vnaconfig.PlotMode.phiBA: return p.phiBA;
+                case VNA.vnaconfig.PlotMode.logA: return new PlotTrace[1] { p.logA };
+                case VNA.vnaconfig.PlotMode.logB: return p.logB;
+                case VNA.vnaconfig.PlotMode.logBA: return p.logBA;
+                case VNA.vnaconfig.PlotMode.phiA: return new PlotTrace[1] { p.phiA };
+                case VNA.vnaconfig.PlotMode.phiB: return p.phiB;
             }
             return null;
         }
         
-        private PlotTrace[] getTrace(int selection, VNAWin.PlotMode mode)
+        private PlotTrace[] getTrace(int selection, VNA.vnaconfig.PlotMode mode)
         {
             if (selection < 0)
                 return getTrace(current, mode);
@@ -300,7 +304,16 @@ namespace AudioProcessor.SinkSource
             return Color.Red;
         }
 
-        public void addTraces(PlotTrace _absA, PlotTrace[] _absB, PlotTrace[] _absBA, PlotTrace[] _phiBA, PlotTrace _logA, PlotTrace[] _logB, PlotTrace[] _logBA)
+        public void addTraces(
+            PlotTrace _absA, 
+            PlotTrace[] _absB, 
+            PlotTrace[] _absBA, 
+            PlotTrace[] _phiBA, 
+            PlotTrace _logA, 
+            PlotTrace[] _logB, 
+            PlotTrace[] _logBA,
+            PlotTrace _phiA,
+            PlotTrace[] _phiB)
         {
             PlotSet t = new PlotSet();
             t.name = DateTime.Now.ToLongDateString();
@@ -311,6 +324,8 @@ namespace AudioProcessor.SinkSource
             t.logA = _logA;
             t.logB = (PlotTrace[])_logB.Clone();
             t.logBA = (PlotTrace[])_logBA.Clone();
+            t.phiA = _phiA;
+            t.phiB = (PlotTrace[])_phiB.Clone();
 
             current = t;
             for (int i=0;i<_absB.Length;i++)
@@ -328,21 +343,23 @@ namespace AudioProcessor.SinkSource
             Invalidate();
         }
 
-        private void setLimits(Plot p, VNAWin.PlotMode m)
+        private void setLimits(Plot p, VNA.vnaconfig.PlotMode m)
         {
             switch (m)
             {
-                case VNAWin.PlotMode.absA:
-                case VNAWin.PlotMode.absB:
-                case VNAWin.PlotMode.absBA:
+                case VNA.vnaconfig.PlotMode.absA:
+                case VNA.vnaconfig.PlotMode.absB:
+                case VNA.vnaconfig.PlotMode.absBA:
                     p.yAxis.newRange(0, 10);
                     break;
-                case VNAWin.PlotMode.phiBA:
+                case VNA.vnaconfig.PlotMode.phiBA:
+                case VNA.vnaconfig.PlotMode.phiB:
+                case VNA.vnaconfig.PlotMode.phiA:
                     p.yAxis.newRange(-180, 180);
                     break;
-                case VNAWin.PlotMode.logA:
-                case VNAWin.PlotMode.logB:
-                case VNAWin.PlotMode.logBA:
+                case VNA.vnaconfig.PlotMode.logA:
+                case VNA.vnaconfig.PlotMode.logB:
+                case VNA.vnaconfig.PlotMode.logBA:
                     p.yAxis.newRange(-120, 20);
                     break;
             }
@@ -356,7 +373,7 @@ namespace AudioProcessor.SinkSource
             Invalidate();
         }
 
-        public void changePlot(Boolean _dualDisplay, VNAWin.PlotMode _plot1Mode, VNAWin.PlotMode _plot2Mode)
+        public void changePlot(Boolean _dualDisplay, VNA.vnaconfig.PlotMode _plot1Mode, VNA.vnaconfig.PlotMode _plot2Mode)
         {
             if ((_dualDisplay==dualDisplay) && (_plot1Mode==plot1Mode) && (_plot2Mode == plot2Mode)) return;
             if (_plot1Mode != plot1Mode)

@@ -31,7 +31,8 @@ namespace AudioProcessor.DataProcessing
             this.bnFile.frameHoldColor = System.Drawing.Color.Yellow;
             this.bnFile.frameOffColor = System.Drawing.Color.DimGray;
             this.bnFile.frameOnColor = System.Drawing.Color.Red;
-            this.bnFile.Location = new System.Drawing.Point(68, 21);
+            this.bnFile.hideOnShrink = true;
+            this.bnFile.Location = new System.Drawing.Point(57, 21);
             this.bnFile.Name = "bnFile";
             this.bnFile.offText = "[NONE]";
             this.bnFile.onText = "[NONE]";
@@ -51,6 +52,7 @@ namespace AudioProcessor.DataProcessing
             this.ioData.contactBackColor = System.Drawing.Color.Black;
             this.ioData.contactColor = System.Drawing.Color.DimGray;
             this.ioData.contactHighlightColor = System.Drawing.Color.Red;
+            this.ioData.hideOnShrink = false;
             this.ioData.highlighted = false;
             this.ioData.IOtype = AudioProcessor.RTIO.ProcessingIOType.DataInput;
             this.ioData.Location = new System.Drawing.Point(0, 21);
@@ -70,9 +72,10 @@ namespace AudioProcessor.DataProcessing
             this.ledRecord.fillOnColor = System.Drawing.Color.DarkRed;
             this.ledRecord.frameOffColor = System.Drawing.Color.DimGray;
             this.ledRecord.frameOnColor = System.Drawing.Color.Red;
+            this.ledRecord.hideOnShrink = true;
             this.ledRecord.LEDDim = new System.Drawing.Size(15, 15);
             this.ledRecord.LEDState = false;
-            this.ledRecord.Location = new System.Drawing.Point(242, 3);
+            this.ledRecord.Location = new System.Drawing.Point(231, 3);
             this.ledRecord.Name = "ledRecord";
             this.ledRecord.offText = "";
             this.ledRecord.onText = "";
@@ -97,11 +100,12 @@ namespace AudioProcessor.DataProcessing
             this.bnRecord.frameHoldColor = System.Drawing.Color.Yellow;
             this.bnRecord.frameOffColor = System.Drawing.Color.DimGray;
             this.bnRecord.frameOnColor = System.Drawing.Color.Red;
-            this.bnRecord.Location = new System.Drawing.Point(69, 79);
+            this.bnRecord.hideOnShrink = true;
+            this.bnRecord.Location = new System.Drawing.Point(64, 80);
             this.bnRecord.Name = "bnRecord";
             this.bnRecord.offText = "Idle";
             this.bnRecord.onText = "Record";
-            this.bnRecord.Size = new System.Drawing.Size(64, 31);
+            this.bnRecord.Size = new System.Drawing.Size(51, 21);
             this.bnRecord.TabIndex = 11;
             this.bnRecord.Text = "rtButton1";
             this.bnRecord.textFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
@@ -122,11 +126,12 @@ namespace AudioProcessor.DataProcessing
             this.bnClose.frameHoldColor = System.Drawing.Color.Yellow;
             this.bnClose.frameOffColor = System.Drawing.Color.DimGray;
             this.bnClose.frameOnColor = System.Drawing.Color.Red;
-            this.bnClose.Location = new System.Drawing.Point(287, 42);
+            this.bnClose.hideOnShrink = true;
+            this.bnClose.Location = new System.Drawing.Point(276, 47);
             this.bnClose.Name = "bnClose";
             this.bnClose.offText = "Close";
             this.bnClose.onText = "Close";
-            this.bnClose.Size = new System.Drawing.Size(76, 31);
+            this.bnClose.Size = new System.Drawing.Size(61, 21);
             this.bnClose.TabIndex = 12;
             this.bnClose.Text = "rtButton2";
             this.bnClose.textFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
@@ -266,18 +271,31 @@ namespace AudioProcessor.DataProcessing
             }
         }
 
+        public static DateTime UnixTimeStampToDateTime(Int64 unixTimeStamp)
+        {
+            // Unix timestamp is seconds past epoch
+            System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+            dtDateTime = dtDateTime.AddSeconds(unixTimeStamp).ToLocalTime();
+            return dtDateTime;
+        }
+
         private void writeXMLHeader(Int64 offset)
         {
-            outputFile.WriteLine("<?xml version=\"1.0\" encoding=\"utf - 8\"?>");
-            outputFile.WriteLine("<data>");
-            outputFile.WriteLine(string.Format("<t>{0}</t>", offset));
-            outputFile.WriteLine("<d>{");firstline = true;
+            outputFile.WriteLine("<?xml version=\"1.0\" encoding=\"utf-8\" ?>");
+            outputFile.WriteLine("<recording>");
+            outputFile.WriteLine(string.Format("<tstartUXUTC>{0}</tstartUXUTC>", offset));
+            outputFile.WriteLine(string.Format("<tstartTXT>{0}</tstartTXT>", 
+                UnixTimeStampToDateTime(offset).ToString("yyyy-MM-dd HH:mm:ss")));
+            outputFile.WriteLine(string.Format("<node>{0}</node>", System.Environment.MachineName));
+            outputFile.WriteLine(string.Format("<user>{0}</user>", System.Environment.UserName));
+            outputFile.WriteLine(string.Format("<sampleRate>{0}</sampleRate>", owner.sampleRate));
+            outputFile.WriteLine(string.Format("<blockSize>{0}</blockSize>", owner.blockSize));
+            firstline = true;
         }
 
         private void writeXMLFooter()
         {
-            outputFile.WriteLine("}</d>");
-            outputFile.WriteLine("</data>");
+            outputFile.WriteLine("</recording>");
         }
 
         private void stopFile()
@@ -347,18 +365,12 @@ namespace AudioProcessor.DataProcessing
                     if (manualActive)
                     {
                         isActive = true;
-                        string s = "";
-                        if (firstline)
-                            firstline = false;
-                        else
-                            s = ",";
-                        s = string.Format("{0}[{1}", s, owner.timeStamp);
-                        for (int i = 0; i < db.size; i++)
-                        {
-                            s = s + string.Format(",{0}", db.get(i));
-                        }
-                        s = s + "]";
-                        outputFile.WriteLine(s);
+                        outputFile.Write(string.Format("<dset><blk>{0}</blk><tofs>{1}</tofs>",
+                            owner.timeStamp, (double)owner.timeStamp*owner.blockSize / owner.sampleRate));
+                        outputFile.Write(string.Format("<data>{0}",db.get(0)));
+                        for (int i = 1; i < db.size; i++)
+                            outputFile.Write(string.Format(",{0}", db.get(i)));
+                        outputFile.WriteLine("</data></dset>");
                     } else
                     {
                         isActive = false;

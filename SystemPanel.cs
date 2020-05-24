@@ -393,6 +393,7 @@ namespace AudioProcessor
 
             logText("AudioProcessor OnLine and running");
             timeStampOffset = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+            timeStamp = 0;
 
             while (!stopWorkThread)
             {

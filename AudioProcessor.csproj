@@ -116,6 +116,9 @@
     <Compile Include="DataProcessing\DataFileWriter.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="DataProcessing\MEL.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="DataProcessing\MFCC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -129,6 +132,9 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Processing\Echo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Processing\Equalizer.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="RealtimeSinkSource\WASAPISink.cs">
@@ -447,6 +453,9 @@
     <EmbeddedResource Include="DataProcessing\DataWaterfallDisplay.resx">
       <DependentUpon>DataWaterfallDisplay.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DataProcessing\MEL.resx">
+      <DependentUpon>MEL.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DataProcessing\MFCC.resx">
       <DependentUpon>MFCC.cs</DependentUpon>
     </EmbeddedResource>
@@ -461,6 +470,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Processing\Echo.resx">
       <DependentUpon>Echo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Processing\Equalizer.resx">
+      <DependentUpon>Equalizer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RealtimeSinkSource\WASAPISink.resx">
       <DependentUpon>WASAPISink.cs</DependentUpon>

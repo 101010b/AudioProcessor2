@@ -13,7 +13,13 @@ namespace AudioProcessor
         protected Vector orgPos;
         protected Vector orgDim;
         protected double scale;
-        // public bool needsRedraw;
+
+        protected bool _hideOnShrink = true; // default
+        public bool hideOnShrink
+        {
+            get { return _hideOnShrink; }
+            set { _hideOnShrink = value; }
+        }
 
         private bool intentionallyHidden=false;
         public new void Hide()
@@ -44,7 +50,6 @@ namespace AudioProcessor
             orgPos = Vector.V(0, 0);
             orgDim = Vector.V(width, height);
             scale = 1;
-            // needsRedraw = false;
         }
 
         public RTControl():this(null,"",0,0,100,100)
