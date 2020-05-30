@@ -30,6 +30,20 @@ namespace AudioProcessor
             }
         }
 
+        public VectorRect(VectorRect a)
+        {
+            LL = a.LL;
+            UR = a.UR;
+        }
+
+        public VectorRect(double x1, double y1, double x2, double y2)
+        {
+            LL.x = min(x1, x2);
+            LL.y = min(y1, y2);
+            UR.x = max(x1, x2);
+            UR.y = max(y1, y2);
+        }
+
         public double area
         {
             get { return Math.Abs((UR.x - LL.x) * (UR.y - LL.y)); }
@@ -48,6 +62,13 @@ namespace AudioProcessor
         public bool inside(Vector H)
         {
             if ((H.x >= LL.x) && (H.x <= UR.x) && (H.y >= LL.y) && (H.y <= UR.y))
+                return true;
+            return false;
+        }
+
+        public bool inside(double x, double y)
+        {
+            if ((x >= LL.x) && (x <= UR.x) && (y >= LL.y) && (y <= UR.y))
                 return true;
             return false;
         }
@@ -104,6 +125,16 @@ namespace AudioProcessor
             return max(a, (b > c) ? b : c);
         }
 
+        private static double min(double a, double b, double c, double d)
+        {
+            return min((a < b) ? a : b, (c < d) ? c : d);
+        }
+
+        private static double max(double a, double b, double c, double d)
+        {
+            return max((a > b) ? a : b, (c > d) ? c : d);
+        }
+
         public static VectorRect containingThreePoints(Vector A, Vector B, Vector C)
         {
             double minx = min(A.x, B.x, C.x);
@@ -111,6 +142,20 @@ namespace AudioProcessor
             double maxx = max(A.x, B.x, C.x);
             double maxy = max(A.y, B.y, C.y);
             return VectorRect.FromTwoPoints(minx, miny, maxx, maxy);
+        }
+
+        public static VectorRect containingRects(VectorRect a)
+        {
+            return new VectorRect(a);
+        }
+
+        public static VectorRect containingRects(VectorRect a, VectorRect b)
+        {
+            double mx = min(a.LL.x, a.UR.x, b.LL.x, b.UR.x);
+            double my = min(a.LL.y, a.UR.y, b.LL.y, b.UR.y);
+            double nx = max(a.LL.x, a.UR.x, b.LL.x, b.UR.x);
+            double ny = max(a.LL.y, a.UR.y, b.LL.y, b.UR.y);
+            return new VectorRect(mx,my,nx,ny);
         }
 
         public Rectangle rectangle

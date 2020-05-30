@@ -69,6 +69,7 @@ namespace AudioProcessor
             Processing.VMux.Register(processingObjects);
             Processing.Echo.Register(processingObjects);
             Processing.Equalizer.Register(processingObjects);
+            Processing.CrossMix.Register(processingObjects);
 
             DataProcessing.Chromagram.Register(processingObjects);
             DataProcessing.MEL.Register(processingObjects);

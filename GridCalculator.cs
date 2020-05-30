@@ -8,7 +8,7 @@ namespace AudioProcessor
 {
     public class GridCalculator
     {
-        private Boolean omitReCalc;
+        private bool omitReCalc;
 
         public struct GridTick {
             public double pos;
@@ -21,45 +21,54 @@ namespace AudioProcessor
         public GridTick[] grid;
         public int gridLength;
 
-        public double _low; // Screen coordinates
-        public double _high; // Screen coordinates
-        private double lableWidth;
+        public double screenMin; // Screen coordinates in Pixels
+        public double screenMax; // Screen coordinates in Pixels
+        private double lableWidth; // Width of the lable in Pixels
 
-        private double _min;
-        private double _max;
-        private Boolean _logScale;
+        private double axisMin; // axis min
+        private double axisMax; // axis max
+        private bool axisLogScale; // Use logarithmic scale
 
-        private double absMin;
-        private double absMax;
-        private double logMin;
+        private double absMin; // global axis min (axisMin must be >= absMin)
+        private double absMax; // global axis max (axisMax must be <= absMax)
+        private double logMin; // Minimal value for logarithmic scale
 
+        // Accessible Data
         public double min
         {
             set { setMin(value); }
-            get { return _min; }
+            get { return axisMin; }
         }
 
         public double max
         {
             set { setMax(value); }
-            get { return _max; }
+            get { return axisMax; }
         }
 
-        public Boolean logScale
+        public bool logScale
         {
             set { setLogScale(value); }
-            get { return _logScale; }
+            get { return axisLogScale; }
         }
 
         public double low
         {
-            set { reScreen(value, _high); }
-            get { return _low; }
+            set { reScreen(value, screenMax); }
+            get { return screenMin; }
         }
+
         public double high
         {
-            set { reScreen(_low, value); }
-            get { return _high; }
+            set { reScreen(screenMin, value); }
+            get { return screenMax; }
+        }
+
+        private bool _showEndLables = false;
+        public bool showEndLables
+        {
+            set { if (_showEndLables != value) { _showEndLables = value; reSpace(); } }
+            get { return _showEndLables; }
         }
 
         private double absMinDist;
@@ -67,12 +76,12 @@ namespace AudioProcessor
 
         public GridCalculator(double _absMin, double _absMax, double _absMinDist, 
             double _logMin, double _logMinDist, 
-            double __min, double __max, Boolean __logScale,
+            double __min, double __max, bool __logScale,
             double __low, double __high, double _lableWidth)
         {
-            _min = __min;
-            _max = __max;
-            _logScale = __logScale;
+            axisMin = __min;
+            axisMax = __max;
+            axisLogScale = __logScale;
             absMin = _absMin;
             absMax = _absMax;
             absMinDist = _absMinDist;
@@ -80,8 +89,8 @@ namespace AudioProcessor
             logMin = _logMin;
             logMinDist = _logMinDist;
 
-            _low = __low;
-            _high = __high;
+            screenMin = __low;
+            screenMax = __high;
             lableWidth = _lableWidth;
 
             // Verification
@@ -97,46 +106,46 @@ namespace AudioProcessor
 
             // Verify current parameters
             omitReCalc = true;
-            setMin(_min);
-            setMax(_max);
+            setMin(axisMin);
+            setMax(axisMax);
             omitReCalc = false;
 
             reGrid();
         }
 
-        public GridCalculator(double __min, double __max, Boolean __logScale, double width) :
+        public GridCalculator(double __min, double __max, bool __logScale, double width) :
             this(__min,__max,__max-__min,(__logScale)?__min:0,(__logScale)?__max/__min:1,__min,__max,__logScale,0,width,1)
         { }
 
         private void setMin(double v)
         {
-            if (!_logScale)
+            if (!axisLogScale)
             { // Linear
-                _min = v;
-                if (_min < absMin)
-                    _min = absMin;
-                if (_min > _max-absMinDist)
+                axisMin = v;
+                if (axisMin < absMin)
+                    axisMin = absMin;
+                if (axisMin > axisMax-absMinDist)
                 {
-                    _max = _min + absMinDist;
-                    if (_max > absMax)
+                    axisMax = axisMin + absMinDist;
+                    if (axisMax > absMax)
                     {
-                        _max = absMax;
-                        _min = absMax - absMinDist;
+                        axisMax = absMax;
+                        axisMin = absMax - absMinDist;
                     }
                 }
             }
             else
             { // Logarithmic Scale
-                _min = v;
-                if (_min < logMin)
-                    _min = logMin;
-                if (_min > _max/logMinDist)
+                axisMin = v;
+                if (axisMin < logMin)
+                    axisMin = logMin;
+                if (axisMin > axisMax/logMinDist)
                 {
-                    _max = _min * logMinDist;
-                    if (_max > absMax)
+                    axisMax = axisMin * logMinDist;
+                    if (axisMax > absMax)
                     {
-                        _max = absMax;
-                        _min = absMax / logMinDist;
+                        axisMax = absMax;
+                        axisMin = absMax / logMinDist;
                     }
                 }
             }
@@ -145,33 +154,33 @@ namespace AudioProcessor
 
         private void setMax(double v)
         {
-            if (!_logScale)
+            if (!axisLogScale)
             { // Linear
-                _max = v;
-                if (_max > absMax)
-                    _max = absMax;
-                if (_max < _min + absMinDist)
+                axisMax = v;
+                if (axisMax > absMax)
+                    axisMax = absMax;
+                if (axisMax < axisMin + absMinDist)
                 {
-                    _min = _max - absMinDist;
-                    if (_min < absMin)
+                    axisMin = axisMax - absMinDist;
+                    if (axisMin < absMin)
                     {
-                        _min = absMin;
-                        _max = absMin + absMinDist;
+                        axisMin = absMin;
+                        axisMax = absMin + absMinDist;
                     }
                 }
             }
             else
             { // Logarithmic Scale
-                _max = v;
-                if (_max > absMax)
-                    _max = absMax;
-                if (_max < _min * logMinDist)
+                axisMax = v;
+                if (axisMax > absMax)
+                    axisMax = absMax;
+                if (axisMax < axisMin * logMinDist)
                 {
-                    _min = _max / logMinDist;
-                    if (_min < logMin)
+                    axisMin = axisMax / logMinDist;
+                    if (axisMin < logMin)
                     {
-                        _min = logMin;
-                        _max = absMin * logMinDist;
+                        axisMin = logMin;
+                        axisMax = absMin * logMinDist;
                     }
                 }
             }
@@ -180,8 +189,8 @@ namespace AudioProcessor
 
         private void setLogScale(Boolean v)
         {
-            _logScale = v;
-            if ((_min < logMin) || (_max < _min * logMinDist))
+            axisLogScale = v;
+            if ((axisMin < logMin) || (axisMax < axisMin * logMinDist))
                 setMin(logMin);
             else
                 reGrid();
@@ -196,7 +205,7 @@ namespace AudioProcessor
             }
         }
 
-        private void addGrid(double val, string lab, Boolean _isMajor)
+        private void addGrid(double val, string lab, bool _isMajor)
         {
             if (gridLength == grid.Length)
             {
@@ -217,9 +226,9 @@ namespace AudioProcessor
 
         public void reScreen(double __low, double __high)
         {
-            if ((_low == __low) && (_high == __high)) return;
-            _low = __low;
-            _high = __high;
+            if ((screenMin == __low) && (screenMax == __high)) return;
+            screenMin = __low;
+            screenMax = __high;
             reGrid();
             for (int i = 0; i < gridLength; i++)
                 grid[i].screen = getInterpolatedPos(grid[i].pos);
@@ -228,11 +237,11 @@ namespace AudioProcessor
 
         public void reStructure(double __min, double __max, double __low, double __high)
         {
-            if ((_low == __low) && (_high == __high) && (_min == __min) && (_max == __max)) return;
-            _low = __low;
-            _high = __high;
-            _min = __min;
-            _max = __max;
+            if ((screenMin == __low) && (screenMax == __high) && (axisMin == __min) && (axisMax == __max)) return;
+            screenMin = __low;
+            screenMax = __high;
+            axisMin = __min;
+            axisMax = __max;
             reGrid();
             for (int i = 0; i < gridLength; i++)
                 grid[i].screen = getInterpolatedPos(grid[i].pos);
@@ -243,17 +252,17 @@ namespace AudioProcessor
 
         private void blockSpace(double screenFrom, double screenTo)
         {
-            if (_high > _low)
+            if (screenMax > screenMin)
             {
-                int si = (int)Math.Floor(screenFrom - _low + 0.5);
-                int sj = (int)Math.Floor(screenTo - _low + 0.5);
+                int si = (int)Math.Floor(screenFrom - screenMin + 0.5);
+                int sj = (int)Math.Floor(screenTo - screenMin + 0.5);
                 for (int i = si; i <= sj; i++)
                     if ((i >= 0) && (i < pxSpace.Length))
                         pxSpace[i] = true;
             } else
             {
-                int si = (int)Math.Floor(screenFrom - _high + 0.5);
-                int sj = (int)Math.Floor(screenTo - _high + 0.5);
+                int si = (int)Math.Floor(screenFrom - screenMax + 0.5);
+                int sj = (int)Math.Floor(screenTo - screenMax + 0.5);
                 for (int i = si; i <= sj; i++)
                     if ((i >= 0) && (i < pxSpace.Length))
                         pxSpace[i] = true;
@@ -262,21 +271,37 @@ namespace AudioProcessor
 
         private bool isFreeSpace(double screenFrom, double screenTo)
         {
-            if (_high > _low)
+            if (screenMax > screenMin)
             {
-                int si = (int)Math.Floor(screenFrom - _low + 0.5);
-                int sj = (int)Math.Floor(screenTo - _low + 0.5);
-                if ((si < 0) || (sj >= pxSpace.Length)) return false;
-                for (int i = si; i <= sj; i++)
-                    if (pxSpace[i]) return false;
+                int si = (int)Math.Floor(screenFrom - screenMin + 0.5);
+                int sj = (int)Math.Floor(screenTo - screenMin + 0.5);
+                if (_showEndLables)
+                {
+                    for (int i = si; i <= sj; i++)
+                        if ((i >= 0) && (i < pxSpace.Length) && pxSpace[i]) return false;
+                }
+                else
+                {
+                    if ((si < 0) || (sj >= pxSpace.Length)) return false;
+                    for (int i = si; i <= sj; i++)
+                        if (pxSpace[i]) return false;
+                }
                 return true;
             } else
             {
-                int si = (int)Math.Floor(screenFrom - _high + 0.5);
-                int sj = (int)Math.Floor(screenTo - _high + 0.5);
-                if ((si < 0) || (sj >= pxSpace.Length)) return false;
-                for (int i = si; i <= sj; i++)
-                    if (pxSpace[i]) return false;
+                int si = (int)Math.Floor(screenFrom - screenMax + 0.5);
+                int sj = (int)Math.Floor(screenTo - screenMax + 0.5);
+                if (_showEndLables)
+                {
+                    for (int i = si; i <= sj; i++)
+                        if ((i >= 0) && (i < pxSpace.Length) && pxSpace[i]) return false;
+                }
+                else
+                {
+                    if ((si < 0) || (sj >= pxSpace.Length)) return false;
+                    for (int i = si; i <= sj; i++)
+                        if (pxSpace[i]) return false;
+                }
                 return true;
             }
         }
@@ -284,13 +309,36 @@ namespace AudioProcessor
         private void reSpace()
         {
             int screenWidth = 0;
-            if (_high > _low)
-                screenWidth = (int)Math.Floor(_high - _low + 0.5);
+            if (screenMax > screenMin)
+                screenWidth = (int)Math.Floor(screenMax - screenMin + 0.5);
             else
-                screenWidth = (int)Math.Floor(_low - _high + 0.5);
+                screenWidth = (int)Math.Floor(screenMin - screenMax + 0.5);
             if ((pxSpace == null) || (pxSpace.Length != screenWidth))
                 pxSpace = new bool[screenWidth];
             Array.Clear(pxSpace,0,pxSpace.Length);
+            for (int i = 0; i < gridLength; i++)
+                grid[i].show = false;
+
+            // End Lables
+            if (_showEndLables && (gridLength >= 2))
+            {
+                double si, sj;
+                si = grid[0].screen - lableWidth / 2;
+                sj = grid[0].screen + lableWidth / 2;
+                if (isFreeSpace(si,sj))
+                {
+                    grid[0].show = true;
+                    blockSpace(si, sj);
+                }
+                si = grid[gridLength-1].screen - lableWidth / 2;
+                sj = grid[gridLength-1].screen + lableWidth / 2;
+                if (isFreeSpace(si, sj))
+                {
+                    grid[gridLength-1].show = true;
+                    blockSpace(si, sj);
+                }
+            }
+
             // round 1: Major Ticks only
             for (int i = 0; i < gridLength; i++)
             {
@@ -300,9 +348,9 @@ namespace AudioProcessor
                 {
                     grid[i].show = true;
                     blockSpace(si, sj);
-                } else
-                    grid[i].show = false;
+                }
             }
+
             // round 2: Minor Ticks
             for (int i=0;i<gridLength;i++)
             {
@@ -362,17 +410,17 @@ namespace AudioProcessor
 
         private void addLinearGrid()
         {
-            double diff = _max - _min;
+            double diff = axisMax - axisMin;
             int resn = (int)Math.Floor(Math.Log10(diff) + 0.5);
             double majstep = Math.Pow(10.0, resn);
-            double start = Math.Floor(_min / majstep) * majstep;
-            double stop = Math.Ceiling(_max / majstep) * majstep;
+            double start = Math.Floor(axisMin / majstep) * majstep;
+            double stop = Math.Ceiling(axisMax / majstep) * majstep;
             double val = start;
             int stepctr = 0;
             resetGrid();
             while (val <= stop)
             {
-                if ((val >= _min) && (val <= _max))
+                if ((val >= axisMin) && (val <= axisMax))
                     addGrid(val, formatENG(val), (stepctr == 0));
                 val += majstep / 10.0;
                 stepctr++;
@@ -382,12 +430,12 @@ namespace AudioProcessor
 
         private void addLogarithmicGrid()
         {
-            if ((_min <= 0) || (_max <= 0) || (_min >= _max)) {
-                _min = 0.001;
-                _max = 1;
+            if ((axisMin <= 0) || (axisMax <= 0) || (axisMin >= axisMax)) {
+                axisMin = 0.001;
+                axisMax = 1;
             }
-            int logStart = (int)Math.Floor(Math.Log10(_min));
-            int logStop = (int)Math.Ceiling(Math.Log10(_max));
+            int logStart = (int)Math.Floor(Math.Log10(axisMin));
+            int logStop = (int)Math.Ceiling(Math.Log10(axisMax));
             int instep = 0;
             if (logStop - logStart <= 2)
                 instep = 1;
@@ -399,7 +447,7 @@ namespace AudioProcessor
                 if (instep == 0)
                 { // Only Major Grid
                     double gv = Math.Pow(10.0, i);
-                    if ((gv >= _min) && (gv <= _max))
+                    if ((gv >= axisMin) && (gv <= axisMax))
                         addGrid(gv, formatENG(gv), (i % 3) == 0);
                 }
                 else if (instep == 1)
@@ -407,19 +455,19 @@ namespace AudioProcessor
                     for (int j = 1; j < 10; j++)
                     {
                         double gv = Math.Pow(10.0, i) * (double)j;
-                        if ((gv >= _min) && (gv <= _max))
+                        if ((gv >= axisMin) && (gv <= axisMax))
                             addGrid(gv, formatENG(gv), (j == 1));
                     }
                 } else
                 { // 1 2 5 grid
                     double gv = Math.Pow(10.0, i);
-                    if ((gv >= _min) && (gv <= _max))
+                    if ((gv >= axisMin) && (gv <= axisMax))
                         addGrid(gv, formatENG(gv), true);
                     gv = Math.Pow(10.0, i) * 2.0;
-                    if ((gv >= _min) && (gv <= _max))
+                    if ((gv >= axisMin) && (gv <= axisMax))
                         addGrid(gv, formatENG(gv), false);
                     gv = Math.Pow(10.0, i) * 5.0;
-                    if ((gv >= _min) && (gv <= _max))
+                    if ((gv >= axisMin) && (gv <= axisMax))
                         addGrid(gv, formatENG(gv), false);
                 }
             }
@@ -429,9 +477,9 @@ namespace AudioProcessor
         {
             if (omitReCalc) return;
 
-            if (_logScale)
+            if (axisLogScale)
             {
-                double ratio = _max / _min;
+                double ratio = axisMax / axisMin;
                 if (ratio < 10)
                     addLinearGrid();
                 else
@@ -463,32 +511,32 @@ namespace AudioProcessor
         { // from data space to screen
             if (logScale)
             {
-                if (data <= _min/2) data = _min/2;
-                if (data >= _max*2) data = _max*2;
-                return _low + Math.Log(data / _min) / Math.Log(_max / _min) * (_high - _low);
+                if (data <= axisMin/2) data = axisMin/2;
+                if (data >= axisMax*2) data = axisMax*2;
+                return screenMin + Math.Log(data / axisMin) / Math.Log(axisMax / axisMin) * (screenMax - screenMin);
             }
             else
-                return _low + (data - _min) / (_max - _min) * (_high - _low);
+                return screenMin + (data - axisMin) / (axisMax - axisMin) * (screenMax - screenMin);
         }
 
         public double getAbsolutePos(double screen)
         { // From screen to data space
             if (logScale)
-                return Math.Exp((screen - _low) / (_high - _low) * Math.Log(_max / _min)) * _min;
+                return Math.Exp((screen - screenMin) / (screenMax - screenMin) * Math.Log(axisMax / axisMin)) * axisMin;
             else
-                return (screen - _low) / (_high - _low) * (_max - _min) + _min;
+                return (screen - screenMin) / (screenMax - screenMin) * (axisMax - axisMin) + axisMin;
         }
 
         public double getRelativePos(double data)
         { // From data to relative (0..1)
             if (logScale)
             {
-                if (data < _min / 2) data = _min / 2;
-                if (data > _max * 2) data = _max * 2;
-                return Math.Log(data / _min) / Math.Log(_max / _min);
+                if (data < axisMin / 2) data = axisMin / 2;
+                if (data > axisMax * 2) data = axisMax * 2;
+                return Math.Log(data / axisMin) / Math.Log(axisMax / axisMin);
             }
             else
-                return (data- _min) / (_max - _min);
+                return (data- axisMin) / (axisMax - axisMin);
         }
 
         public void newRange(double newMin, double newMax)
@@ -518,8 +566,8 @@ namespace AudioProcessor
                             newMin = newMax - absMinDist;
                     }
                 }
-                _min = newMin;
-                _max = newMax;
+                axisMin = newMin;
+                axisMax = newMax;
                 reGrid();
             }
             else
@@ -542,8 +590,8 @@ namespace AudioProcessor
                             newMin = newMax / logMinDist;
                     }
                 }
-                _min = newMin;
-                _max = newMax;
+                axisMin = newMin;
+                axisMax = newMax;
                 reGrid();
             }
         }

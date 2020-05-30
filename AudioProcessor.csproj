@@ -131,6 +131,9 @@
     <Compile Include="DataProcessing\DataDeMux.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Processing\CrossMix.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Processing\Echo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -163,6 +166,9 @@
     </Compile>
     <Compile Include="Processing\Constant.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RTElements\RTSlider.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="SignalBuffer.cs" />
     <Compile Include="DrawColor.cs" />
@@ -467,6 +473,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DataProcessing\DataDeMux.resx">
       <DependentUpon>DataDeMux.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Processing\CrossMix.resx">
+      <DependentUpon>CrossMix.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Processing\Echo.resx">
       <DependentUpon>Echo.cs</DependentUpon>

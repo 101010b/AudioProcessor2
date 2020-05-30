@@ -13,7 +13,6 @@ namespace AudioProcessor.Processing
         {
             this.ioO1 = new AudioProcessor.RTIO();
             this.ioI1 = new AudioProcessor.RTIO();
-            this.dl50 = new AudioProcessor.RTDial();
             this.ioO2 = new AudioProcessor.RTIO();
             this.ioI2 = new AudioProcessor.RTIO();
             this.ioO3 = new AudioProcessor.RTIO();
@@ -28,11 +27,12 @@ namespace AudioProcessor.Processing
             this.ioI7 = new AudioProcessor.RTIO();
             this.ioO8 = new AudioProcessor.RTIO();
             this.ioI8 = new AudioProcessor.RTIO();
-            this.dl150 = new AudioProcessor.RTDial();
-            this.dl500 = new AudioProcessor.RTDial();
-            this.dl1k5 = new AudioProcessor.RTDial();
-            this.dl5k = new AudioProcessor.RTDial();
-            this.dl15k = new AudioProcessor.RTDial();
+            this.dl50 = new AudioProcessor.RTSlider();
+            this.dl150 = new AudioProcessor.RTSlider();
+            this.dl500 = new AudioProcessor.RTSlider();
+            this.dl1k5 = new AudioProcessor.RTSlider();
+            this.dl5k = new AudioProcessor.RTSlider();
+            this.dl15k = new AudioProcessor.RTSlider();
             this.SuspendLayout();
             // 
             // ioO1
@@ -44,7 +44,7 @@ namespace AudioProcessor.Processing
             this.ioO1.hideOnShrink = false;
             this.ioO1.highlighted = false;
             this.ioO1.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
-            this.ioO1.Location = new System.Drawing.Point(564, 22);
+            this.ioO1.Location = new System.Drawing.Point(459, 22);
             this.ioO1.Name = "ioO1";
             this.ioO1.orientation = AudioProcessor.RTIO.RTOrientation.East;
             this.ioO1.showTitle = true;
@@ -74,33 +74,6 @@ namespace AudioProcessor.Processing
             this.ioI1.titleColor = System.Drawing.Color.DimGray;
             this.ioI1.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             // 
-            // dl50
-            // 
-            this.dl50.dialColor = System.Drawing.Color.Silver;
-            this.dl50.dialDiameter = 50D;
-            this.dl50.dialMarkColor = System.Drawing.Color.Red;
-            this.dl50.format = "F1";
-            this.dl50.hideOnShrink = true;
-            this.dl50.Location = new System.Drawing.Point(44, 16);
-            this.dl50.logScale = false;
-            this.dl50.maxVal = 100D;
-            this.dl50.minVal = -100D;
-            this.dl50.Name = "dl50";
-            this.dl50.scaleColor = System.Drawing.Color.Gold;
-            this.dl50.showScale = true;
-            this.dl50.showTitle = true;
-            this.dl50.showValue = true;
-            this.dl50.Size = new System.Drawing.Size(80, 80);
-            this.dl50.TabIndex = 15;
-            this.dl50.Text = "rtDial1";
-            this.dl50.title = "50 Hz";
-            this.dl50.titleColor = System.Drawing.Color.DimGray;
-            this.dl50.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.dl50.unit = "dB";
-            this.dl50.val = 0D;
-            this.dl50.valueColor = System.Drawing.Color.DimGray;
-            this.dl50.valueFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            // 
             // ioO2
             // 
             this.ioO2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -110,7 +83,7 @@ namespace AudioProcessor.Processing
             this.ioO2.hideOnShrink = false;
             this.ioO2.highlighted = false;
             this.ioO2.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
-            this.ioO2.Location = new System.Drawing.Point(564, 48);
+            this.ioO2.Location = new System.Drawing.Point(459, 48);
             this.ioO2.Name = "ioO2";
             this.ioO2.orientation = AudioProcessor.RTIO.RTOrientation.East;
             this.ioO2.showTitle = true;
@@ -149,7 +122,7 @@ namespace AudioProcessor.Processing
             this.ioO3.hideOnShrink = false;
             this.ioO3.highlighted = false;
             this.ioO3.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
-            this.ioO3.Location = new System.Drawing.Point(564, 74);
+            this.ioO3.Location = new System.Drawing.Point(459, 74);
             this.ioO3.Name = "ioO3";
             this.ioO3.orientation = AudioProcessor.RTIO.RTOrientation.East;
             this.ioO3.showTitle = true;
@@ -188,7 +161,7 @@ namespace AudioProcessor.Processing
             this.ioO4.hideOnShrink = false;
             this.ioO4.highlighted = false;
             this.ioO4.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
-            this.ioO4.Location = new System.Drawing.Point(564, 100);
+            this.ioO4.Location = new System.Drawing.Point(459, 100);
             this.ioO4.Name = "ioO4";
             this.ioO4.orientation = AudioProcessor.RTIO.RTOrientation.East;
             this.ioO4.showTitle = true;
@@ -227,7 +200,7 @@ namespace AudioProcessor.Processing
             this.ioO5.hideOnShrink = false;
             this.ioO5.highlighted = false;
             this.ioO5.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
-            this.ioO5.Location = new System.Drawing.Point(564, 126);
+            this.ioO5.Location = new System.Drawing.Point(459, 126);
             this.ioO5.Name = "ioO5";
             this.ioO5.orientation = AudioProcessor.RTIO.RTOrientation.East;
             this.ioO5.showTitle = true;
@@ -266,7 +239,7 @@ namespace AudioProcessor.Processing
             this.ioO6.hideOnShrink = false;
             this.ioO6.highlighted = false;
             this.ioO6.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
-            this.ioO6.Location = new System.Drawing.Point(564, 152);
+            this.ioO6.Location = new System.Drawing.Point(459, 152);
             this.ioO6.Name = "ioO6";
             this.ioO6.orientation = AudioProcessor.RTIO.RTOrientation.East;
             this.ioO6.showTitle = true;
@@ -305,7 +278,7 @@ namespace AudioProcessor.Processing
             this.ioO7.hideOnShrink = false;
             this.ioO7.highlighted = false;
             this.ioO7.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
-            this.ioO7.Location = new System.Drawing.Point(564, 178);
+            this.ioO7.Location = new System.Drawing.Point(459, 178);
             this.ioO7.Name = "ioO7";
             this.ioO7.orientation = AudioProcessor.RTIO.RTOrientation.East;
             this.ioO7.showTitle = true;
@@ -344,7 +317,7 @@ namespace AudioProcessor.Processing
             this.ioO8.hideOnShrink = false;
             this.ioO8.highlighted = false;
             this.ioO8.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalOutput;
-            this.ioO8.Location = new System.Drawing.Point(564, 204);
+            this.ioO8.Location = new System.Drawing.Point(459, 204);
             this.ioO8.Name = "ioO8";
             this.ioO8.orientation = AudioProcessor.RTIO.RTOrientation.East;
             this.ioO8.showTitle = true;
@@ -374,25 +347,70 @@ namespace AudioProcessor.Processing
             this.ioI8.titleColor = System.Drawing.Color.DimGray;
             this.ioI8.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             // 
+            // dl50
+            // 
+            this.dl50.format = "F1";
+            this.dl50.hideOnShrink = true;
+            this.dl50.lableLength = 3D;
+            this.dl50.Location = new System.Drawing.Point(43, 20);
+            this.dl50.logScale = false;
+            this.dl50.maxVal = 20D;
+            this.dl50.minVal = -20D;
+            this.dl50.Name = "dl50";
+            this.dl50.scaleColor = System.Drawing.Color.DimGray;
+            this.dl50.scaleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.dl50.scaleValueColor = System.Drawing.Color.DimGray;
+            this.dl50.showScale = false;
+            this.dl50.showScaleValues = false;
+            this.dl50.showTitle = true;
+            this.dl50.showValue = true;
+            this.dl50.Size = new System.Drawing.Size(64, 100);
+            this.dl50.slideColor = System.Drawing.Color.Silver;
+            this.dl50.slideDirection = AudioProcessor.RTSlider.SlideDirection.Vertical;
+            this.dl50.slideKnob = 20D;
+            this.dl50.slideMarkColor = System.Drawing.Color.Red;
+            this.dl50.slideMarkFill = System.Drawing.Color.DarkRed;
+            this.dl50.slideScaleDist = 20D;
+            this.dl50.slideScaleWidth = 10D;
+            this.dl50.slideWidth = 5D;
+            this.dl50.TabIndex = 42;
+            this.dl50.Text = "rtSlider1";
+            this.dl50.title = "50 Hz";
+            this.dl50.titleColor = System.Drawing.Color.DimGray;
+            this.dl50.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.dl50.unit = "dB";
+            this.dl50.val = 0D;
+            this.dl50.valueColor = System.Drawing.Color.DimGray;
+            this.dl50.valueFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            // 
             // dl150
             // 
-            this.dl150.dialColor = System.Drawing.Color.Silver;
-            this.dl150.dialDiameter = 50D;
-            this.dl150.dialMarkColor = System.Drawing.Color.Red;
             this.dl150.format = "F1";
             this.dl150.hideOnShrink = true;
-            this.dl150.Location = new System.Drawing.Point(130, 16);
+            this.dl150.lableLength = 3D;
+            this.dl150.Location = new System.Drawing.Point(112, 20);
             this.dl150.logScale = false;
-            this.dl150.maxVal = 100D;
-            this.dl150.minVal = -100D;
+            this.dl150.maxVal = 20D;
+            this.dl150.minVal = -20D;
             this.dl150.Name = "dl150";
-            this.dl150.scaleColor = System.Drawing.Color.Gold;
-            this.dl150.showScale = true;
+            this.dl150.scaleColor = System.Drawing.Color.DimGray;
+            this.dl150.scaleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.dl150.scaleValueColor = System.Drawing.Color.DimGray;
+            this.dl150.showScale = false;
+            this.dl150.showScaleValues = false;
             this.dl150.showTitle = true;
             this.dl150.showValue = true;
-            this.dl150.Size = new System.Drawing.Size(80, 80);
-            this.dl150.TabIndex = 37;
-            this.dl150.Text = "rtDial1";
+            this.dl150.Size = new System.Drawing.Size(64, 100);
+            this.dl150.slideColor = System.Drawing.Color.Silver;
+            this.dl150.slideDirection = AudioProcessor.RTSlider.SlideDirection.Vertical;
+            this.dl150.slideKnob = 20D;
+            this.dl150.slideMarkColor = System.Drawing.Color.Red;
+            this.dl150.slideMarkFill = System.Drawing.Color.DarkRed;
+            this.dl150.slideScaleDist = 20D;
+            this.dl150.slideScaleWidth = 10D;
+            this.dl150.slideWidth = 5D;
+            this.dl150.TabIndex = 43;
+            this.dl150.Text = "rtSlider2";
             this.dl150.title = "150 Hz";
             this.dl150.titleColor = System.Drawing.Color.DimGray;
             this.dl150.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
@@ -403,23 +421,32 @@ namespace AudioProcessor.Processing
             // 
             // dl500
             // 
-            this.dl500.dialColor = System.Drawing.Color.Silver;
-            this.dl500.dialDiameter = 50D;
-            this.dl500.dialMarkColor = System.Drawing.Color.Red;
             this.dl500.format = "F1";
             this.dl500.hideOnShrink = true;
-            this.dl500.Location = new System.Drawing.Point(216, 16);
+            this.dl500.lableLength = 3D;
+            this.dl500.Location = new System.Drawing.Point(181, 20);
             this.dl500.logScale = false;
-            this.dl500.maxVal = 100D;
-            this.dl500.minVal = -100D;
+            this.dl500.maxVal = 20D;
+            this.dl500.minVal = -20D;
             this.dl500.Name = "dl500";
-            this.dl500.scaleColor = System.Drawing.Color.Gold;
-            this.dl500.showScale = true;
+            this.dl500.scaleColor = System.Drawing.Color.DimGray;
+            this.dl500.scaleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.dl500.scaleValueColor = System.Drawing.Color.DimGray;
+            this.dl500.showScale = false;
+            this.dl500.showScaleValues = false;
             this.dl500.showTitle = true;
             this.dl500.showValue = true;
-            this.dl500.Size = new System.Drawing.Size(80, 80);
-            this.dl500.TabIndex = 38;
-            this.dl500.Text = "rtDial1";
+            this.dl500.Size = new System.Drawing.Size(64, 100);
+            this.dl500.slideColor = System.Drawing.Color.Silver;
+            this.dl500.slideDirection = AudioProcessor.RTSlider.SlideDirection.Vertical;
+            this.dl500.slideKnob = 20D;
+            this.dl500.slideMarkColor = System.Drawing.Color.Red;
+            this.dl500.slideMarkFill = System.Drawing.Color.DarkRed;
+            this.dl500.slideScaleDist = 20D;
+            this.dl500.slideScaleWidth = 10D;
+            this.dl500.slideWidth = 5D;
+            this.dl500.TabIndex = 44;
+            this.dl500.Text = "rtSlider3";
             this.dl500.title = "500 Hz";
             this.dl500.titleColor = System.Drawing.Color.DimGray;
             this.dl500.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
@@ -430,23 +457,32 @@ namespace AudioProcessor.Processing
             // 
             // dl1k5
             // 
-            this.dl1k5.dialColor = System.Drawing.Color.Silver;
-            this.dl1k5.dialDiameter = 50D;
-            this.dl1k5.dialMarkColor = System.Drawing.Color.Red;
             this.dl1k5.format = "F1";
             this.dl1k5.hideOnShrink = true;
-            this.dl1k5.Location = new System.Drawing.Point(302, 16);
+            this.dl1k5.lableLength = 3D;
+            this.dl1k5.Location = new System.Drawing.Point(250, 20);
             this.dl1k5.logScale = false;
-            this.dl1k5.maxVal = 100D;
-            this.dl1k5.minVal = -100D;
+            this.dl1k5.maxVal = 20D;
+            this.dl1k5.minVal = -20D;
             this.dl1k5.Name = "dl1k5";
-            this.dl1k5.scaleColor = System.Drawing.Color.Gold;
-            this.dl1k5.showScale = true;
+            this.dl1k5.scaleColor = System.Drawing.Color.DimGray;
+            this.dl1k5.scaleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.dl1k5.scaleValueColor = System.Drawing.Color.DimGray;
+            this.dl1k5.showScale = false;
+            this.dl1k5.showScaleValues = false;
             this.dl1k5.showTitle = true;
             this.dl1k5.showValue = true;
-            this.dl1k5.Size = new System.Drawing.Size(80, 80);
-            this.dl1k5.TabIndex = 39;
-            this.dl1k5.Text = "rtDial1";
+            this.dl1k5.Size = new System.Drawing.Size(64, 100);
+            this.dl1k5.slideColor = System.Drawing.Color.Silver;
+            this.dl1k5.slideDirection = AudioProcessor.RTSlider.SlideDirection.Vertical;
+            this.dl1k5.slideKnob = 20D;
+            this.dl1k5.slideMarkColor = System.Drawing.Color.Red;
+            this.dl1k5.slideMarkFill = System.Drawing.Color.DarkRed;
+            this.dl1k5.slideScaleDist = 20D;
+            this.dl1k5.slideScaleWidth = 10D;
+            this.dl1k5.slideWidth = 5D;
+            this.dl1k5.TabIndex = 45;
+            this.dl1k5.Text = "rtSlider4";
             this.dl1k5.title = "1.5 kHz";
             this.dl1k5.titleColor = System.Drawing.Color.DimGray;
             this.dl1k5.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
@@ -457,23 +493,32 @@ namespace AudioProcessor.Processing
             // 
             // dl5k
             // 
-            this.dl5k.dialColor = System.Drawing.Color.Silver;
-            this.dl5k.dialDiameter = 50D;
-            this.dl5k.dialMarkColor = System.Drawing.Color.Red;
             this.dl5k.format = "F1";
             this.dl5k.hideOnShrink = true;
-            this.dl5k.Location = new System.Drawing.Point(388, 16);
+            this.dl5k.lableLength = 3D;
+            this.dl5k.Location = new System.Drawing.Point(319, 20);
             this.dl5k.logScale = false;
-            this.dl5k.maxVal = 100D;
-            this.dl5k.minVal = -100D;
+            this.dl5k.maxVal = 20D;
+            this.dl5k.minVal = -20D;
             this.dl5k.Name = "dl5k";
-            this.dl5k.scaleColor = System.Drawing.Color.Gold;
-            this.dl5k.showScale = true;
+            this.dl5k.scaleColor = System.Drawing.Color.DimGray;
+            this.dl5k.scaleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.dl5k.scaleValueColor = System.Drawing.Color.DimGray;
+            this.dl5k.showScale = false;
+            this.dl5k.showScaleValues = false;
             this.dl5k.showTitle = true;
             this.dl5k.showValue = true;
-            this.dl5k.Size = new System.Drawing.Size(80, 80);
-            this.dl5k.TabIndex = 40;
-            this.dl5k.Text = "rtDial1";
+            this.dl5k.Size = new System.Drawing.Size(64, 100);
+            this.dl5k.slideColor = System.Drawing.Color.Silver;
+            this.dl5k.slideDirection = AudioProcessor.RTSlider.SlideDirection.Vertical;
+            this.dl5k.slideKnob = 20D;
+            this.dl5k.slideMarkColor = System.Drawing.Color.Red;
+            this.dl5k.slideMarkFill = System.Drawing.Color.DarkRed;
+            this.dl5k.slideScaleDist = 20D;
+            this.dl5k.slideScaleWidth = 10D;
+            this.dl5k.slideWidth = 5D;
+            this.dl5k.TabIndex = 46;
+            this.dl5k.Text = "rtSlider5";
             this.dl5k.title = "5 kHz";
             this.dl5k.titleColor = System.Drawing.Color.DimGray;
             this.dl5k.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
@@ -484,23 +529,32 @@ namespace AudioProcessor.Processing
             // 
             // dl15k
             // 
-            this.dl15k.dialColor = System.Drawing.Color.Silver;
-            this.dl15k.dialDiameter = 50D;
-            this.dl15k.dialMarkColor = System.Drawing.Color.Red;
             this.dl15k.format = "F1";
             this.dl15k.hideOnShrink = true;
-            this.dl15k.Location = new System.Drawing.Point(474, 16);
+            this.dl15k.lableLength = 3D;
+            this.dl15k.Location = new System.Drawing.Point(388, 20);
             this.dl15k.logScale = false;
-            this.dl15k.maxVal = 100D;
-            this.dl15k.minVal = -100D;
+            this.dl15k.maxVal = 20D;
+            this.dl15k.minVal = -20D;
             this.dl15k.Name = "dl15k";
-            this.dl15k.scaleColor = System.Drawing.Color.Gold;
-            this.dl15k.showScale = true;
+            this.dl15k.scaleColor = System.Drawing.Color.DimGray;
+            this.dl15k.scaleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.dl15k.scaleValueColor = System.Drawing.Color.DimGray;
+            this.dl15k.showScale = false;
+            this.dl15k.showScaleValues = false;
             this.dl15k.showTitle = true;
             this.dl15k.showValue = true;
-            this.dl15k.Size = new System.Drawing.Size(80, 80);
-            this.dl15k.TabIndex = 41;
-            this.dl15k.Text = "rtDial1";
+            this.dl15k.Size = new System.Drawing.Size(64, 100);
+            this.dl15k.slideColor = System.Drawing.Color.Silver;
+            this.dl15k.slideDirection = AudioProcessor.RTSlider.SlideDirection.Vertical;
+            this.dl15k.slideKnob = 20D;
+            this.dl15k.slideMarkColor = System.Drawing.Color.Red;
+            this.dl15k.slideMarkFill = System.Drawing.Color.DarkRed;
+            this.dl15k.slideScaleDist = 20D;
+            this.dl15k.slideScaleWidth = 10D;
+            this.dl15k.slideWidth = 5D;
+            this.dl15k.TabIndex = 47;
+            this.dl15k.Text = "rtSlider6";
             this.dl15k.title = "15 kHz";
             this.dl15k.titleColor = System.Drawing.Color.DimGray;
             this.dl15k.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
@@ -516,6 +570,7 @@ namespace AudioProcessor.Processing
             this.Controls.Add(this.dl1k5);
             this.Controls.Add(this.dl500);
             this.Controls.Add(this.dl150);
+            this.Controls.Add(this.dl50);
             this.Controls.Add(this.ioO8);
             this.Controls.Add(this.ioI8);
             this.Controls.Add(this.ioO7);
@@ -530,13 +585,12 @@ namespace AudioProcessor.Processing
             this.Controls.Add(this.ioI3);
             this.Controls.Add(this.ioO2);
             this.Controls.Add(this.ioI2);
-            this.Controls.Add(this.dl50);
             this.Controls.Add(this.ioO1);
             this.Controls.Add(this.ioI1);
             this.Name = "Equalizer";
             this.shrinkSize = new System.Drawing.Size(84, 230);
             this.shrinkTitle = "Eq";
-            this.Size = new System.Drawing.Size(598, 230);
+            this.Size = new System.Drawing.Size(493, 230);
             this.title = "Equalizer";
             this.ResumeLayout(false);
 
@@ -549,7 +603,6 @@ namespace AudioProcessor.Processing
 
         private RTIO ioO1;
         private RTIO ioI1;
-        private RTDial dl50;
         private RTIO ioO2;
         private RTIO ioI2;
         private RTIO ioO3;
@@ -563,12 +616,13 @@ namespace AudioProcessor.Processing
         private RTIO ioO7;
         private RTIO ioI7;
         private RTIO ioO8;
+        private RTSlider dl50;
+        private RTSlider dl150;
+        private RTSlider dl500;
+        private RTSlider dl1k5;
+        private RTSlider dl5k;
+        private RTSlider dl15k;
         private RTIO ioI8;
-        private RTDial dl150;
-        private RTDial dl500;
-        private RTDial dl1k5;
-        private RTDial dl5k;
-        private RTDial dl15k;
 
         private void init()
         {
@@ -580,9 +634,9 @@ namespace AudioProcessor.Processing
             if (inputs < 7) { ioI7.Hide(); ioO7.Hide(); h = ioO7.Location.Y; hh = ioO7.Location.Y; }
             if (inputs < 6) { ioI6.Hide(); ioO6.Hide(); h = ioO6.Location.Y; hh = ioO6.Location.Y; }
             if (inputs < 5) { ioI5.Hide(); ioO5.Hide(); h = ioO5.Location.Y; hh = ioO5.Location.Y; }
-            if (inputs < 4) { ioI4.Hide(); ioO4.Hide(); h = ioO4.Location.Y; hh = ioO4.Location.Y; }
-            if (inputs < 3) { ioI3.Hide(); ioO3.Hide(); h = ioO4.Location.Y; hh = ioO3.Location.Y; }
-            if (inputs < 2) { ioI2.Hide(); ioO2.Hide(); h = ioO4.Location.Y; hh = ioO2.Location.Y; }
+            if (inputs < 4) { ioI4.Hide(); ioO4.Hide(); h = ioO5.Location.Y; hh = ioO4.Location.Y; }
+            if (inputs < 3) { ioI3.Hide(); ioO3.Hide(); h = ioO5.Location.Y; hh = ioO3.Location.Y; }
+            if (inputs < 2) { ioI2.Hide(); ioO2.Hide(); h = ioO5.Location.Y; hh = ioO2.Location.Y; }
             Height = h;
             shrinkSize = new System.Drawing.Size(shrinkSize.Width, hh);
 

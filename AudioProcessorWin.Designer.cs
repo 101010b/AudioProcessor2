@@ -48,7 +48,6 @@
             this.audioProcessorToolBar = new System.Windows.Forms.ToolStrip();
             this.tsOpen = new System.Windows.Forms.ToolStripButton();
             this.tsSave = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.audioProcessorTSInput = new System.Windows.Forms.ToolStripMenuItem();
@@ -215,7 +214,6 @@
             this.audioProcessorToolBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsOpen,
             this.tsSave,
-            this.toolStripSeparator2,
             this.tsDelete,
             this.toolStripSeparator3,
             this.audioProcessorTSInput,
@@ -251,11 +249,6 @@
             this.tsSave.Name = "tsSave";
             this.tsSave.Size = new System.Drawing.Size(24, 24);
             this.tsSave.Text = "Save";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
             // 
             // tsDelete
             // 
@@ -413,7 +406,6 @@
         private System.Windows.Forms.ToolStrip audioProcessorToolBar;
         private System.Windows.Forms.ToolStripButton tsOpen;
         private System.Windows.Forms.ToolStripButton tsSave;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton tsDelete;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem audioProcessorTSInput;
