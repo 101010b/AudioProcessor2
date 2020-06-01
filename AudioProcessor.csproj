@@ -92,6 +92,9 @@
     <Compile Include="ColorTable.cs" />
     <Compile Include="Complex.cs" />
     <Compile Include="DataBuffer.cs" />
+    <Compile Include="DataProcessing\DataFFT.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="DataProcessing\DataMerge.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -168,6 +171,9 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="RTElements\RTSlider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RTElements\RTXY.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="SignalBuffer.cs" />
@@ -328,6 +334,12 @@
     <Compile Include="SinkSource\LinePlotterWin.Designer.cs">
       <DependentUpon>LinePlotterWin.cs</DependentUpon>
     </Compile>
+    <Compile Include="SinkSource\MiniOsci.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SinkSource\MiniXY.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="SinkSource\OsciFIFO.cs" />
     <Compile Include="SinkSource\Oscilloscope.cs">
       <SubType>UserControl</SubType>
@@ -440,6 +452,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AudioProcessorWin.resx">
       <DependentUpon>AudioProcessorWin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataProcessing\DataFFT.resx">
+      <DependentUpon>DataFFT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DataProcessing\DataFileWriter.resx">
       <DependentUpon>DataFileWriter.cs</DependentUpon>
@@ -596,6 +611,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SinkSource\LinePlotterWin.resx">
       <DependentUpon>LinePlotterWin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SinkSource\MiniOsci.resx">
+      <DependentUpon>MiniOsci.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SinkSource\MiniXY.resx">
+      <DependentUpon>MiniXY.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SinkSource\Oscilloscope.resx">
       <DependentUpon>Oscilloscope.cs</DependentUpon>

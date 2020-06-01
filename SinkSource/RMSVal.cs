@@ -36,17 +36,20 @@ namespace AudioProcessor.SinkSource
             // 
             this.io1.contactBackColor = System.Drawing.Color.Black;
             this.io1.contactColor = System.Drawing.Color.DimGray;
+            this.io1.contactHighlightColor = System.Drawing.Color.Red;
+            this.io1.hideOnShrink = false;
+            this.io1.highlighted = false;
+            this.io1.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             this.io1.Location = new System.Drawing.Point(0, 30);
             this.io1.Name = "io1";
             this.io1.orientation = AudioProcessor.RTIO.RTOrientation.West;
             this.io1.showTitle = true;
-            this.io1.Size = new System.Drawing.Size(50, 20);
+            this.io1.Size = new System.Drawing.Size(34, 20);
             this.io1.TabIndex = 0;
             this.io1.Text = "rtio1";
             this.io1.title = "1";
             this.io1.titleColor = System.Drawing.Color.DimGray;
             this.io1.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io1.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // lv1
             // 
@@ -54,8 +57,9 @@ namespace AudioProcessor.SinkSource
             this.lv1.fillColor = System.Drawing.Color.LimeGreen;
             this.lv1.format = "F1";
             this.lv1.frameColor = System.Drawing.Color.DimGray;
+            this.lv1.hideOnShrink = false;
             this.lv1.levelType = AudioProcessor.RTLevel.RTLevelType.LinearH;
-            this.lv1.Location = new System.Drawing.Point(56, 30);
+            this.lv1.Location = new System.Drawing.Point(40, 30);
             this.lv1.logScale = false;
             this.lv1.max = 20D;
             this.lv1.min = -120D;
@@ -81,7 +85,8 @@ namespace AudioProcessor.SinkSource
             this.dlItime.dialDiameter = 50D;
             this.dlItime.dialMarkColor = System.Drawing.Color.Red;
             this.dlItime.format = "F3";
-            this.dlItime.Location = new System.Drawing.Point(289, 11);
+            this.dlItime.hideOnShrink = true;
+            this.dlItime.Location = new System.Drawing.Point(271, 23);
             this.dlItime.logScale = true;
             this.dlItime.maxVal = 1D;
             this.dlItime.minVal = 0.001D;
@@ -90,7 +95,7 @@ namespace AudioProcessor.SinkSource
             this.dlItime.showScale = true;
             this.dlItime.showTitle = true;
             this.dlItime.showValue = true;
-            this.dlItime.Size = new System.Drawing.Size(90, 100);
+            this.dlItime.Size = new System.Drawing.Size(80, 80);
             this.dlItime.TabIndex = 2;
             this.dlItime.Text = "rtDial1";
             this.dlItime.title = "Integration";
@@ -111,7 +116,8 @@ namespace AudioProcessor.SinkSource
             this.bnAC.frameHoldColor = System.Drawing.Color.Yellow;
             this.bnAC.frameOffColor = System.Drawing.Color.DimGray;
             this.bnAC.frameOnColor = System.Drawing.Color.Red;
-            this.bnAC.Location = new System.Drawing.Point(317, 115);
+            this.bnAC.hideOnShrink = true;
+            this.bnAC.Location = new System.Drawing.Point(296, 109);
             this.bnAC.Name = "bnAC";
             this.bnAC.offText = "DC";
             this.bnAC.onText = "AC";
@@ -132,8 +138,9 @@ namespace AudioProcessor.SinkSource
             this.lv2.fillColor = System.Drawing.Color.LimeGreen;
             this.lv2.format = "F1";
             this.lv2.frameColor = System.Drawing.Color.DimGray;
+            this.lv2.hideOnShrink = false;
             this.lv2.levelType = AudioProcessor.RTLevel.RTLevelType.LinearH;
-            this.lv2.Location = new System.Drawing.Point(56, 56);
+            this.lv2.Location = new System.Drawing.Point(40, 56);
             this.lv2.logScale = false;
             this.lv2.max = 20D;
             this.lv2.min = -120D;
@@ -157,17 +164,20 @@ namespace AudioProcessor.SinkSource
             // 
             this.io2.contactBackColor = System.Drawing.Color.Black;
             this.io2.contactColor = System.Drawing.Color.DimGray;
+            this.io2.contactHighlightColor = System.Drawing.Color.Red;
+            this.io2.hideOnShrink = false;
+            this.io2.highlighted = false;
+            this.io2.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             this.io2.Location = new System.Drawing.Point(0, 56);
             this.io2.Name = "io2";
             this.io2.orientation = AudioProcessor.RTIO.RTOrientation.West;
             this.io2.showTitle = true;
-            this.io2.Size = new System.Drawing.Size(50, 20);
+            this.io2.Size = new System.Drawing.Size(34, 20);
             this.io2.TabIndex = 13;
             this.io2.Text = "rtio2";
             this.io2.title = "2";
             this.io2.titleColor = System.Drawing.Color.DimGray;
             this.io2.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io2.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // lv3
             // 
@@ -175,8 +185,9 @@ namespace AudioProcessor.SinkSource
             this.lv3.fillColor = System.Drawing.Color.LimeGreen;
             this.lv3.format = "F1";
             this.lv3.frameColor = System.Drawing.Color.DimGray;
+            this.lv3.hideOnShrink = false;
             this.lv3.levelType = AudioProcessor.RTLevel.RTLevelType.LinearH;
-            this.lv3.Location = new System.Drawing.Point(56, 82);
+            this.lv3.Location = new System.Drawing.Point(40, 82);
             this.lv3.logScale = false;
             this.lv3.max = 20D;
             this.lv3.min = -120D;
@@ -200,17 +211,20 @@ namespace AudioProcessor.SinkSource
             // 
             this.io3.contactBackColor = System.Drawing.Color.Black;
             this.io3.contactColor = System.Drawing.Color.DimGray;
+            this.io3.contactHighlightColor = System.Drawing.Color.Red;
+            this.io3.hideOnShrink = false;
+            this.io3.highlighted = false;
+            this.io3.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             this.io3.Location = new System.Drawing.Point(0, 82);
             this.io3.Name = "io3";
             this.io3.orientation = AudioProcessor.RTIO.RTOrientation.West;
             this.io3.showTitle = true;
-            this.io3.Size = new System.Drawing.Size(50, 20);
+            this.io3.Size = new System.Drawing.Size(34, 20);
             this.io3.TabIndex = 15;
             this.io3.Text = "rtio3";
             this.io3.title = "3";
             this.io3.titleColor = System.Drawing.Color.DimGray;
             this.io3.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io3.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // lv4
             // 
@@ -218,8 +232,9 @@ namespace AudioProcessor.SinkSource
             this.lv4.fillColor = System.Drawing.Color.LimeGreen;
             this.lv4.format = "F1";
             this.lv4.frameColor = System.Drawing.Color.DimGray;
+            this.lv4.hideOnShrink = false;
             this.lv4.levelType = AudioProcessor.RTLevel.RTLevelType.LinearH;
-            this.lv4.Location = new System.Drawing.Point(56, 108);
+            this.lv4.Location = new System.Drawing.Point(40, 108);
             this.lv4.logScale = false;
             this.lv4.max = 20D;
             this.lv4.min = -120D;
@@ -243,17 +258,20 @@ namespace AudioProcessor.SinkSource
             // 
             this.io4.contactBackColor = System.Drawing.Color.Black;
             this.io4.contactColor = System.Drawing.Color.DimGray;
+            this.io4.contactHighlightColor = System.Drawing.Color.Red;
+            this.io4.hideOnShrink = false;
+            this.io4.highlighted = false;
+            this.io4.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             this.io4.Location = new System.Drawing.Point(0, 108);
             this.io4.Name = "io4";
             this.io4.orientation = AudioProcessor.RTIO.RTOrientation.West;
             this.io4.showTitle = true;
-            this.io4.Size = new System.Drawing.Size(50, 20);
+            this.io4.Size = new System.Drawing.Size(34, 20);
             this.io4.TabIndex = 17;
             this.io4.Text = "rtio4";
             this.io4.title = "4";
             this.io4.titleColor = System.Drawing.Color.DimGray;
             this.io4.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io4.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // lv5
             // 
@@ -261,8 +279,9 @@ namespace AudioProcessor.SinkSource
             this.lv5.fillColor = System.Drawing.Color.LimeGreen;
             this.lv5.format = "F1";
             this.lv5.frameColor = System.Drawing.Color.DimGray;
+            this.lv5.hideOnShrink = false;
             this.lv5.levelType = AudioProcessor.RTLevel.RTLevelType.LinearH;
-            this.lv5.Location = new System.Drawing.Point(56, 134);
+            this.lv5.Location = new System.Drawing.Point(40, 134);
             this.lv5.logScale = false;
             this.lv5.max = 20D;
             this.lv5.min = -120D;
@@ -286,17 +305,20 @@ namespace AudioProcessor.SinkSource
             // 
             this.io5.contactBackColor = System.Drawing.Color.Black;
             this.io5.contactColor = System.Drawing.Color.DimGray;
+            this.io5.contactHighlightColor = System.Drawing.Color.Red;
+            this.io5.hideOnShrink = false;
+            this.io5.highlighted = false;
+            this.io5.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             this.io5.Location = new System.Drawing.Point(0, 134);
             this.io5.Name = "io5";
             this.io5.orientation = AudioProcessor.RTIO.RTOrientation.West;
             this.io5.showTitle = true;
-            this.io5.Size = new System.Drawing.Size(50, 20);
+            this.io5.Size = new System.Drawing.Size(34, 20);
             this.io5.TabIndex = 19;
             this.io5.Text = "rtio5";
             this.io5.title = "5";
             this.io5.titleColor = System.Drawing.Color.DimGray;
             this.io5.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io5.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // lv6
             // 
@@ -304,8 +326,9 @@ namespace AudioProcessor.SinkSource
             this.lv6.fillColor = System.Drawing.Color.LimeGreen;
             this.lv6.format = "F1";
             this.lv6.frameColor = System.Drawing.Color.DimGray;
+            this.lv6.hideOnShrink = false;
             this.lv6.levelType = AudioProcessor.RTLevel.RTLevelType.LinearH;
-            this.lv6.Location = new System.Drawing.Point(56, 160);
+            this.lv6.Location = new System.Drawing.Point(40, 160);
             this.lv6.logScale = false;
             this.lv6.max = 20D;
             this.lv6.min = -120D;
@@ -329,17 +352,20 @@ namespace AudioProcessor.SinkSource
             // 
             this.io6.contactBackColor = System.Drawing.Color.Black;
             this.io6.contactColor = System.Drawing.Color.DimGray;
+            this.io6.contactHighlightColor = System.Drawing.Color.Red;
+            this.io6.hideOnShrink = false;
+            this.io6.highlighted = false;
+            this.io6.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             this.io6.Location = new System.Drawing.Point(0, 160);
             this.io6.Name = "io6";
             this.io6.orientation = AudioProcessor.RTIO.RTOrientation.West;
             this.io6.showTitle = true;
-            this.io6.Size = new System.Drawing.Size(50, 20);
+            this.io6.Size = new System.Drawing.Size(34, 20);
             this.io6.TabIndex = 21;
             this.io6.Text = "rtio6";
             this.io6.title = "6";
             this.io6.titleColor = System.Drawing.Color.DimGray;
             this.io6.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io6.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // lv7
             // 
@@ -347,8 +373,9 @@ namespace AudioProcessor.SinkSource
             this.lv7.fillColor = System.Drawing.Color.LimeGreen;
             this.lv7.format = "F1";
             this.lv7.frameColor = System.Drawing.Color.DimGray;
+            this.lv7.hideOnShrink = false;
             this.lv7.levelType = AudioProcessor.RTLevel.RTLevelType.LinearH;
-            this.lv7.Location = new System.Drawing.Point(56, 186);
+            this.lv7.Location = new System.Drawing.Point(40, 186);
             this.lv7.logScale = false;
             this.lv7.max = 20D;
             this.lv7.min = -120D;
@@ -372,17 +399,20 @@ namespace AudioProcessor.SinkSource
             // 
             this.io7.contactBackColor = System.Drawing.Color.Black;
             this.io7.contactColor = System.Drawing.Color.DimGray;
+            this.io7.contactHighlightColor = System.Drawing.Color.Red;
+            this.io7.hideOnShrink = false;
+            this.io7.highlighted = false;
+            this.io7.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             this.io7.Location = new System.Drawing.Point(0, 186);
             this.io7.Name = "io7";
             this.io7.orientation = AudioProcessor.RTIO.RTOrientation.West;
             this.io7.showTitle = true;
-            this.io7.Size = new System.Drawing.Size(50, 20);
+            this.io7.Size = new System.Drawing.Size(34, 20);
             this.io7.TabIndex = 23;
             this.io7.Text = "rtio7";
             this.io7.title = "7";
             this.io7.titleColor = System.Drawing.Color.DimGray;
             this.io7.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io7.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // lv8
             // 
@@ -390,8 +420,9 @@ namespace AudioProcessor.SinkSource
             this.lv8.fillColor = System.Drawing.Color.LimeGreen;
             this.lv8.format = "F1";
             this.lv8.frameColor = System.Drawing.Color.DimGray;
+            this.lv8.hideOnShrink = false;
             this.lv8.levelType = AudioProcessor.RTLevel.RTLevelType.LinearH;
-            this.lv8.Location = new System.Drawing.Point(56, 212);
+            this.lv8.Location = new System.Drawing.Point(40, 212);
             this.lv8.logScale = false;
             this.lv8.max = 20D;
             this.lv8.min = -120D;
@@ -415,21 +446,23 @@ namespace AudioProcessor.SinkSource
             // 
             this.io8.contactBackColor = System.Drawing.Color.Black;
             this.io8.contactColor = System.Drawing.Color.DimGray;
+            this.io8.contactHighlightColor = System.Drawing.Color.Red;
+            this.io8.hideOnShrink = false;
+            this.io8.highlighted = false;
+            this.io8.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             this.io8.Location = new System.Drawing.Point(0, 212);
             this.io8.Name = "io8";
             this.io8.orientation = AudioProcessor.RTIO.RTOrientation.West;
             this.io8.showTitle = true;
-            this.io8.Size = new System.Drawing.Size(50, 20);
+            this.io8.Size = new System.Drawing.Size(34, 20);
             this.io8.TabIndex = 25;
             this.io8.Text = "rtio8";
             this.io8.title = "8";
             this.io8.titleColor = System.Drawing.Color.DimGray;
             this.io8.titleFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.io8.IOtype = AudioProcessor.RTIO.ProcessingIOType.SignalInput;
             // 
             // RMSVal
             // 
-            this.canShrink = false;
             this.Controls.Add(this.lv8);
             this.Controls.Add(this.io8);
             this.Controls.Add(this.lv7);
@@ -449,7 +482,9 @@ namespace AudioProcessor.SinkSource
             this.Controls.Add(this.lv1);
             this.Controls.Add(this.io1);
             this.Name = "RMSVal";
-            this.Size = new System.Drawing.Size(406, 237);
+            this.shrinkSize = new System.Drawing.Size(275, 237);
+            this.shrinkTitle = "RMS";
+            this.Size = new System.Drawing.Size(360, 237);
             this.title = "RMS";
             this.ResumeLayout(false);
 
@@ -497,14 +532,17 @@ namespace AudioProcessor.SinkSource
             lvX = new RTLevel[channels];
 
             int h = Height;
-            if (channels < 8) { io8.Hide(); lv8.Hide(); h = io8.Location.Y; }
-            if (channels < 7) { io7.Hide(); lv7.Hide(); h = io7.Location.Y; }
-            if (channels < 6) { io6.Hide(); lv6.Hide(); h = io6.Location.Y; }
-            if (channels < 5) { io5.Hide(); lv5.Hide(); h = io6.Location.Y; }
-            if (channels < 4) { io4.Hide(); lv4.Hide(); h = io6.Location.Y; }
-            if (channels < 3) { io3.Hide(); lv3.Hide(); h = io6.Location.Y; }
-            if (channels < 2) { io2.Hide(); lv2.Hide(); h = io6.Location.Y; }
+            int hh = Height;
+            if (channels < 8) { io8.Hide(); lv8.Hide(); h = io8.Location.Y; hh = io8.Location.Y; }
+            if (channels < 7) { io7.Hide(); lv7.Hide(); h = io7.Location.Y; hh = io7.Location.Y; }
+            if (channels < 6) { io6.Hide(); lv6.Hide(); h = io6.Location.Y; hh = io6.Location.Y; }
+            if (channels < 5) { io5.Hide(); lv5.Hide(); h = io5.Location.Y; hh = io5.Location.Y; }
+            if (channels < 4) { io4.Hide(); lv4.Hide(); h = io5.Location.Y; hh = io4.Location.Y; }
+            if (channels < 3) { io3.Hide(); lv3.Hide(); h = io5.Location.Y; hh = io3.Location.Y; }
+            if (channels < 2) { io2.Hide(); lv2.Hide(); h = io5.Location.Y; hh = io2.Location.Y; }
             Height = h;
+            shrinkSize = new System.Drawing.Size(shrinkSize.Width, hh);
+
             if (channels > 0) { ioX[0] = io1; lvX[0] = lv1; }
             if (channels > 1) { ioX[1] = io2; lvX[1] = lv2; }
             if (channels > 2) { ioX[2] = io3; lvX[2] = lv3; }

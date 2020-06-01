@@ -214,7 +214,6 @@
             this.audioProcessorToolBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsOpen,
             this.tsSave,
-            this.tsDelete,
             this.toolStripSeparator3,
             this.audioProcessorTSInput,
             this.audioProcessorTSOutput,
@@ -222,9 +221,10 @@
             this.audioProcessorTSGenerators,
             this.audioProcessorTSFilter,
             this.audioProcessorTSArith,
-            this.audioProcessorTSTools,
             this.audioProcessorTSControl,
-            this.audioProcessorTSData});
+            this.audioProcessorTSData,
+            this.audioProcessorTSTools,
+            this.tsDelete});
             this.audioProcessorToolBar.Location = new System.Drawing.Point(0, 24);
             this.audioProcessorToolBar.Name = "audioProcessorToolBar";
             this.audioProcessorToolBar.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -353,7 +353,7 @@
             // systemPanel
             // 
             this.systemPanel.BackColor = System.Drawing.Color.Black;
-            this.systemPanel.colorGrid = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(32)))), ((int)(((byte)(0)))));
+            this.systemPanel.colorGrid = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(16)))), ((int)(((byte)(0)))));
             this.systemPanel.colorSelect = System.Drawing.Color.RoyalBlue;
             this.systemPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.systemPanel.Location = new System.Drawing.Point(0, 51);

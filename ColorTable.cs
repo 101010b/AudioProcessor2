@@ -271,6 +271,13 @@ namespace AudioProcessor
             b = COLOR[X].B;
         }
 
+        public int icol(int x)
+        {
+            if (x < 0) return COLOR[0].ToArgb();
+            if (x >= N) return COLOR[N-1].ToArgb();
+            return COLOR[x].ToArgb();
+        }
+
         public Color col(int x)
         {
             if (x < 0) return COLOR[0];
