@@ -552,6 +552,12 @@ namespace AudioProcessor.SinkSource
             stopnow = false;
         }
 
+        private double windowFunc(int idx, int max)
+        {
+            // Amplitude corrected Hann Window
+            return 2.0 * 0.5 * (1.0 - Math.Cos(2 * Math.PI * idx / max));
+        }
+
         public override void tick()
         {
             if (stopnow)
@@ -607,8 +613,9 @@ namespace AudioProcessor.SinkSource
                         {
                             if (substep < intCount)
                             {
-                                ASINint += A.data[i] * Math.Sin(phi);
-                                ACOSint += A.data[i] * Math.Cos(phi);
+                                double win = windowFunc(substep, intCount);
+                                ASINint += A.data[i] * Math.Sin(phi) * win;
+                                ACOSint += A.data[i] * Math.Cos(phi) * win;
                             }
                             substep++;
                             phi += dphi;
@@ -624,8 +631,9 @@ namespace AudioProcessor.SinkSource
                             {
                                 if (substep < intCount)
                                 {
-                                    BSINint[j] += B[j].data[i] * Math.Sin(phi);
-                                    BCOSint[j] += B[j].data[i] * Math.Cos(phi);
+                                    double win = windowFunc(substep, intCount);
+                                    BSINint[j] += B[j].data[i] * Math.Sin(phi) * win;
+                                    BCOSint[j] += B[j].data[i] * Math.Cos(phi) * win;
                                 }
                                 substep++;
                                 phi += dphi;
